@@ -16,7 +16,7 @@ class FormbuilderXWorkspaceManagerController extends FormbuilderXBaseManagerCont
     public function getPageTitle() { return $this->modx->lexicon('FormbuilderX'); }
 
     public function loadCustomCssJs() {
-        $this->addJavascript($this->FormbuilderX->config['jsUrl'] . 'mgr/widgets/forms/grid.js');
+        $this->addJavascript($this->FormbuilderX->config['jsUrl'] . 'mgr/widgets/form/grid.js');
         $this->addJavascript($this->FormbuilderX->config['jsUrl'] . 'mgr/widgets/home.panel.js');
         $this->addLastJavascript($this->FormbuilderX->config['jsUrl'] . 'mgr/workspace/index.js');
     }

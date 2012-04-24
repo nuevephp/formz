@@ -12,6 +12,8 @@ $_lang['FormbuilderX'] = 'Form Builder';
 $_lang['FormbuilderX.menu_desc'] = 'Forms to use on the website.';
 $_lang['FormbuilderX.intro_msg'] = 'Manage your forms.';
 $_lang['FormbuilderX.forms'] = 'Forms';
+$_lang['FormbuilderX.forms.field'] = 'Fields';
+$_lang['FormbuilderX.forms.field.desc'] = 'Add, Edit and Delete fields from the Form here';
 $_lang['FormbuilderX.form.create'] = 'Create Form';
 $_lang['FormbuilderX.form.remove'] = 'Remove Form';
 $_lang['FormbuilderX.form.remove_confirm'] = 'Are you sure you want to remove this Form?';
@@ -33,6 +35,16 @@ $_lang['FormbuilderX.form.success'] = 'Success Message';
 $_lang['FormbuilderX.form.method.dbonly'] = 'Save in the database';
 $_lang['FormbuilderX.form.method.dbandemail'] = 'Save in the database and send email';
 $_lang['FormbuilderX.form.recipient'] = 'Recipients';
+
+// Fields
+$_lang['FormbuilderX.field.name'] = 'Label';
+$_lang['FormbuilderX.field.type'] = 'Type';
+$_lang['FormbuilderX.field.required'] = 'Required';
+
+$_lang['FormbuilderX.field.add'] = 'Add Field';
+$_lang['FormbuilderX.field.create'] = 'Create Field';
+$_lang['FormbuilderX.field.update'] = 'Update Field';
+$_lang['FormbuilderX.field.delete'] = 'Delete Field';
 
 $_lang['FormbuilderX.form_err_ae'] = 'An Form already exists with that name.';
 $_lang['FormbuilderX.form_err_nf'] = 'Form not found.';

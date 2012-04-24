@@ -1,9 +1,9 @@
 FormbuilderX.panel.NewForm = function (config) {
 	config = config || {record: {}};
 	config.record = config.record || {};
+	config.create_update = FormbuilderX.utils.isEmpty(config.record) ? false : true;
 
-	var tbs = [],
-		create_update = FormbuilderX.utils.isEmpty(config.record) ? false : true;
+	var tbs = [];
 
 	tbs.push({
 		title: _('FormbuilderX.form.general')
@@ -116,10 +116,21 @@ FormbuilderX.panel.NewForm = function (config) {
 		}]
 	});
 
-	if (create_update) {
+	if (config.create_update) {
 		// Add the fields tab before extra
 		tbs.splice(1, 0, {
-			title: 'Fields'
+			title: _('FormbuilderX.forms.field')
+			,items: [{
+				html: '<p>' + _('FormbuilderX.forms.field.desc') + '</p>'
+				,border: false
+				,bodyCssClass: 'panel-desc'
+			}, {
+				xtype: 'formbuilderx-grid-fields'
+				,cls: 'main-wrapper'
+				,preventRender: true
+				,anchor: '100%'
+				,form_id: config.record.id
+			}]
 		});
 	}
 
@@ -157,8 +168,10 @@ Ext.extend(FormbuilderX.panel.NewForm, MODx.FormPanel, {
 		return true;
 	}
 	,success: function (r) {
-		// Commit all changes on the facilities grid and remove any visual identifier of change
-		console.log(r.result.object);
+		if (!this.config.create_update) {
+        	var r = r.result.object;
+        	window.location.href = '?a=' + MODx.action['FormbuilderX:index'] + '&action=update&id=' + r.id;
+        }
 	}
 });
 Ext.reg('formbuilderx-panel-new-form', FormbuilderX.panel.NewForm);

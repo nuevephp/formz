@@ -13,6 +13,7 @@ class FormbuilderXUpdateManagerController extends FormbuilderXBaseManagerControl
         </script>');
 
         $this->addJavascript($this->FormbuilderX->config['jsUrl'] . 'mgr/widgets/newform.panel.js');
+        $this->addLastJavascript($this->FormbuilderX->config['jsUrl'] . 'mgr/widgets/form/field/grid.js');
         $this->addLastJavascript($this->FormbuilderX->config['jsUrl'] . 'mgr/workspace/form/update.js');
     }
 
