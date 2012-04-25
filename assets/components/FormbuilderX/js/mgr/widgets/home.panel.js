@@ -15,13 +15,13 @@ FormbuilderX.panel.Home = function(config) {
             ,activeItem: 0
             ,hideMode: 'offsets'
             ,items: [{
-                title: _('FormbuilderX.forms')
+                title: _('FormbuilderX.form')
                 ,items: [{
                     html: '<p>'+_('FormbuilderX.intro_msg')+'</p>'
                     ,border: false
                     ,bodyCssClass: 'panel-desc'
                 },{
-                    xtype: 'FormbuilderX-grid-forms'
+                    xtype: 'formbuilderx-grid-forms'
                     ,preventRender: true
                     ,cls: 'main-wrapper'
                 }]
@@ -31,4 +31,4 @@ FormbuilderX.panel.Home = function(config) {
     FormbuilderX.panel.Home.superclass.constructor.call(this,config);
 };
 Ext.extend(FormbuilderX.panel.Home, MODx.Panel);
-Ext.reg('FormbuilderX-panel-home', FormbuilderX.panel.Home);
+Ext.reg('formbuilderx-panel-home', FormbuilderX.panel.Home);

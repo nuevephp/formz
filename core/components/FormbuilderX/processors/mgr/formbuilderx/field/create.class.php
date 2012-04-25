@@ -7,22 +7,50 @@ class FormbuilderXCreateProcessor extends modObjectCreateProcessor {
     public $languageTopics = array('FormbuilderX:default');
 
     /* Used to load the correct language error message */
-    public $objectType = 'FormbuilderX.form';
+    public $objectType = 'FormbuilderX.field';
 
     public function beforeSave() {
-    	$name = $this->getProperty('name');
+    	$form_id = $this->getProperty('form_id');
+    	$label = $this->getProperty('label');
+        $values = $this->getProperty('values');
+        $default = $this->getProperty('default');
+        $msg = $this->getProperty('error_message', $this->modx->lexicon('FormbuilderX.field.validation.required'));
 
-    	if (empty($name)) {
-    		$this->addFieldError('name', $this->modx->lexicon('FormbuilderX.form_err_ns'));
-    	} else if ($this->doesAlreadyExist(array('name' => $name))) {
-    		$this->addFieldError('name', $this->modx->lexicon('FormbuilderX.form_err_ae'));
+    	if (empty($label)) {
+    		$this->addFieldError('label', $this->modx->lexicon('FormbuilderX.form_err_ns'));
+    	} else if ($this->doesAlreadyExist(array('label' => $label, 'form_id' => $form_id))) {
+    		$this->addFieldError('label', $this->modx->lexicon('FormbuilderX.form_err_ae'));
     	}
 
-        // Setting creator and time created
-        $this->object->set('createdby', $this->modx->user->get('id'));
-        $this->object->set('createdon', date('Y-m-d H:i:s',time()));
+        $settings = array(
+            'label' => $label
+        );
+
+        if ($default !== null)
+            $settings['default'] = $default;
+
+        if ($values !== null)
+            $settings['values'] = $values;
+
+        $this->object->set('settings', $this->modx->toJSON($settings));
 
     	return parent::beforeSave();
+    }
+
+    public function afterSave() {
+        $required = $this->setCheckbox('required');
+        $field_id = $this->object->get('id');
+
+        if ($required) {
+            $msg = $this->getProperty('error_message', $this->modx->lexicon('FormbuilderX.field.validation.required'));
+            $fieldValidation = $this->modx->newObject('fbxFormsValidation');
+            $fieldValidation->fromArray(array(
+                'field_id' => $field_id,
+                'type' => 'required',
+                'error_message' => $msg
+            ));
+            $fieldValidation->save();
+        }
     }
 }
 

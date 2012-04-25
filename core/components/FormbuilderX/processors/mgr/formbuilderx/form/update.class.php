@@ -1,5 +1,5 @@
 <?php
-class FormbuilderXCreateProcessor extends modObjectCreateProcessor {
+class FormbuilderXUpdateProcessor extends modObjectUpdateProcessor {
     /* Class in model directory */
     public $classKey = 'fbxForms';
 
@@ -11,11 +11,11 @@ class FormbuilderXCreateProcessor extends modObjectCreateProcessor {
 
     public function beforeSave() {
         // Setting creator and time created
-        $this->object->set('createdby', $this->modx->user->get('id'));
-        $this->object->set('createdon', date('Y-m-d H:i:s',time()));
+        $this->object->set('editedby', $this->modx->user->get('id'));
+        $this->object->set('editedon', date('Y-m-d H:i:s',time()));
 
-    	return parent::beforeSave();
+        return parent::beforeSave();
     }
 }
 
-return 'FormbuilderXCreateProcessor';
+return 'FormbuilderXUpdateProcessor';

@@ -11,18 +11,23 @@ FormbuilderX.grid.Fields = function(config) {
         ,fields: [
             'id',
             'type',
-            'label'
+            'label',
+            'required',
+            'default',
+            'error_message'
         ]
-        ,paging: true
+        ,paging: false
         ,remoteSort: true
-        ,autoExpandColumn: 'type'
+        ,autoExpandColumn: 'label'
+        ,ddGroup: 'ddGrid' + config.form_id
+        ,enableDragDrop: true
         //,save_action: 'mgr/venuex/photo/updateFromGrid'
         ,autosave: true
         ,columns: [{
 			header: _('FormbuilderX.field.type')
 			,dataIndex: 'type'
 			,sortable: false
-			,width: 100
+			,width: 50
 		}, {
 			header: _('FormbuilderX.field.name')
 			,dataIndex: 'label'
@@ -40,40 +45,42 @@ FormbuilderX.grid.Fields = function(config) {
             text: _('FormbuilderX.field.add')
             ,handler: {
             	xtype: 'formbuilderx-window-field-update'
-            	,venue: config.venue
-            	,alias: config.alias
+            	,form_id: config.form_id
             	,blankValues: true
             }
         }]
     });
     FormbuilderX.grid.Fields.superclass.constructor.call(this, config);
+
+    // Reorder by Drag and Drop
+    Ext.getCmp('formbuilderx-grid-fields').on('render', this.dragAndDrop, this);
 };
 
 Ext.extend(FormbuilderX.grid.Fields, MODx.grid.Grid, {
     getMenu: function (grid, rowIndex, e) {
         return [{
-            text: _('formbuilderx.field.update')
-            ,handler: this.updatePhoto
+            text: _('FormbuilderX.field.update')
+            ,handler: this.updateField
         }, '-', {
-            text: _('formbuilderx.field.remove')
-            ,handler: this.removePhoto
+            text: _('FormbuilderX.field.remove')
+            ,handler: this.removeField
         }];
     }
-	,updatePhoto: function (btn, e) {
-		if (!this.updatePhotoWindow) {
-			this.updatePhotoWindow = MODx.load({
-				xtype: 'venuex-window-photo-update'
+	,updateField: function (btn, e) {
+		if (!this.updateFieldWindow) {
+			this.updateFieldWindow = MODx.load({
+				xtype: 'formbuilderx-window-field-update'
 				,record: this.menu.record
-				,alias: this.config.alias
+				,form_id: this.config.form_id
 				,listeners: {
 					'success': { fn: this.refresh, scope: this }
 				}
 			});
 		}
-		this.updatePhotoWindow.setValues(this.menu.record);
-		this.updatePhotoWindow.show(e.target);
+		this.updateFieldWindow.setValues(this.menu.record);
+		this.updateFieldWindow.show(e.target);
 	}
-    ,removePhoto: function () {
+    ,removeField: function () {
         MODx.msg.confirm({
             title: _('formbuilderx.field.remove')
             ,text: _('formbuilderx.field.remove_confirm')
@@ -87,22 +94,47 @@ Ext.extend(FormbuilderX.grid.Fields, MODx.grid.Grid, {
             }
         });
     }
+    ,dragAndDrop: function (grid) {
+    	var ddrow = new Ext.dd.DropTarget(grid.container, {
+    		ddGroup: 'ddGrid' + this.config.form_id
+    		,copy: false
+    		,notifyDrop: function (dd, e, data) {
+    			var sm = grid.getSelectionModel(),
+    				rows = sm.getSelections();
+
+    			if (dd.getDragData(e)) {
+    				var cindex = dd.getDragData(e).rowIndex;
+    				for (var i = 0; i < rows.length; i++) {
+    					//rowData = c.getById(rows[i].id);
+    					console.log(rows[i].id);
+    					if (!this.copy) {
+
+    					}
+    				};
+    			}
+    			grid.collectItems();
+    			grid.getView().refresh();
+    			console.log(sm, rows);
+    		}
+    	});
+    }
 });
 Ext.reg('formbuilderx-grid-fields', FormbuilderX.grid.Fields);
 
 FormbuilderX.window.UpdateField = function (config) {
 	config = config || {};
+
+	create_update = FormbuilderX.utils.isEmpty(config.record) ? 'create' : 'update';
+
 	Ext.applyIf(config, {
-		title: _('FormbuilderX.field.create')
+		title: _('FormbuilderX.field.' + create_update)
 		,url: FormbuilderX.config.connector_url
-		,fileUpload: true
 		,baseParams: {
-			action: 'mgr/formbuilderx/field/create'
+			action: 'mgr/formbuilderx/field/' + create_update
 			,form_id: config.form_id
 		}
 		,fields: [{
             xtype: 'modx-tabs',
-            hideMode: 'offsets',
             autoHeight: true,
             deferredRender: false,
             forceLayout: true,
@@ -119,29 +151,31 @@ FormbuilderX.window.UpdateField = function (config) {
             },
             items: [{
             	title: _('FormbuilderX.form.default')
-            	,id: 'formbuilderx-form-default'
             	,layout: 'form'
             	,items: [{
+					xtype: 'hidden'
+					,name: 'id'
+				}, {
 					xtype: 'textfield'
 					,fieldLabel: _('FormbuilderX.field.name')
-					,name: 'name'
+					,name: 'label'
 					,anchor: '100%'
 				}, {
 					xtype: 'formbuilderx-combo-types'
 					,fieldLabel: _('FormbuilderX.field.type')
 					,name: 'type'
 					,anchor: '100%'
+					,hiddenName: 'type'
+					,value: 'textbox'
 					,listeners: {
 						'select': { fn: this.fieldSets, scope: this }
 					}
 				}]
             }, {
             	title: _('FormbuilderX.form.properties')
-            	,id: 'formbuilderx-form-properties'
             	,layout: 'form'
             	,items: [{
             		xtype: 'textfield'
-            		,id: 'formbuilderx-field-default'
             		,fieldLabel: _('FormbuilderX.field.default')
             		,name: 'default'
             		,anchor: '100%'
@@ -149,6 +183,11 @@ FormbuilderX.window.UpdateField = function (config) {
             		xtype: 'checkbox'
             		,fieldLabel: _('FormbuilderX.field.required')
             		,name: 'required'
+            		,anchor: '100%'
+            	}, {
+            		xtype: 'textfield'
+            		,fieldLabel: _('FormbuilderX.field.error_message')
+            		,name: 'error_message'
             		,anchor: '100%'
             	}]
             }]
@@ -178,36 +217,11 @@ Ext.extend(FormbuilderX.window.UpdateField, MODx.Window, {
 
 			break;
 			default:
-				// textarea
+				// textbox
 		}
 	}
 });
 Ext.reg('formbuilderx-window-field-update', FormbuilderX.window.UpdateField);
-
-/*Venuex.window.UpdatePhoto = function (config) {
-	config = config || {};
-	Ext.applyIf(config, {
-		title: _('formbuilderx.photos.update')
-		,url: Venuex.config.connectorUrl
-		,fileUpload: true
-		,baseParams: {
-			action: 'mgr/venuex/photo/update'
-			,alias: config.alias
-		},
-		fields: [{
-			xtype: 'hidden'
-			,name: 'id'
-		}, {
-			xtype: 'textfield'
-			,fieldLabel: _('formbuilderx.name')
-			,name: 'name'
-			,anchor: '100%'
-		}]
-	});
-	Venuex.window.UpdatePhoto.superclass.constructor.call(this, config);
-}
-Ext.extend(Venuex.window.UpdatePhoto, MODx.Window);
-Ext.reg('venuex-window-photo-update', Venuex.window.UpdatePhoto);*/
 
 FormbuilderX.combo.Types = function (config) {
 	config = config || {};

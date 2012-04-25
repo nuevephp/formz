@@ -29,7 +29,7 @@ FormbuilderX.grid.Forms = function(config) {
         }]
         ,tbar: ['->', {
             text: _('FormbuilderX.form.create')
-            ,handler: this.create
+            ,handler: this.createForm
             ,scope: this
         }]
     });
@@ -42,26 +42,27 @@ Ext.extend(FormbuilderX.grid.Forms, MODx.grid.Grid,{
         var m = [];
         m.push({
             text: _('FormbuilderX.form.update')
-            ,handler: this.update
+            ,handler: this.updateForm
         });
         m.push('-');
         m.push({
             text: _('FormbuilderX.form.remove')
-            ,handler: this.remove
+            ,handler: this.removeForm
         });
         this.addContextMenuItem(m);
     }
 
-    ,create: function(btn,e) {
+    ,createForm: function(btn,e) {
         window.location.href = '?a=' + MODx.action['FormbuilderX:index'] + '&action=create';
     }
-    ,update: function(btn,e) {
+
+    ,updateForm: function(btn,e) {
         if (!this.menu.record || !this.menu.record.id) return false;
         var r = this.menu.record;
         window.location.href = '?a=' + MODx.action['FormbuilderX:index'] + '&action=update&id=' + r.id;
     }
 
-    ,remove: function(btn,e) {
+    ,removeForm: function(btn,e) {
         if (!this.menu.record) return false;
 
         MODx.msg.confirm({
@@ -78,4 +79,4 @@ Ext.extend(FormbuilderX.grid.Forms, MODx.grid.Grid,{
         });
     }
 });
-Ext.reg('FormbuilderX-grid-forms', FormbuilderX.grid.Forms);
+Ext.reg('formbuilderx-grid-forms', FormbuilderX.grid.Forms);

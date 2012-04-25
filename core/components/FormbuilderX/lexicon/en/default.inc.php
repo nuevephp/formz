@@ -43,7 +43,7 @@ $_lang['FormbuilderX.field.name'] = 'Label';
 $_lang['FormbuilderX.field.type'] = 'Type';
 $_lang['FormbuilderX.field.default'] = 'Default Value';
 $_lang['FormbuilderX.field.required'] = 'Required';
-$_lang['FormbuilderX.field.error_msg'] = 'Error Message';
+$_lang['FormbuilderX.field.error_message'] = 'Error Message';
 
 $_lang['FormbuilderX.field.add'] = 'Add Field';
 $_lang['FormbuilderX.field.create'] = 'Create Field';
@@ -51,6 +51,9 @@ $_lang['FormbuilderX.field.update'] = 'Update Field';
 $_lang['FormbuilderX.field.delete'] = 'Delete Field';
 $_lang['FormbuilderX.field.remove'] = 'Remove Form';
 $_lang['FormbuilderX.field.remove_confirm'] = 'Are you sure you want to remove this Form?';
+
+// Validation
+$_lang['FormbuilderX.field.validation.required'] = 'This field is required.';
 
 $_lang['FormbuilderX.form_err_ae'] = 'An Form already exists with that name.';
 $_lang['FormbuilderX.form_err_nf'] = 'Form not found.';

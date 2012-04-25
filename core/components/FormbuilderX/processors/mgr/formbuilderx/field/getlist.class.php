@@ -23,6 +23,46 @@ class FormbuilderXGetListProcessor extends modObjectGetListProcessor {
     	}
     	return $c;
     }
+
+    public function afterIteration($list) {
+        $currentIndex = 0;
+        foreach ($list as $item) {
+            $fieldSettings = $this->modx->fromJSON($item['settings'], false);
+
+            $lists[] = $item;
+            $val = $this->modx->getObject('fbxFormsValidation', array('field_id' => $item['id']));
+
+            $lists[$currentIndex]['label'] = $fieldSettings->label;
+
+            if ($fieldSettings->default !== null)
+                $lists[$currentIndex]['default'] = $fieldSettings->default;
+
+            if ($fieldSettings->values !== null)
+                $lists[$currentIndex]['values'] = $fieldSettings->values;
+
+            $lists[$currentIndex]['required'] = $val->type === 'required' ? 1 : 0;
+            $lists[$currentIndex]['error_message'] = $val->error_message;
+            $currentIndex++;
+        }
+        return $lists;
+    }
+
+    /*public function process() {
+        $fieldList = $this->getData();
+        if (empty($fieldList)) return $this->failure();
+
+        $fields = array();
+        foreach ($fieldList['results'] as $field) {
+            $fieldSettings = $this->modx->fromJSON($field->settings, false);
+            $fields[] = array(
+                'id' => $field->id,
+                'type' => $field->type,
+                'label' => $fieldSettings->label
+            );
+        }
+
+        return $this->outputArray($fields);
+    }*/
 }
 
 return 'FormbuilderXGetListProcessor';
