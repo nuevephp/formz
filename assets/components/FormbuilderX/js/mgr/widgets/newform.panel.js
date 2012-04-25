@@ -119,9 +119,9 @@ FormbuilderX.panel.NewForm = function (config) {
 	if (config.create_update) {
 		// Add the fields tab before extra
 		tbs.splice(1, 0, {
-			title: _('FormbuilderX.forms.field')
+			title: _('FormbuilderX.form.field')
 			,items: [{
-				html: '<p>' + _('FormbuilderX.forms.field.desc') + '</p>'
+				html: '<p>' + _('FormbuilderX.form.field.desc') + '</p>'
 				,border: false
 				,bodyCssClass: 'panel-desc'
 			}, {
@@ -135,7 +135,7 @@ FormbuilderX.panel.NewForm = function (config) {
 	}
 
 	Ext.applyIf(config, {
-		title: _('FormbuilderX.forms')
+		title: _('FormbuilderX.form')
 		,url: FormbuilderX.config.connector_url
 		,baseParams: {}
 		,border: false

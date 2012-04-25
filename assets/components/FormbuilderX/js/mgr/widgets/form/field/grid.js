@@ -39,7 +39,7 @@ FormbuilderX.grid.Fields = function(config) {
         ,tbar: ['->', {
             text: _('FormbuilderX.field.add')
             ,handler: {
-            	xtype: 'formbuilderx-window-field-create'
+            	xtype: 'formbuilderx-window-field-update'
             	,venue: config.venue
             	,alias: config.alias
             	,blankValues: true
@@ -75,11 +75,11 @@ Ext.extend(FormbuilderX.grid.Fields, MODx.grid.Grid, {
 	}
     ,removePhoto: function () {
         MODx.msg.confirm({
-            title: _('formbuilderx.photos.remove')
-            ,text: _('formbuilderx.photos.remove_confirm')
+            title: _('formbuilderx.field.remove')
+            ,text: _('formbuilderx.field.remove_confirm')
             ,url: this.config.url
             ,params: {
-                action: 'mgr/venuex/photo/remove'
+                action: 'mgr/formbuilderx/field/remove'
                 ,id: this.menu.record.id
             }
             ,listeners: {
@@ -87,15 +87,10 @@ Ext.extend(FormbuilderX.grid.Fields, MODx.grid.Grid, {
             }
         });
     }
-    ,renderImage: function (val) {
-        if (val.length > 0)
-            return '<img src="' + MODx.config.connectors_url + 'system/phpthumb.php?src=' + encodeURI(val) + '&w=120&h=120" alt="'+val+'"/>';
-        return '';
-    }
 });
 Ext.reg('formbuilderx-grid-fields', FormbuilderX.grid.Fields);
 
-FormbuilderX.window.CreateField = function (config) {
+FormbuilderX.window.UpdateField = function (config) {
 	config = config || {};
 	Ext.applyIf(config, {
 		title: _('FormbuilderX.field.create')
@@ -106,26 +101,88 @@ FormbuilderX.window.CreateField = function (config) {
 			,form_id: config.form_id
 		}
 		,fields: [{
-			xtype: 'textfield'
-			,fieldLabel: _('FormbuilderX.field.name')
-			,name: 'name'
-			,anchor: '100%'
-		}, {
-			xtype: 'formbuilderx-combo-types'
-			,fieldLabel: _('FormbuilderX.field.type')
-			,name: 'type'
-			,anchor: '100%'
-			,listeners: {
-				select: function (e) {
-					console.log(e);
-				}
-			}
+            xtype: 'modx-tabs',
+            hideMode: 'offsets',
+            autoHeight: true,
+            deferredRender: false,
+            forceLayout: true,
+            width: '98%',
+            bodyStyle: 'padding: 10px 10px 10px 10px;',
+            border: true,
+            defaults: {
+                border: false,
+                autoHeight: true,
+                bodyStyle: 'padding: 5px 8px 5px 5px;',
+                layout: 'form',
+                deferredRender: false,
+                forceLayout: true
+            },
+            items: [{
+            	title: _('FormbuilderX.form.default')
+            	,id: 'formbuilderx-form-default'
+            	,layout: 'form'
+            	,items: [{
+					xtype: 'textfield'
+					,fieldLabel: _('FormbuilderX.field.name')
+					,name: 'name'
+					,anchor: '100%'
+				}, {
+					xtype: 'formbuilderx-combo-types'
+					,fieldLabel: _('FormbuilderX.field.type')
+					,name: 'type'
+					,anchor: '100%'
+					,listeners: {
+						'select': { fn: this.fieldSets, scope: this }
+					}
+				}]
+            }, {
+            	title: _('FormbuilderX.form.properties')
+            	,id: 'formbuilderx-form-properties'
+            	,layout: 'form'
+            	,items: [{
+            		xtype: 'textfield'
+            		,id: 'formbuilderx-field-default'
+            		,fieldLabel: _('FormbuilderX.field.default')
+            		,name: 'default'
+            		,anchor: '100%'
+            	}, {
+            		xtype: 'checkbox'
+            		,fieldLabel: _('FormbuilderX.field.required')
+            		,name: 'required'
+            		,anchor: '100%'
+            	}]
+            }]
 		}]
 	});
-	FormbuilderX.window.CreateField.superclass.constructor.call(this, config);
+	FormbuilderX.window.UpdateField.superclass.constructor.call(this, config);
 };
-Ext.extend(FormbuilderX.window.CreateField, MODx.Window);
-Ext.reg('formbuilderx-window-field-create', FormbuilderX.window.CreateField);
+Ext.extend(FormbuilderX.window.UpdateField, MODx.Window, {
+	fieldSets: function (field, record, i) {
+		switch (record.id) {
+			case 'textarea':
+
+			break;
+			case 'dropdown':
+
+			break;
+			case 'checkbox':
+
+			break;
+			case 'radiobutton':
+
+			break;
+			case 'heading':
+
+			break;
+			case 'paragraph':
+
+			break;
+			default:
+				// textarea
+		}
+	}
+});
+Ext.reg('formbuilderx-window-field-update', FormbuilderX.window.UpdateField);
 
 /*Venuex.window.UpdatePhoto = function (config) {
 	config = config || {};
