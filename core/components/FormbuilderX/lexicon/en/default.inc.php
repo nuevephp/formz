@@ -41,6 +41,7 @@ $_lang['FormbuilderX.form.recipient'] = 'Recipients';
 // Fields
 $_lang['FormbuilderX.field.name'] = 'Label';
 $_lang['FormbuilderX.field.type'] = 'Type';
+$_lang['FormbuilderX.field.values'] = 'Values';
 $_lang['FormbuilderX.field.default'] = 'Default Value';
 $_lang['FormbuilderX.field.required'] = 'Required';
 $_lang['FormbuilderX.field.error_message'] = 'Error Message';

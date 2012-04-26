@@ -31,6 +31,11 @@ class FormbuilderX {
     public $config = array();
     /** @var array $chunks */
     public $chunks = array();
+    /**
+     * The field handling class
+     * @var fbxFields $fields
+     */
+    public $fields;
 
     function __construct(modX &$modx,array $config = array()) {
         $this->modx =& $modx;
@@ -58,6 +63,23 @@ class FormbuilderX {
 
         $this->modx->addPackage('FormbuilderX',$this->config['modelPath']);
         $this->modx->lexicon->load('FormbuilderX:default');
+    }
+
+    /**
+     * Load the fbxFields class
+     * @return fbxFields
+     */
+    public function loadFields() {
+        $className = $this->modx->getOption('fields_class',$this->config,'fbxFields');
+        $classPath = $this->modx->getOption('fields_class_path',$this->config,'');
+        if (empty($classPath)) $classPath = $this->config['modelPath'].'FormbuilderX/';
+        if ($this->modx->loadClass($className, $classPath,true,true)) {
+            $this->fields = new fbxFields($this,$this->config);
+        } else {
+            $this->modx->log(modX::LOG_LEVEL_ERROR,'[FormbuilderX] Could not load fbxFields class.');
+        }
+        return $this->fields;
+
     }
 
     /**

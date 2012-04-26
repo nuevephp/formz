@@ -14,14 +14,16 @@ FormbuilderX.grid.Fields = function(config) {
             'label',
             'required',
             'default',
+            'values',
             'error_message'
         ]
         ,paging: false
-        ,remoteSort: true
+        ,remoteSort: false
         ,autoExpandColumn: 'label'
+        ,autosave: true
         ,ddGroup: 'ddGrid' + config.form_id
         ,enableDragDrop: true
-        //,save_action: 'mgr/venuex/photo/updateFromGrid'
+        ,save_action: 'mgr/formbuilderx/field/updateFromGrid'
         ,autosave: true
         ,columns: [{
 			header: _('FormbuilderX.field.type')
@@ -99,22 +101,24 @@ Ext.extend(FormbuilderX.grid.Fields, MODx.grid.Grid, {
     		ddGroup: 'ddGrid' + this.config.form_id
     		,copy: false
     		,notifyDrop: function (dd, e, data) {
-    			var sm = grid.getSelectionModel(),
+    			var ds = grid.store,
+                    sm = grid.getSelectionModel(),
     				rows = sm.getSelections();
 
     			if (dd.getDragData(e)) {
     				var cindex = dd.getDragData(e).rowIndex;
     				for (var i = 0; i < rows.length; i++) {
-    					//rowData = c.getById(rows[i].id);
-    					console.log(rows[i].id);
+                        rowData = ds.getById(rows[i].id);
     					if (!this.copy) {
-
+                            ds.remove(ds.getById(rows[i].id));
+                            ds.insert(cindex, rowData);
     					}
     				};
     			}
-    			grid.collectItems();
-    			grid.getView().refresh();
-    			console.log(sm, rows);
+    			//grid.getView().refresh();
+                //Ext.getCmp('formbuilderx-grid-fields').fireEvent('');
+                //grid.saveRecord();
+    			console.log(sm);
     		}
     	});
     }
@@ -123,8 +127,8 @@ Ext.reg('formbuilderx-grid-fields', FormbuilderX.grid.Fields);
 
 FormbuilderX.window.UpdateField = function (config) {
 	config = config || {};
-
-	create_update = FormbuilderX.utils.isEmpty(config.record) ? 'create' : 'update';
+    config.id = Ext.id();
+	create_update = Ext.isEmpty(config.record) ? 'create' : 'update';
 
 	Ext.applyIf(config, {
 		title: _('FormbuilderX.field.' + create_update)
@@ -170,7 +174,14 @@ FormbuilderX.window.UpdateField = function (config) {
 					,listeners: {
 						'select': { fn: this.fieldSets, scope: this }
 					}
-				}]
+				}, {
+                    xtype: 'textfield'
+                    ,id: 'formbuilderx-field-values-' + config.id
+                    ,fieldLabel: _('FormbuilderX.field.values')
+                    ,name: 'values'
+                    ,anchor: '100%'
+                    ,hidden: true
+                }]
             }, {
             	title: _('FormbuilderX.form.properties')
             	,layout: 'form'
@@ -197,27 +208,16 @@ FormbuilderX.window.UpdateField = function (config) {
 };
 Ext.extend(FormbuilderX.window.UpdateField, MODx.Window, {
 	fieldSets: function (field, record, i) {
+        var valueField = Ext.getCmp('formbuilderx-field-values-' + this.config.id);
 		switch (record.id) {
-			case 'textarea':
-
-			break;
 			case 'dropdown':
-
-			break;
 			case 'checkbox':
-
-			break;
 			case 'radiobutton':
-
-			break;
-			case 'heading':
-
-			break;
-			case 'paragraph':
-
+                valueField.show();
 			break;
 			default:
 				// textbox
+                valueField.hide();
 		}
 	}
 });
@@ -242,9 +242,7 @@ FormbuilderX.combo.Types = function (config) {
 	        	['textarea', 'Textarea'],
 	        	['dropdown', 'Dropdown'],
 	        	['checkbox', 'Checkbox'],
-	        	['radiobutton', 'Radio Button'],
-	        	['heading', 'Heading'],
-	        	['paragraph', 'Paragraph']
+	        	['radiobutton', 'Radio Button']
 	        ]
 	    })
 	    ,valueField: 'id'

@@ -1,7 +1,7 @@
 FormbuilderX.panel.NewForm = function (config) {
 	config = config || {record: {}};
 	config.record = config.record || {};
-	config.create_update = FormbuilderX.utils.isEmpty(config.record) ? false : true;
+	config.create_update = Ext.isEmpty(config.record) ? false : true;
 
 	var tbs = [];
 
@@ -39,7 +39,7 @@ FormbuilderX.panel.NewForm = function (config) {
 				,listeners: {
 					scope: this
 					,'beforerender': function () {
-						if (!FormbuilderX.utils.isEmpty(this.record)) {
+						if (!Ext.isEmpty(this.record)) {
 							var recipientField = Ext.getCmp('formbuilderx-form-recipient'),
 								rec = this.record.method;
 

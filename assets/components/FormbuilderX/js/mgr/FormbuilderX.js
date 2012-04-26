@@ -8,13 +8,3 @@ Ext.extend(FormbuilderX,Ext.Component,{
 Ext.reg('FormbuilderX', FormbuilderX);
 
 FormbuilderX = new FormbuilderX();
-
-// Helpers
-FormbuilderX.utils.isEmpty = function(map) {
-	for(var key in map) {
-      	if (map.hasOwnProperty(key)) {
-         	return false;
-   		}
-   	}
-   	return true;
-}

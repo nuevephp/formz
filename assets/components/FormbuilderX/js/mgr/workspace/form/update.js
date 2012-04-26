@@ -5,7 +5,7 @@ Ext.onReady(function() {
 FormbuilderX.page.UpdateForm = function(config) {
     config = config || {};
 
-    var create_update = FormbuilderX.utils.isEmpty(config.record) ? 'mgr/formbuilderx/form/create' : 'mgr/formbuilderx/form/update';
+    var create_update = Ext.isEmpty(config.record) ? 'mgr/formbuilderx/form/create' : 'mgr/formbuilderx/form/update';
 
     Ext.applyIf(config, {
 		formpanel: 'formbuilderx-panel-new-form'
