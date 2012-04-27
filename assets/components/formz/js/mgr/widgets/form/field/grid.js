@@ -114,11 +114,32 @@ Ext.extend(Formz.grid.Fields, MODx.grid.Grid, {
                             ds.insert(cindex, rowData);
     					}
     				};
-    			}
+                }
+
+                var d = ds.data.items;
+                /*MODx.Ajax.request({
+                    url: url
+                    ,params: {
+                        action: this.config.save_action || 'updateFromGrid'
+                        ,data: d
+                    }
+                    ,listeners: {
+                        'success': {fn:function(r) {
+                            if (this.config.save_callback) {
+                                Ext.callback(this.config.save_callback,this.config.scope || this,[r]);
+                            }
+                            e.record.commit();
+                            if (!this.config.preventSaveRefresh) {
+                                this.refresh();
+                            }
+                            this.fireEvent('afterAutoSave',r);
+                        },scope:this}
+                    }
+                });*/
+                //console.log(d, data, e);
     			//grid.getView().refresh();
                 //Ext.getCmp('formz-grid-fields').fireEvent('');
                 //grid.saveRecord();
-    			console.log(sm);
     		}
     	});
     }

@@ -48,6 +48,11 @@ class FormzCreateProcessor extends modObjectCreateProcessor {
     }
 
     public function afterSave() {
+        $this->saveRequired();
+        parent::afterSave();
+    }
+
+    private function saveRequired() {
         $required = $this->setCheckbox('required');
         $field_id = $this->object->get('id');
 

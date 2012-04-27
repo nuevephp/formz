@@ -39,6 +39,43 @@ class formzUpdateProcessor extends modObjectUpdateProcessor {
 
         return parent::beforeSave();
     }
+
+    public function afterSave() {
+        $this->saveRequired();
+        return parent::afterSave();
+    }
+
+    private function saveRequired() {
+        $required = $this->setCheckbox('required');
+        $field_id = $this->object->get('id');
+
+        if ($required) {
+            $msg = $this->getProperty('error_message');
+            $fieldValidation = $this->modx->getObject('fmzFormsValidation', array(
+                'field_id' => $field_id,
+                'type' => 'required',
+            ));
+
+            if (empty($fieldValidation)) {
+                $fieldValidation = $this->modx->newObject('fmzFormsValidation');
+            }
+
+            $fieldValidation->fromArray(array(
+                'field_id' => $field_id,
+                'type' => 'required',
+                'error_message' => $msg
+            ));
+            $fieldValidation->save();
+        } else {
+            $fieldValidation = $this->modx->getObject('fmzFormsValidation', array(
+                'field_id' => $field_id,
+                'type' => 'required',
+            ));
+            if ($fieldValidation && $fieldValidation instanceof fmzFormsValidation) {
+                $fieldValidation->remove();
+            }
+        }
+    }
 }
 
 return 'formzUpdateProcessor';
