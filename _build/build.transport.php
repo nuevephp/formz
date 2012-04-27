@@ -1,11 +1,10 @@
 <?php
 /**
- * FormbuilderX
- */
-/**
- * FormbuilderX build script
+ * Formz
  *
- * @package FormbuilderX
+ * Formz build script
+ *
+ * @package Formz
  * @subpackage build
  */
 $mtime = microtime();
@@ -15,10 +14,10 @@ $tstart = $mtime;
 set_time_limit(0);
 
 /* define package */
-define('PKG_NAME','FormbuilderX');
-define('PKG_NAME_LOWER',strtolower(PKG_NAME));
-define('PKG_VERSION','1.0.0');
-define('PKG_RELEASE','pl');
+define('PKG_NAME', 'Formz');
+define('PKG_NAME_LOWER', strtolower(PKG_NAME));
+define('PKG_VERSION', '1.0.0');
+define('PKG_RELEASE', 'pl');
 
 /* define sources */
 $root = dirname(dirname(__FILE__)).'/';

@@ -1,0 +1,5 @@
+Changelog for Formz.
+
+Formz 1.0.0
+==============
+- Initial release.

@@ -1,11 +1,10 @@
 <?php
 /**
- * FormbuilderX
- */
-/**
+ * Formz
+ *
  * Helper method for grabbing files
  *
- * @package FormbuilderX
+ * @package Formz
  * @subpackage build
  */
 

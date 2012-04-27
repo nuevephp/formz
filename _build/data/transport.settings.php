@@ -1,11 +1,10 @@
 <?php
 /**
- * FormbuilderX
- */
-/**
+ * Formz
+ *
  * Loads system settings into build
  *
- * @package FormbuilderX
+ * @package Formz
  * @subpackage build
  */
 $settings = array();

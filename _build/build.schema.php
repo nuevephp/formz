@@ -1,11 +1,10 @@
 <?php
 /**
- * FormbuilderX
- */
-/**
+ * Formz
+ *
  * Build Schema script
  *
- * @package FormbuilderX
+ * @package Formz
  * @subpackage build
  */
 $mtime = microtime();
@@ -15,7 +14,7 @@ $tstart = $mtime;
 set_time_limit(0);
 
 /* define package name */
-define('PKG_NAME','FormbuilderX');
+define('PKG_NAME','formz');
 define('PKG_NAME_LOWER',strtolower(PKG_NAME));
 
 /* define sources */
@@ -46,7 +45,6 @@ $generator->classTemplate= <<<EOD
  * [+phpdoc-package+]
  */
 class [+class+] extends [+extends+] {}
-?>
 EOD;
 $generator->platformTemplate= <<<EOD
 <?php
@@ -55,7 +53,6 @@ $generator->platformTemplate= <<<EOD
  */
 require_once (strtr(realpath(dirname(dirname(__FILE__))), '\\\\', '/') . '/[+class-lowercase+].class.php');
 class [+class+]_[+platform+] extends [+class+] {}
-?>
 EOD;
 $generator->mapHeader= <<<EOD
 <?php

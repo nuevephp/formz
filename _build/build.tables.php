@@ -1,8 +1,10 @@
 <?php
 /**
+ * Formz
+ *
  * Build Tables script
  *
- * @package venuex
+ * @package Formz
  * @subpackage build
  */
 $mtime = microtime();
@@ -15,8 +17,8 @@ require_once dirname(__FILE__) . '/build.config.php';
 include_once MODX_CORE_PATH . 'model/modx/modx.class.php';
 $modx= new modX();
 $modx->initialize('mgr');
-$ex = $modx->getService('FormbuilderX', 'FormbuilderX', $modx->getOption('FormbuilderX.core_path', null, $modx->getOption('core_path') . 'components/FormbuilderX/') . 'model/FormbuilderX/');
-if (!($ex instanceof FormbuilderX)) return '';
+$fmz = $modx->getService('formz', 'formz', $modx->getOption('formz.core_path', null, $modx->getOption('core_path') . 'components/formz/') . 'model/formz/');
+if (!($fmz instanceof Formz)) return '';
 
 echo '<pre>'; /* used for nice formatting of log messages */
 
@@ -24,11 +26,11 @@ $manager= $modx->getManager();
 
 /* Model Classes names */
 $objects = array(
-	'fbxForms',
-	'fbxFormsFields',
-	'fbxFormsValidation',
-	'fbxFormsData',
-	'fbxFormsDataFields'
+	'fmzForms',
+	'fmzFormsFields',
+	'fmzFormsValidation',
+	'fmzFormsData',
+	'fmzFormsDataFields'
 );
 
 $mtime= microtime();

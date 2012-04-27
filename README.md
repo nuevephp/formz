@@ -1,17 +1,17 @@
-## FormbuilderX
+## Formz
 
-FormbuilderX is a Form building extra that allows you to get forms up and running on your website.
+formz is a Form building extra that allows you to get forms up and running on your website.
 You can store the information inside the database or send a email and store in database.
 
 ## How to Export
 
 First, clone this repository somewhere on your development machine:
 
-`git clone http://github.com/silentworks/FormbuilderX.git ./`
+`git clone http://github.com/silentworks/formz.git ./`
 
 Then, create the target directory where you want to create the file.
 
-Then, navigate to the directory FormbuilderX is now in, and do this:
+Then, navigate to the directory formz is now in, and do this:
 
 `git archive HEAD | (cd /path/where/I/want/my/new/repo/ && tar -xvf -)`
 
@@ -23,8 +23,8 @@ there!
 
 ## Configuration
 
-Now, you'll want to change references to FormbuilderX in the files in your
-new copied-from-FormbuilderX repo to whatever name of your new Extra will be. Once
+Now, you'll want to change references to formz in the files in your
+new copied-from-formz repo to whatever name of your new Extra will be. Once
 you've done that, you can create some System Settings:
 
 - 'mynamespace.core_path' - Point to /path/to/my/extra/core/components/extra/

@@ -1,11 +1,11 @@
 #!/bin/bash
 
-repl1=FormbuilderX
-repl2=FormbuilderX
+repl1=formz
+repl2=formz
 
-find1=modExtra
-find2=modextra
-path=modExtra
+find1=FormbuilderX
+find2=FormbuilderX
+path=FormbuilderX
 
 cd ..
 for i in {1..10}
