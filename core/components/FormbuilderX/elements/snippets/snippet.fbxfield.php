@@ -22,7 +22,7 @@ $fieldAttr = array(
 		'name' => $id,
 		'value' => '[[+' . $formItPrefix . $id . ':isempty=`' . $defaults . '`]]',
 	),
-	'values' => $values,
+	'values' => explode(',', str_replace(' ', '', $values)),
 );
 
 $output = '';
@@ -31,7 +31,7 @@ switch ($type) {
 		$output = $fbx->fields->form_textarea($fieldAttr['attributes']);
 	break;
 	case 'dropdown':
-		$output = $fbx->fields->form_dropdown($fieldAttr['attributes'], $fieldAttr['values']);
+		$output = $fbx->fields->form_dropdown($fieldAttr['attributes']['id'], $fieldAttr['values']);
 	break;
 	case 'checkbox':
 		$output = $fbx->fields->form_checkbox($fieldAttr['attributes'], $fieldAttr['values']);

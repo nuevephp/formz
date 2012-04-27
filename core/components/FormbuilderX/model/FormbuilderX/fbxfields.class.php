@@ -22,7 +22,7 @@ class fbxFields {
 
     public function form_input($data ='') {
         $defaults = array('type' => 'text', 'name' => ( ! is_array($data) ? $data : ''), 'value' => $value);
-        return '<input ' . $this->_parse_form_attributes($data, $defaults) . '>';
+        return '<input ' . $this->_parse_field_attributes($data, $defaults) . '>';
     }
 
     public function form_textarea($data = '', $value = '', $extra = '') {
@@ -36,7 +36,52 @@ class fbxFields {
         }
 
         $name = is_array($data) ? $data['name'] : $data;
-        return '<textarea ' . $this->_parse_form_attributes($data, $defaults).'>' . $val . "</textarea>";
+        return '<textarea ' . $this->_parse_field_attributes($data, $defaults).'>' . $val . "</textarea>";
+    }
+
+    public function form_dropdown($name = '', $options = array(), $selected = array(), $extra = '') {
+        // If name is really an array then we'll call the function again using the array
+        if (is_array($name) && isset($name['name'])) {
+            isset($name['options']) OR $name['options'] = array();
+            isset($name['selected']) OR $name['selected'] = array();
+            isset($name['extra']) OR $name['extra'] = array();
+
+            return $this->form_dropdown($name['name'], $name['options'], $name['selected'], $name['extra']);
+        }
+
+        if ( ! is_array($selected)) {
+            $selected = array($selected);
+        }
+
+        // If no selected state was submitted we will attempt to set it automatically
+        if (count($selected) === 0 && isset($_POST[$name])) {
+            $selected = array($_POST[$name]);
+        }
+
+        if ($extra != '') $extra = ' '.$extra;
+
+        $multiple = (count($selected) > 1 && strpos($extra, 'multiple') === FALSE) ? ' multiple="multiple"' : '';
+
+        $form = '<select name="'.$name.'"'.$extra.$multiple.">\n";
+
+        foreach ($options as $key => $val) {
+            $key = (string) $key;
+
+            if (is_array($val) && ! empty($val)) {
+                $form .= '<optgroup label="'.$key."\">\n";
+
+                foreach ($val as $optgroup_key => $optgroup_val) {
+                    $sel = in_array($optgroup_key, $selected) ? ' selected="selected"' : '';
+                    $form .= '<option value="'.$optgroup_key.'"'.$sel.'>'.(string) $optgroup_val."</option>\n";
+                }
+
+                $form .= "</optgroup>\n";
+            } else {
+                $form .= '<option value="'.$key.'"'.(in_array($key, $selected) ? ' selected="selected"' : '').'>'.(string) $val."</option>\n";
+        }
+    }
+
+    return $form."</select>\n";
     }
 
     public function form_checkbox($data = '', $value = '', $checked = FALSE, $extra = '') {
@@ -58,10 +103,10 @@ class fbxFields {
             unset($defaults['checked']);
         }
 
-        return '<input ' . $this->_parse_form_attributes($data, $defaults) .">";
+        return '<input ' . $this->_parse_field_attributes($data, $defaults) .">";
     }
 
-    private function _parse_form_attributes($attributes, $default = array()) {
+    private function _parse_field_attributes($attributes, $default = array()) {
         if (is_array($attributes)) {
             foreach ($default as $key => $val) {
                 if (isset($attributes[$key])) {

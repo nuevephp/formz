@@ -55,7 +55,7 @@ FormbuilderX.grid.Fields = function(config) {
     FormbuilderX.grid.Fields.superclass.constructor.call(this, config);
 
     // Reorder by Drag and Drop
-    Ext.getCmp('formbuilderx-grid-fields').on('render', this.dragAndDrop, this);
+    this.on('render', this.dragAndDrop, this);
 };
 
 Ext.extend(FormbuilderX.grid.Fields, MODx.grid.Grid, {
@@ -166,13 +166,15 @@ FormbuilderX.window.UpdateField = function (config) {
 					,anchor: '100%'
 				}, {
 					xtype: 'formbuilderx-combo-types'
+                    ,id: 'formbuilderx-field-types-' + config.id
 					,fieldLabel: _('FormbuilderX.field.type')
 					,name: 'type'
 					,anchor: '100%'
 					,hiddenName: 'type'
 					,value: 'textbox'
 					,listeners: {
-						'select': { fn: this.fieldSets, scope: this }
+                        'select': { fn: this.fieldSets, scope: this }
+						,'render': { fn: this.fieldSets, scope: this }
 					}
 				}, {
                     xtype: 'textfield'
@@ -205,11 +207,19 @@ FormbuilderX.window.UpdateField = function (config) {
 		}]
 	});
 	FormbuilderX.window.UpdateField.superclass.constructor.call(this, config);
+
+
+    // When form shows set the values field state
+    this.on('show', function () {
+        var typeField = Ext.getCmp('formbuilderx-field-types-' + config.id);
+        this.fieldSets(typeField);
+    });
 };
 Ext.extend(FormbuilderX.window.UpdateField, MODx.Window, {
 	fieldSets: function (field, record, i) {
         var valueField = Ext.getCmp('formbuilderx-field-values-' + this.config.id);
-		switch (record.id) {
+
+		switch (field.value) {
 			case 'dropdown':
 			case 'checkbox':
 			case 'radiobutton':

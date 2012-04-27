@@ -12,9 +12,8 @@ class FormbuilderXCreateProcessor extends modObjectCreateProcessor {
     public function beforeSave() {
     	$form_id = $this->getProperty('form_id');
     	$label = $this->getProperty('label');
-        $values = $this->getProperty('values');
+        $type = $this->getProperty('type');
         $default = $this->getProperty('default');
-        $msg = $this->getProperty('error_message', $this->modx->lexicon('FormbuilderX.field.validation.required'));
 
     	if (empty($label)) {
     		$this->addFieldError('label', $this->modx->lexicon('FormbuilderX.form_err_ns'));
@@ -22,14 +21,25 @@ class FormbuilderXCreateProcessor extends modObjectCreateProcessor {
     		$this->addFieldError('label', $this->modx->lexicon('FormbuilderX.form_err_ae'));
     	}
 
+        switch ($type) {
+            case 'dropdown':
+            case 'checkbox':
+            case 'radiobutton':
+                $values = $this->getProperty('values');
+                break;
+            default:
+                // textbox
+                $values = '';
+        }
+
         $settings = array(
             'label' => $label
         );
 
-        if ($default !== null)
+        if (!empty($default))
             $settings['default'] = $default;
 
-        if ($values !== null)
+        if (!empty($values))
             $settings['values'] = $values;
 
         $this->object->set('settings', $this->modx->toJSON($settings));

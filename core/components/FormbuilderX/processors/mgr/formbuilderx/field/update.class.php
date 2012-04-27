@@ -11,9 +11,19 @@ class FormbuilderXUpdateProcessor extends modObjectUpdateProcessor {
 
     public function beforeSave() {
         $label = $this->getProperty('label');
-        $values = $this->getProperty('values');
+        $type = $this->getProperty('type');
         $default = $this->getProperty('default');
-        $msg = $this->getProperty('error_message', $this->modx->lexicon('FormbuilderX.field.validation.required'));
+
+        switch ($type) {
+            case 'dropdown':
+            case 'checkbox':
+            case 'radiobutton':
+                $values = $this->getProperty('values');
+                break;
+            default:
+                // textbox
+                $values = '';
+        }
 
         $settings = array(
             'label' => $label
