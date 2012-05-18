@@ -35,17 +35,17 @@ class formzGetListProcessor extends modObjectGetListProcessor {
 
             $lists[$currentIndex]['label'] = $fieldSettings->label;
 
-            if ($fieldSettings->default !== null)
+            if (!empty($fieldSettings->default))
                 $lists[$currentIndex]['default'] = $fieldSettings->default;
 
-            if ($fieldSettings->values !== null)
+            if (!empty($fieldSettings->values))
                 $lists[$currentIndex]['values'] = $fieldSettings->values;
 
-            $lists[$currentIndex]['required'] = $val->type === 'required' ? 1 : 0;
-            $lists[$currentIndex]['error_message'] = $val->error_message;
+            $lists[$currentIndex]['required'] = !empty($val) && $val->type === 'required' ? 1 : 0;
+            $lists[$currentIndex]['error_message'] = !empty($val) ? $val->error_message : '';
             $currentIndex++;
         }
-        return $lists;
+        return !empty($lists) ? $lists : $list;
     }
 }
 

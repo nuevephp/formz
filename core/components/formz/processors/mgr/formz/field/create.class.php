@@ -22,9 +22,9 @@ class FormzCreateProcessor extends modObjectCreateProcessor {
     	}
 
         switch ($type) {
-            case 'dropdown':
+            case 'select':
             case 'checkbox':
-            case 'radiobutton':
+            case 'radio':
                 $values = $this->getProperty('values');
                 break;
             default:

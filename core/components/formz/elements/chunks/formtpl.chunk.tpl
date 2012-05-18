@@ -5,14 +5,14 @@
 	&redirectTo=`14`
 	&store=`1`
 	&storeTime=`900`
-	&validate=`name:required,
-	email:email:required,`
-	&terms.vTextRequired=`You must agree with our terms &amp; conditions in order to continue.`
+	[[+validation:notempty=`&validate=`[[+validation]]``]]
+	[[+validationText:notempty=`[[+validationText]]`]]
 ]]
 
 [[!+fi.validation_error_message]]
 
 <form class="form [[+identifier]]" action="" method="post">
+	[[!field? &type=`hidden` &outer_tpl=`` &name=`blank`]]
 	<fieldset>
 		[[+fields]]
 	</fieldset>

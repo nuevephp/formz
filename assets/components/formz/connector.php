@@ -1,7 +1,7 @@
 <?php
 /**
  * Formz
- * 
+ *
  * Formz Connector
  *
  * @package Formz
@@ -12,12 +12,12 @@ require_once MODX_CONNECTORS_PATH . 'index.php';
 
 $corePath = $modx->getOption('formz.core_path', null, $modx->getOption('core_path') . 'components/formz/');
 require_once $corePath . 'model/formz/formz.class.php';
-$modx->formz = new formz($modx);
+$modx->formz = new Formz($modx);
 
 $modx->lexicon->load('formz:default');
 
 /* handle request */
-$path = $modx->getOption('processorsPath', $modx->formz->config,$corePath . 'processors/');
+$path = $modx->getOption('processorsPath', $modx->formz->config, $corePath . 'processors/');
 $modx->request->handleRequest(array(
     'processors_path' => $path,
     'location' => '',

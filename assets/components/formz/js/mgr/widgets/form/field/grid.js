@@ -150,7 +150,7 @@ Formz.window.UpdateField = function (config) {
 	config = config || {};
     config.id = Ext.id();
 	create_update = Ext.isEmpty(config.record.id) ? 'create' : 'update';
-    console.log(create_update, config.form_id);
+    //console.log(create_update, config.form_id);
 
 	Ext.applyIf(config, {
 		title: _('formz.field.' + create_update)
@@ -242,9 +242,9 @@ Ext.extend(Formz.window.UpdateField, MODx.Window, {
         var valueField = Ext.getCmp('formz-field-values-' + this.config.id);
 
 		switch (field.value) {
-			case 'dropdown':
+			case 'select':
 			case 'checkbox':
-			case 'radiobutton':
+			case 'radio':
                 valueField.show();
 			break;
 			default:
@@ -270,11 +270,11 @@ Formz.combo.Types = function (config) {
 	            'name'
 	        ],
 	        data: [
-	        	['textbox', 'Textbox'],
+	        	['text', 'Textbox'],
 	        	['textarea', 'Textarea'],
-	        	['dropdown', 'Dropdown'],
+	        	['select', 'Select'],
 	        	['checkbox', 'Checkbox'],
-	        	['radiobutton', 'Radio Button']
+	        	['radio', 'Radio Button']
 	        ]
 	    })
 	    ,valueField: 'id'

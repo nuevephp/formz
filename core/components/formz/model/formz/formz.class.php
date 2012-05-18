@@ -78,7 +78,7 @@ class Formz {
     public function getChunk($name, array $properties = array()) {
         $chunk = null;
         if (!isset($this->chunks[$name])) {
-            $chunk = $this->modx->getObject('modChunk', array('name' => $name), true);
+            $chunk = $this->modx->getObject('modChunk', array('name' => $name));
             if (empty($chunk)) {
                 $chunk = $this->_getTplChunk($name, $this->config['chunkSuffix']);
                 if ($chunk == false) return false;
