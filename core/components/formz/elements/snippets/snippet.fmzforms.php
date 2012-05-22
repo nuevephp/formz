@@ -13,14 +13,16 @@ $modRes = $modx->newObject('modResource');
  * Do your snippet code here. This demo grabs 5 items from our custom table.
  */
 $tpl = $modx->getOption('tpl', $scriptProperties, 'formTpl');
+$id = $modx->getOption('id', $scriptProperties, null);
 $fieldTpl = $modx->getOption('fieldTpl', $scriptProperties, 'fieldTpl');
-$sortBy = $modx->getOption('sortBy', $scriptProperties, 'Fields.order,Fields.id');
-$sortDir = $modx->getOption('sortDir', $scriptProperties, 'ASC');
-$limit = $modx->getOption('limit', $scriptProperties, 5);
+$sortBy = 'Fields.order,Fields.id';
+$sortDir = 'ASC';
 
 /* build query */
 $c = $modx->newQuery('fmzForms');
-$c->where(array('id' => 1));
+$c->where(array(
+    'id' => $id
+));
 
 if (!empty($sortBy)) {
     $sortBy = explode(',', $sortBy);
@@ -32,7 +34,6 @@ if (!empty($sortBy)) {
     }
 }
 
-$c->limit($limit);
 $form = $modx->getObjectGraph('fmzForms', array(
     'Fields' => array(
         'Validation' => array()
@@ -88,4 +89,4 @@ $formArray['validationText'] = $formFieldValidateText;
 $formArray['fields'] = $formField;
 
 /* by default just return output */
-return $fmz->getChunk($tpl, $formArray);;
+return $fmz->getChunk($tpl, $formArray);

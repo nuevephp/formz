@@ -8,7 +8,7 @@
  * @package formz
  * @subpackage lexicon
  */
-$_lang['formz'] = 'Form Builder';
+$_lang['formz'] = 'Formz Builder';
 $_lang['formz.menu_desc'] = 'Forms to use on the website.';
 $_lang['formz.intro_msg'] = 'Manage your forms.';
 $_lang['formz.form'] = 'Forms';
@@ -27,7 +27,7 @@ $_lang['formz.form.method'] = 'Method';
 
 // Create/Edit
 $_lang['formz.form.management'] = 'Form Builder';
-$_lang['formz.form.create_edit_desc'] = 'Create and edit venues. Remember to set Active to yes in order for the venue to show up on the website.';
+$_lang['formz.form.create_edit_desc'] = 'Create and edit forms. Once you have created your form, you can add to a page by adding the Template Variable to the page template. Then select the form from the list.';
 $_lang['formz.form.management_desc'] = 'Manage your venues here. You can edit them by either double-clicking on the grid or right-clicking on the respective row.';
 $_lang['formz.form.search'] = 'Search...';
 $_lang['formz.form.general'] = 'General';

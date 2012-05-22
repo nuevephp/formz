@@ -193,7 +193,7 @@ Formz.window.UpdateField = function (config) {
 					,name: 'type'
 					,anchor: '100%'
 					,hiddenName: 'type'
-					,value: 'textbox'
+					,value: 'text'
 					,listeners: {
                         'select': { fn: this.fieldSets, scope: this }
 						,'render': { fn: this.fieldSets, scope: this }
