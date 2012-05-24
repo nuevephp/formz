@@ -135,10 +135,6 @@ Ext.extend(Formz.grid.Fields, MODx.grid.Grid, {
                         ,data: Ext.util.JSON.encode(fieldOrder)
                     }
                 });
-                // console.log(d, fieldOrder, Ext.util.JSON.encode(fieldOrder));
-    			//grid.getView().refresh();
-                //Ext.getCmp('formz-grid-fields').fireEvent('');
-                //grid.saveRecord();
     		}
     	});
     }
@@ -219,7 +215,6 @@ Formz.window.UpdateField = function (config) {
             		,anchor: '100%'
                     ,listeners: {
                         'check': { fn: this.requiredFieldMsg, scope: this }
-                        // ,'render': { fn: this.fieldSets, scope: this }
                     }
             	}, {
             		xtype: 'textfield'

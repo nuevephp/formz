@@ -49,7 +49,7 @@ $blankField = array(
         'form_id' => '',
         'settings' => '{"label":"blank"}',
         'type' => 'blank',
-        'order' => '0',
+        'order' => '99999',
 );
 $fmz->getChunk($fieldTpl, $blankField);
 
