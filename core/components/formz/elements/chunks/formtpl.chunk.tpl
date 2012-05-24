@@ -18,6 +18,6 @@
 	</fieldset>
 
 	<div class="actions">
-		<input type="submit" name="next" value="Submit" class="btn primary" />
+		<input type="submit" name="next" value="[[+action_button:default=`Submit`]]" class="btn primary" />
 	</div>
 </form>

@@ -93,9 +93,9 @@ Formz.panel.NewForm = function (config) {
 			,autoHeight: true
 		}
 		,layout: 'form'
-		,labelWidth: 80
+		,labelWidth: 120
 		,items: [{
-			html: '<p>' + _('formz.form.extra_desc') + '</p>'
+			html: '<p>' + _('formz.form.identifier_desc') + '</p>'
 			,bodyCssClass: 'panel-desc'
 		}, {
 			layout: 'form'
@@ -109,9 +109,26 @@ Formz.panel.NewForm = function (config) {
 				xtype: 'textfield'
 				,fieldLabel: _('formz.form.identifier')
 				,name: 'identifier'
-				,value: 'form' + Math.floor((Math.random()*100)+1)
+				,value: ''
 				,anchor: '40%'
-				,allowBlank: false
+				,allowBlank: true
+			}]
+		}, {
+			html: '<p>' + _('formz.form.action_button_desc') + '</p>'
+			,bodyCssClass: 'panel-desc'
+		}, {
+			layout: 'form'
+			,cls: 'main-wrapper'
+			,border: false
+			,anchor: '98%'
+			,defaults: {
+				layout: 'form'
+			}
+			,items: [{
+				xtype: 'textfield'
+				,fieldLabel: _('formz.form.action_button')
+				,name: 'action_button'
+				,anchor: '40%'
 			}]
 		}]
 	});

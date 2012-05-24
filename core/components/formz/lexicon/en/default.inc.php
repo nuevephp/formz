@@ -33,10 +33,13 @@ $_lang['formz.form.search'] = 'Search...';
 $_lang['formz.form.general'] = 'General';
 $_lang['formz.form.extra'] = 'Extra';
 $_lang['formz.form.identifier'] = 'Identifier';
+$_lang['formz.form.identifier_desc'] = 'The Identifier can be used as a ID on your form or a class when you are creating your form template. <em>defaults</em> to form-[generated id].';
 $_lang['formz.form.success'] = 'Success Message';
 $_lang['formz.form.method.dbonly'] = 'Save in the database';
 $_lang['formz.form.method.dbandemail'] = 'Save in the database and send email';
 $_lang['formz.form.recipient'] = 'Recipients';
+$_lang['formz.form.action_button'] = 'Action Button';
+$_lang['formz.form.action_button_desc'] = 'The text that the form submit button should have written on it. <em>defaults</em> to submit.';
 
 // Fields
 $_lang['formz.field.name'] = 'Label';

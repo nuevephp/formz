@@ -5,7 +5,8 @@
         <field key="method" dbtype="enum" phptype="string" null="false" precision="'database','database_email'" default="database_email" />
         <field key="email" dbtype="text" phptype="string" null="true" default="" />
         <field key="success_message" dbtype="text" phptype="string" null="true" default="" />
-        <field key="identifier" dbtype="varchar" precision="255" phptype="string" null="false" default="" />
+        <field key="identifier" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
+        <field key="action_button" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
 
         <field key="createdon" dbtype="datetime" phptype="datetime" null="true" />
 		<field key="createdby" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0" />

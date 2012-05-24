@@ -7,7 +7,7 @@ class formzGetListProcessor extends modObjectGetListProcessor {
     public $languageTopics = array('formz:default');
 
     /* Field t sort by and direction */
-    public $defaultSortField = 'id';
+    public $defaultSortField = 'order';
     public $defaultSortDirection = 'ASC';
 
     /* Used to load the correct language error message */

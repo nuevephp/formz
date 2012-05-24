@@ -97,7 +97,8 @@ Ext.extend(Formz.grid.Fields, MODx.grid.Grid, {
         });
     }
     ,dragAndDrop: function (grid) {
-    	var ddrow = new Ext.dd.DropTarget(grid.container, {
+    	var that = this,
+            ddrow = new Ext.dd.DropTarget(grid.container, {
     		ddGroup: 'ddGrid' + this.config.form_id
     		,copy: false
     		,notifyDrop: function (dd, e, data) {
@@ -116,27 +117,25 @@ Ext.extend(Formz.grid.Fields, MODx.grid.Grid, {
     				};
                 }
 
-                var d = ds.data.items;
-                /*MODx.Ajax.request({
-                    url: url
+                var d = ds.data.items,
+                    data,
+                    fieldOrder = [];
+
+                for (var i = 0; i < d.length; i++) {
+                    data = d[i].data;
+                    data['order'] = i;
+
+                    fieldOrder.push(data);
+                };
+
+                MODx.Ajax.request({
+                    url: Formz.config.connector_url
                     ,params: {
-                        action: this.config.save_action || 'updateFromGrid'
-                        ,data: d
+                        action: that.config.save_action + 'Order'
+                        ,data: Ext.util.JSON.encode(fieldOrder)
                     }
-                    ,listeners: {
-                        'success': {fn:function(r) {
-                            if (this.config.save_callback) {
-                                Ext.callback(this.config.save_callback,this.config.scope || this,[r]);
-                            }
-                            e.record.commit();
-                            if (!this.config.preventSaveRefresh) {
-                                this.refresh();
-                            }
-                            this.fireEvent('afterAutoSave',r);
-                        },scope:this}
-                    }
-                });*/
-                //console.log(d, data, e);
+                });
+                // console.log(d, fieldOrder, Ext.util.JSON.encode(fieldOrder));
     			//grid.getView().refresh();
                 //Ext.getCmp('formz-grid-fields').fireEvent('');
                 //grid.saveRecord();
@@ -150,7 +149,6 @@ Formz.window.UpdateField = function (config) {
 	config = config || {};
     config.id = Ext.id();
 	create_update = Ext.isEmpty(config.record.id) ? 'create' : 'update';
-    //console.log(create_update, config.form_id);
 
 	Ext.applyIf(config, {
 		title: _('formz.field.' + create_update)
@@ -219,11 +217,17 @@ Formz.window.UpdateField = function (config) {
             		,fieldLabel: _('formz.field.required')
             		,name: 'required'
             		,anchor: '100%'
+                    ,listeners: {
+                        'check': { fn: this.requiredFieldMsg, scope: this }
+                        // ,'render': { fn: this.fieldSets, scope: this }
+                    }
             	}, {
             		xtype: 'textfield'
+                    ,id: 'formz-field-error_message-' + config.id
             		,fieldLabel: _('formz.field.error_message')
             		,name: 'error_message'
             		,anchor: '100%'
+                    ,hidden: true
             	}]
             }]
 		}]
@@ -252,6 +256,14 @@ Ext.extend(Formz.window.UpdateField, MODx.Window, {
                 valueField.hide();
 		}
 	}
+    ,requiredFieldMsg: function (field, checked) {
+        var valueField = Ext.getCmp('formz-field-error_message-' + this.config.id);
+        if (checked) {
+            valueField.show();
+        } else {
+            valueField.hide();
+        }
+    }
 });
 Ext.reg('formz-window-field-update', Formz.window.UpdateField);
 
