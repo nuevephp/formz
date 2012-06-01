@@ -7,17 +7,30 @@
  * @package Formz
  * @subpackage build
  */
-$snippets = array();
 
-$snippets[0]= $modx->newObject('modSnippet');
-$snippets[0]->fromArray(array(
-    'id' => 0,
-    'name' => 'formz',
-    'description' => 'Displays Items.',
-    'snippet' => getSnippetContent($sources['source_core'].'/elements/snippets/snippet.formz.php'),
-),'',true,true);
-$properties = include $sources['build'].'properties/properties.formz.php';
-$snippets[0]->setProperties($properties);
-unset($properties);
+$snips = array(
+    'fmzForms' => 'Formz helper snippet that generates the form.',
+    'fmzFormz_database' => 'Formz hook to save form to database.',
+);
+
+$snippets = array();
+$i = 0;
+
+foreach($snips as $sn => $sdesc) {
+    $i++;
+    $sfilename = substr(strtolower($sn), 3);
+    $snippets[$i]= $modx->newObject('modSnippet');
+    $snippets[$i]->fromArray(array(
+        'id' => $i,
+        'name' => $sn,
+        'description' => $sdesc,
+        'snippet' => getSnippetContent($sources['snippets'].'snippet.' . $sfilename . '.php'),
+        'static' => 1,
+        'static_file' => $sources['snippets'].'snippet.' . $sfilename . '.php',
+    ), '', true, true);
+    $properties = include $sources['build'].'properties/snippets/properties.' . $sfilename . '.php';
+    $snippets[$i]->setProperties($properties);
+    unset($properties);
+}
 
 return $snippets;
