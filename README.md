@@ -31,7 +31,14 @@ Now, you can create some System Settings:
 Then clear the cache. This will tell the Extra to look for the files located
 in these directories, allowing you to develop outside of the MODx webroot!
 
-## From Package
+## Requirements
+
+Install using Manager Package Management
+
+FormIt <http://modx.com/extras/package/formit>
+FormItFastPack <http://modx.com/extras/package/formitfastpack>
+
+## Installing From Package
 
 If you are installing from the package provided inside the packages directory, just copy the file into your
 MODX core/packages directory and then do find file locally inside of your Manager Package Management interface.
