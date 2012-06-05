@@ -11,7 +11,7 @@ class IndexManagerController extends modExtraManagerController {
 }
 
 abstract class FormzBaseManagerController extends modManagerController {
-    /** @var formz $formz */
+    /** @var Formz $formz */
     public $formz;
 
     public function initialize() {

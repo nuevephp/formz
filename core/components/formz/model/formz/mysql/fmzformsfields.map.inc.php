@@ -9,7 +9,7 @@ $xpdo_meta_map['fmzFormsFields']= array (
   'fields' =>
   array (
     'form_id' => 0,
-    'type' => 'textbox',
+    'type' => 'text',
     'settings' => '',
     'order' => 0,
   ),
@@ -30,7 +30,7 @@ $xpdo_meta_map['fmzFormsFields']= array (
       'precision' => '\'text\',\'textarea\',\'select\',\'checkbox\',\'radio\',\'heading\',\'paragraph\'',
       'phptype' => 'string',
       'null' => false,
-      'default' => 'textbox',
+      'default' => 'text',
     ),
     'settings' =>
     array (

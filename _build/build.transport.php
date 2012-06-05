@@ -15,9 +15,9 @@ set_time_limit(0);
 
 /* define package */
 define('PKG_NAME', 'Formz');
-define('PKG_NAME_LOWER', strtolower(PKG_NAME));
+define('PKG_ABBR', strtolower(PKG_NAME));
 define('PKG_VERSION', '1.0.0');
-define('PKG_RELEASE', 'pl');
+define('PKG_RELEASE', 'alpha1');
 
 /* define sources */
 $root = dirname(dirname(__FILE__)).'/';
@@ -26,14 +26,14 @@ $sources = array(
     'build' => $root . '_build/',
     'data' => $root . '_build/data/',
     'resolvers' => $root . '_build/resolvers/',
-    'chunks' => $root.'core/components/'.PKG_NAME_LOWER.'/elements/chunks/',
-    'snippets' => $root.'core/components/'.PKG_NAME_LOWER.'/elements/snippets/',
-    'plugins' => $root.'core/components/'.PKG_NAME_LOWER.'/elements/plugins/',
-    'lexicon' => $root . 'core/components/'.PKG_NAME_LOWER.'/lexicon/',
-    'docs' => $root.'core/components/'.PKG_NAME_LOWER.'/docs/',
-    'pages' => $root.'core/components/'.PKG_NAME_LOWER.'/elements/pages/',
-    'source_assets' => $root.'assets/components/'.PKG_NAME_LOWER,
-    'source_core' => $root.'core/components/'.PKG_NAME_LOWER,
+    'chunks' => $root.'core/components/'.PKG_ABBR.'/elements/chunks/',
+    'snippets' => $root.'core/components/'.PKG_ABBR.'/elements/snippets/',
+    'plugins' => $root.'core/components/'.PKG_ABBR.'/elements/plugins/',
+    'lexicon' => $root . 'core/components/'.PKG_ABBR.'/lexicon/',
+    'docs' => $root.'core/components/'.PKG_ABBR.'/docs/',
+    'pages' => $root.'core/components/'.PKG_ABBR.'/elements/pages/',
+    'source_assets' => $root.'assets/components/'.PKG_ABBR,
+    'source_core' => $root.'core/components/'.PKG_ABBR,
 );
 unset($root);
 
@@ -50,8 +50,8 @@ $modx->setLogTarget('ECHO');
 
 $modx->loadClass('transport.modPackageBuilder','',false, true);
 $builder = new modPackageBuilder($modx);
-$builder->createPackage(PKG_NAME_LOWER,PKG_VERSION,PKG_RELEASE);
-$builder->registerNamespace(PKG_NAME_LOWER,false,true,'{core_path}components/'.PKG_NAME_LOWER.'/');
+$builder->createPackage(PKG_ABBR,PKG_VERSION,PKG_RELEASE);
+$builder->registerNamespace(PKG_ABBR,false,true,'{core_path}components/'.PKG_ABBR.'/');
 $modx->log(modX::LOG_LEVEL_INFO,'Created Transport Package and Namespace.');
 
 /* create category */
@@ -67,6 +67,33 @@ if (!is_array($snippets)) {
     $category->addMany($snippets);
     $modx->log(modX::LOG_LEVEL_INFO,'Packaged in '.count($snippets).' snippets.');
 }
+
+/* add plugins */
+$plugins = include $sources['data'].'transport.plugins.php';
+if (!is_array($plugins)) {
+    $modx->log(modX::LOG_LEVEL_FATAL,'Adding plugins failed.');
+} else {
+    $category->addMany($plugins);
+}
+$attr = array(
+    xPDOTransport::UNIQUE_KEY => 'name',
+    xPDOTransport::PRESERVE_KEYS => false,
+    xPDOTransport::UPDATE_OBJECT => true,
+    xPDOTransport::RELATED_OBJECTS => true,
+    xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array (
+        'PluginEvents' => array(
+            xPDOTransport::PRESERVE_KEYS => true,
+            xPDOTransport::UPDATE_OBJECT => false,
+            xPDOTransport::UNIQUE_KEY => array('pluginid', 'event'),
+        ),
+    ),
+);
+foreach ($plugins as $plugin) {
+    $vehicle = $builder->createVehicle($plugin, $attr);
+    $builder->putVehicle($vehicle);
+}
+$modx->log(modX::LOG_LEVEL_INFO,'Packaged in '.count($plugins).' plugins.');
+unset($plugins, $plugin, $attr);
 
 /* create category vehicle */
 $attr = array(

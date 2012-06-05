@@ -21,7 +21,7 @@
 
     <object class="fmzFormsFields" table="formz_forms_fields" extends="xPDOSimpleObject">
     	<field key="form_id" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="" />
-    	<field key="type" dbtype="enum" precision="'text','textarea','select','checkbox','radio','heading','paragraph'" phptype="string" null="false" default="textbox" />
+    	<field key="type" dbtype="enum" precision="'text','textarea','select','checkbox','radio','heading','paragraph'" phptype="string" null="false" default="text" />
     	<field key="settings" dbtype="text" phptype="string" null="true" default="" />
     	<field key="order" dbtype="int" precision="10" phptype="integer" null="true" default="" />
 

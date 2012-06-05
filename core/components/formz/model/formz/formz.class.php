@@ -3,7 +3,7 @@
  * Formz
  *
  * Copyright 2012 by Andrew Smith <a.smith@silentworks.co.uk>
- * 
+ *
  * The base class for formz.
  *
  * @package Formz
@@ -17,9 +17,8 @@ class Formz {
     public $chunks = array();
     /**
      * The field handling class
-     * @var fbxFields $fields
      */
-    public $fields;
+    public $form = array();
 
     function __construct(modX &$modx, array $config = array()) {
         $this->modx =& $modx;
@@ -47,23 +46,6 @@ class Formz {
 
         $this->modx->addPackage('formz', $this->config['modelPath']);
         $this->modx->lexicon->load('formz:default');
-    }
-
-    /**
-     * Load the fbxFields class
-     * @return fbxFields
-     */
-    public function loadFields() {
-        $className = $this->modx->getOption('fields_class', $this->config, 'formzFields');
-        $classPath = $this->modx->getOption('fields_class_path', $this->config, '');
-        if (empty($classPath)) $classPath = $this->config['modelPath'] . 'formz/';
-        if ($this->modx->loadClass($className, $classPath, true, true)) {
-            $this->fields = new formzFields($this, $this->config);
-        } else {
-            $this->modx->log(modX::LOG_LEVEL_ERROR, '[Formz] Could not load fmzFields class.');
-        }
-        return $this->fields;
-
     }
 
     /**
@@ -112,5 +94,13 @@ class Formz {
             $chunk->setContent($o);
         }
         return $chunk;
+    }
+
+    /**
+     * Debugging code with a halt
+     */
+    public function dump() {
+        $args = func_get_args();
+        die(var_dump($args));
     }
 }

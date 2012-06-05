@@ -12,7 +12,7 @@ $action->fromArray(array(
     'id' => 1,
     'namespace' => 'formz',
     'parent' => 0,
-    'controller' => 'controllers/index',
+    'controller' => 'index',
     'haslayout' => 1,
     'lang_topics' => 'formz:default',
     'assets' => '',
