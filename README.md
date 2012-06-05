@@ -23,21 +23,24 @@ there!
 
 ## Configuration
 
-Now, you'll want to change references to formz in the files in your
-new copied-from-formz repo to whatever name of your new Extra will be. Once
-you've done that, you can create some System Settings:
+Now, you can create some System Settings:
 
-- 'mynamespace.core_path' - Point to /path/to/my/extra/core/components/extra/
-- 'mynamespace.assets_url' - /path/to/my/extra/assets/components/extra/
+- 'formz.core_path' - Point to /path/to/formz/core/components/formz/
+- 'formz.assets_url' - /path/to/formz/assets/components/formz/
 
 Then clear the cache. This will tell the Extra to look for the files located
 in these directories, allowing you to develop outside of the MODx webroot!
 
-## Information
+## From Package
 
-Note that if you git archive from this repository, you may not need all of its
-functionality. This Extra is setup to do the following:
+If you are installing from the package provided inside the packages directory, just copy the file into your
+MODX core/packages directory and then do find file locally inside of your Manager Package Management interface.
 
-- Integrates some custom tables to store form data
-- A snippet to display the form on your website
-- A custom manager page to manage Forms
+Once the package is installed you can setup a template variable and assign the __formz__ input type and output type to it.
+Go to a page that has the template variable assigned to its template, and you should now have an empty dropdown menu.
+
+You can now start to create Forms by going to the components menu __Formz Builder__.
+
+## Feedback
+Any comments or issues please raise that using the ticketing system, do remember this Extra is still in its early stages.
+I would not recommend using on a live site if the Extra is still in alpha.
