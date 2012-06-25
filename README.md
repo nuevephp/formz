@@ -36,6 +36,7 @@ in these directories, allowing you to develop outside of the MODx webroot!
 Install using Manager Package Management
 
 FormIt <http://modx.com/extras/package/formit>
+
 FormItFastPack <http://modx.com/extras/package/formitfastpack>
 
 ## Installing From Package
