@@ -17,7 +17,7 @@ set_time_limit(0);
 define('PKG_NAME', 'Formz');
 define('PKG_ABBR', strtolower(PKG_NAME));
 define('PKG_VERSION', '1.0.0');
-define('PKG_RELEASE', 'alpha1');
+define('PKG_RELEASE', 'alpha2');
 
 /* define sources */
 $root = dirname(dirname(__FILE__)).'/';
