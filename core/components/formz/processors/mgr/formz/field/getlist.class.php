@@ -1,5 +1,5 @@
 <?php
-class formzGetListProcessor extends modObjectGetListProcessor {
+class FormzGetListProcessor extends modObjectGetListProcessor {
     /* Class in model directory */
     public $classKey = 'fmzFormsFields';
 
@@ -49,4 +49,4 @@ class formzGetListProcessor extends modObjectGetListProcessor {
     }
 }
 
-return 'formzGetListProcessor';
+return 'FormzGetListProcessor';
