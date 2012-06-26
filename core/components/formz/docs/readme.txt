@@ -2,7 +2,7 @@
 Formz
 --------------------
 Version: 1.0.0
-Author: Andrew Smith <a.smith@methodandclass.com>
+Author: Andrew Smith <a.smith@silentworks.co.uk>
 --------------------
 
 A Form Builder for MODx Revolution.
