@@ -45,7 +45,9 @@ $formArray = $form->toArray();
 
 /* store form inside Formz class into variable $form */
 $formIdentifier = 'form' . $formArray['id'];
-$fmz->form[$formIdentifier] = array();
+$fmz->form[$formIdentifier] = array(
+    'formName' => $formArray['name'],
+);
 
 /* Add in Empty field for bug that processes snippet calls in chunk */
 $blankField = array(

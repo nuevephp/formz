@@ -6,6 +6,7 @@
 	&formid=`[[+id]]` [[- "Form ID"]]
 	&store=`1`
 	&storeTime=`900`
+	&emailTo=`[[+email:default=``]]`
 	[[+validation:notempty=`&validate=`[[+validation]]``]]
 	[[+validationText:notempty=`[[+validationText]]`]]
 ]]
@@ -13,6 +14,7 @@
 [[+success:notempty=`<p>[[+success_message]]</p>`]]
 
 [[!+fi.validation_error_message]]
+emailTo=`[[+email:default=``]]`
 <form class="form [[+identifier]]" action="" method="post">
 	[[- [[!field? &type=`hidden` &outer_tpl=`` &name=`blank`]] ]]
 	<fieldset>

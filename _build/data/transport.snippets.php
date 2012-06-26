@@ -11,6 +11,7 @@
 $snips = array(
     'fmzForms' => 'Formz helper snippet that generates the form.',
     'fmzForm_database' => 'Formz hook to save form to database.',
+    'fmzForm_database_email' => 'Formz hook to save form to database and email to recipients address.',
 );
 
 $snippets = array();
