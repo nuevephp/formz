@@ -14,7 +14,7 @@
 [[+success:notempty=`<p>[[+success_message]]</p>`]]
 
 [[!+fi.validation_error_message]]
-emailTo=`[[+email:default=``]]`
+
 <form class="form [[+identifier]]" action="" method="post">
 	[[- [[!field? &type=`hidden` &outer_tpl=`` &name=`blank`]] ]]
 	<fieldset>
