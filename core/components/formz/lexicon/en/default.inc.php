@@ -9,7 +9,7 @@
  * @subpackage lexicon
  */
 $_lang['formz'] = 'Formz Builder';
-$_lang['formz.menu_desc'] = 'Forms to use on the website.';
+$_lang['formz.menu_desc'] = 'Manage Forms to use on the website.';
 $_lang['formz.intro_msg'] = 'Manage your forms.';
 $_lang['formz.form'] = 'Forms';
 $_lang['formz.form.field'] = 'Fields';
@@ -20,6 +20,12 @@ $_lang['formz.form.create'] = 'Create Form';
 $_lang['formz.form.remove'] = 'Remove Form';
 $_lang['formz.form.remove_confirm'] = 'Are you sure you want to remove this Form?';
 $_lang['formz.form.update'] = 'Update Form';
+$_lang['formz.form.has_submission'] = 'View Submission';
+$_lang['formz.form.has_submissions'] = 'View Submissions';
+$_lang['formz.form.submissions'] = 'Submissions';
+$_lang['formz.form.senton'] = 'Sent On';
+$_lang['formz.form.ip_address'] = 'IP Address';
+$_lang['formz.form.submissions.desc'] = 'You can search, view and export data that was submitted to this form from here.';
 
 // Grid Headers
 $_lang['formz.form.email'] = 'Recipient';

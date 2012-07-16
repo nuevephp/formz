@@ -6,22 +6,27 @@ Formz.grid.Forms = function(config) {
         ,baseParams: {
             action: 'mgr/formz/form/getlist'
         }
-        ,fields: ['id','name','email','method']
+        ,fields: ['id','name','email','method','has_submission','submissions']
         ,autoHeight: true
         ,paging: true
         ,remoteSort: true
         ,columns: [{
             header: _('id')
             ,dataIndex: 'id'
-            ,width: 70
+            ,width: 30
         }, {
             header: _('name')
             ,dataIndex: 'name'
-            ,width: 180
+            ,width: 120
         }, {
             header: _('formz.form.email')
             ,dataIndex: 'email'
             ,width: 250
+        }, {
+            header: _('formz.form.submissions')
+            ,dataIndex: 'submissions'
+            ,align: 'center'
+            ,width: 70
         }, {
             header: _('formz.form.method')
             ,dataIndex: 'method'
@@ -40,15 +45,24 @@ Ext.extend(Formz.grid.Forms, MODx.grid.Grid, {
 
     ,getMenu: function() {
         var m = [];
+        var model = this.menu.record;
+        var submStr = model.submissions > 1 ? 'formz.form.has_submissions' : 'formz.form.has_submission';
+
         m.push({
             text: _('formz.form.update')
             ,handler: this.updateForm
-        });
-        m.push('-');
-        m.push({
+        }, '-', {
             text: _('formz.form.remove')
             ,handler: this.removeForm
         });
+
+        if (model.has_submission) {
+            m.unshift({
+                text: _(submStr)
+                ,handler: this.viewData
+            });
+        }
+
         this.addContextMenuItem(m);
     }
 
@@ -77,6 +91,12 @@ Ext.extend(Formz.grid.Forms, MODx.grid.Grid, {
                 'success': { fn: function(r) { this.refresh(); }, scope: this }
             }
         });
+    }
+
+    ,viewData: function (btn, e) {
+        if (!this.menu.record || !this.menu.record.id) return false;
+        var r = this.menu.record;
+        window.location.href = '?a=' + MODx.action['formz:index'] + '&action=data&id=' + r.id;
     }
 });
 Ext.reg('formz-grid-forms', Formz.grid.Forms);
