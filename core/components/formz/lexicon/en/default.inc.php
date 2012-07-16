@@ -62,6 +62,10 @@ $_lang['formz.field.delete'] = 'Delete Field';
 $_lang['formz.field.remove'] = 'Remove Form';
 $_lang['formz.field.remove_confirm'] = 'Are you sure you want to remove this Form?';
 
+$_lang['formz.submissions.removedata'] = 'Remove Submission';
+$_lang['formz.submissions.view'] = 'View Details';
+$_lang['formz.submissions.viewdata'] = 'Submission for: ';
+
 // Validation
 $_lang['formz.field.validation.required'] = 'This field is required.';
 
