@@ -11,7 +11,7 @@ class FormzGetListProcessor extends modObjectGetListProcessor {
     public $defaultSortDirection = 'ASC';
 
     /* Used to load the correct language error message */
-    public $objectType = 'formz.form';
+    public $objectType = 'formz.field';
 
     /* Search database from backend module */
     public function prepareQueryBeforeCount(xPDOQuery $c) {

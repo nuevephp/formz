@@ -54,17 +54,20 @@ $_lang['formz.field.values'] = 'Values';
 $_lang['formz.field.default'] = 'Default Value';
 $_lang['formz.field.required'] = 'Required';
 $_lang['formz.field.error_message'] = 'Error Message';
+$_lang['formz.field.cancel'] = 'Back to forms';
 
 $_lang['formz.field.add'] = 'Add Field';
 $_lang['formz.field.create'] = 'Create Field';
 $_lang['formz.field.update'] = 'Update Field';
 $_lang['formz.field.delete'] = 'Delete Field';
-$_lang['formz.field.remove'] = 'Remove Form';
-$_lang['formz.field.remove_confirm'] = 'Are you sure you want to remove this Form?';
+$_lang['formz.field.remove'] = 'Remove Form Field';
+$_lang['formz.field.remove_confirm'] = 'Are you sure you want to remove this Form Field?';
 
 $_lang['formz.submissions.removedata'] = 'Remove Submission';
 $_lang['formz.submissions.view'] = 'View Details';
 $_lang['formz.submissions.viewdata'] = 'Submission for: ';
+$_lang['formz.submissions.remove'] = 'Remove Form Submission';
+$_lang['formz.submissions.remove_confirm'] = 'Are you sure you want to remove this Form Submission?';
 
 // Validation
 $_lang['formz.field.validation.required'] = 'This field is required.';
@@ -74,3 +77,9 @@ $_lang['formz.form_err_nf'] = 'Form not found.';
 $_lang['formz.form_err_ns'] = 'Form not specified.';
 $_lang['formz.form_err_remove'] = 'An error occurred while trying to remove the Form.';
 $_lang['formz.form_err_save'] = 'An error occurred while trying to save the Form.';
+
+$_lang['formz.field_err_ae'] = 'An Form Field already exists with that name.';
+$_lang['formz.field_err_nf'] = 'Form Field not found.';
+$_lang['formz.field_err_ns'] = 'Form Field not specified.';
+$_lang['formz.field_err_remove'] = 'An error occurred while trying to remove the Form Field.';
+$_lang['formz.field_err_save'] = 'An error occurred while trying to save the Form Field.';

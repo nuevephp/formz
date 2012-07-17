@@ -9,7 +9,7 @@ Formz.page.FormData = function(config) {
 		formpanel: 'formz-panel-form-data'
     	,buttons: [{
             process: 'cancel'
-            ,text: _('cancel')
+            ,text: _('formz.field.cancel')
 			,params: {a: MODx.action['formz:index']}
         }]
         ,components: [{

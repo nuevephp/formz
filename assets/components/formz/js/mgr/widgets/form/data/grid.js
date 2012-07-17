@@ -64,8 +64,8 @@ Ext.extend(Formz.grid.Data, MODx.grid.Grid, {
         if (!this.menu.record) return false;
 
         MODx.msg.confirm({
-            title: _('formz.form_remove')
-            ,text: _('formz.form_remove_confirm')
+            title: _('formz.submissions.remove')
+            ,text: _('formz.submissions.remove_confirm')
             ,url: this.config.url
             ,params: {
                 action: 'mgr/formz/data/remove'

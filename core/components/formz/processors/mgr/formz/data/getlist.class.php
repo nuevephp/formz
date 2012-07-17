@@ -39,11 +39,9 @@ class FormzGetListProcessor extends modObjectGetListProcessor {
             $lists[] = $item;
             $lists[$currentIndex]['ip_address'] = !empty($formData['ip_address']) ? $formData['ip_address'] : '';
 
+            $lists[$currentIndex]['fields'] = null;
             foreach ($fieldsData as $fd) {
-                $lists[$currentIndex]['fields'][] = array(
-                    'label' => $fd->label,
-                    'value' => $fd->value,
-                );
+                $lists[$currentIndex]['fields'] .= '<strong>' . $fd->label . ':</strong> ' . unserialize($fd->value) . '<br>';
             }
 
             $currentIndex++;

@@ -16,9 +16,9 @@ class FormzCreateProcessor extends modObjectCreateProcessor {
         $default = $this->getProperty('default');
 
     	if (empty($label)) {
-    		$this->addFieldError('label', $this->modx->lexicon('formz.form_err_ns'));
+    		$this->addFieldError('label', $this->modx->lexicon('formz.field_err_ns'));
     	} else if ($this->doesAlreadyExist(array('label' => $label, 'form_id' => $form_id))) {
-    		$this->addFieldError('label', $this->modx->lexicon('formz.form_err_ae'));
+    		$this->addFieldError('label', $this->modx->lexicon('formz.field_err_ae'));
     	}
 
         switch ($type) {
