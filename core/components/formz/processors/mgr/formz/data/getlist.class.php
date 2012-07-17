@@ -33,10 +33,12 @@ class FormzGetListProcessor extends modObjectGetListProcessor {
         $currentIndex = 0;
         $lists = array();
         foreach ($list as $item) {
+            $form = $this->modx->getObject('fmzForms', $item['form_id']);
             $formData = unserialize($item['data']);
             $fieldsData = $this->modx->getCollection('fmzFormsDataFields', array('data_id' => $item['id']));
 
             $lists[] = $item;
+            $lists[$currentIndex]['name'] = $form->get('name');
             $lists[$currentIndex]['ip_address'] = !empty($formData['ip_address']) ? $formData['ip_address'] : '';
 
             $lists[$currentIndex]['fields'] = null;

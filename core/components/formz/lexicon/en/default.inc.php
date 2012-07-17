@@ -23,8 +23,6 @@ $_lang['formz.form.update'] = 'Update Form';
 $_lang['formz.form.has_submission'] = 'View Submission';
 $_lang['formz.form.has_submissions'] = 'View Submissions';
 $_lang['formz.form.submissions'] = 'Submissions';
-$_lang['formz.form.senton'] = 'Sent On';
-$_lang['formz.form.ip_address'] = 'IP Address';
 $_lang['formz.form.submissions.desc'] = 'You can search, view and export data that was submitted to this form from here.';
 
 // Grid Headers
@@ -67,6 +65,10 @@ $_lang['formz.submissions.removedata'] = 'Remove Submission';
 $_lang['formz.submissions.view'] = 'View Details';
 $_lang['formz.submissions.viewdata'] = 'Submission for: ';
 $_lang['formz.submissions.remove'] = 'Remove Form Submission';
+$_lang['formz.submissions.senton'] = 'Sent On';
+$_lang['formz.submissions.ip_address'] = 'IP Address';
+$_lang['formz.submissions.sender_info'] = 'Sender Information';
+$_lang['formz.submissions.content'] = 'Content';
 $_lang['formz.submissions.remove_confirm'] = 'Are you sure you want to remove this Form Submission?';
 
 // Validation

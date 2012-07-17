@@ -7,7 +7,7 @@ Formz.grid.Data = function(config) {
             action: 'mgr/formz/data/getlist'
             ,formId: config.formId
         }
-        ,fields: ['id','senton','ip_address', 'fields']
+        ,fields: ['id','senton','ip_address','name','fields']
         ,autoHeight: true
         ,paging: true
         ,remoteSort: true
@@ -16,11 +16,11 @@ Formz.grid.Data = function(config) {
             ,dataIndex: 'id'
             ,width: 30
         }, {
-            header: _('formz.form.senton')
+            header: _('formz.submissions.senton')
             ,dataIndex: 'senton'
             ,width: 120
         }, {
-            header: _('formz.form.ip_address')
+            header: _('formz.submissions.ip_address')
             ,dataIndex: 'ip_address'
             ,width: 250
         }]
@@ -84,78 +84,55 @@ Formz.window.ViewData = function (config) {
     config.id = Ext.id();
 
     Ext.applyIf(config, {
-        title: _('formz.submissions.viewdata')
-        ,fields: [{
-            xtype: 'modx-tabs',
+        title: _('formz.submissions.viewdata') + config.record.name
+        ,autoHeight: true
+        ,width: 540
+        ,defaults: {
+            border: false,
             autoHeight: true,
+            bodyStyle: 'padding: 5px 8px 5px 5px;',
+            layout: 'form',
             deferredRender: false,
-            forceLayout: true,
-            width: '98%',
-            bodyStyle: 'padding: 10px 10px 10px 10px;',
-            border: true,
-            defaults: {
-                border: false,
-                autoHeight: true,
-                bodyStyle: 'padding: 5px 8px 5px 5px;',
-                layout: 'form',
-                deferredRender: false,
-                forceLayout: true
-            },
-            items: [{
-                title: _('formz.form.default')
-                ,layout: 'form'
-                ,items: [{
-                    xtype: 'hidden'
-                    ,name: 'id'
-                }, {
-                    xtype: 'textfield'
-                    ,fieldLabel: _('formz.field.name')
-                    ,name: 'label'
-                    ,anchor: '100%'
-                }, {
-                    xtype: 'formz-combo-types'
-                    ,id: 'formz-field-types-' + config.id
-                    ,fieldLabel: _('formz.field.type')
-                    ,name: 'type'
-                    ,anchor: '100%'
-                    ,hiddenName: 'type'
-                    ,value: 'text'
-                    ,listeners: {
-                        'select': { fn: this.fieldSets, scope: this }
-                        ,'render': { fn: this.fieldSets, scope: this }
-                    }
-                }, {
-                    xtype: 'textfield'
-                    ,id: 'formz-field-values-' + config.id
-                    ,fieldLabel: _('formz.field.values')
-                    ,name: 'values'
-                    ,anchor: '100%'
-                    ,hidden: true
-                }]
-            }, {
-                title: _('formz.form.properties')
-                ,layout: 'form'
-                ,items: [{
-                    xtype: 'textfield'
-                    ,fieldLabel: _('formz.field.default')
-                    ,name: 'default'
-                    ,anchor: '100%'
-                }, {
-                    xtype: 'checkbox'
-                    ,fieldLabel: _('formz.field.required')
-                    ,name: 'required'
-                    ,anchor: '100%'
-                    ,listeners: {
-                        'check': { fn: this.requiredFieldMsg, scope: this }
-                    }
-                }, {
-                    xtype: 'textfield'
-                    ,id: 'formz-field-error_message-' + config.id
-                    ,fieldLabel: _('formz.field.error_message')
-                    ,name: 'error_message'
-                    ,anchor: '100%'
-                    ,hidden: true
-                }]
+            forceLayout: true
+        }
+        ,buttons: [{
+            text: config.cancelBtnText || _('cancel')
+            ,scope: this
+            ,handler: function() { config.closeAction !== 'close' ? this.hide() : this.close(); }
+        }]
+        ,fields: [{
+            title: _('formz.submissions.sender_info')
+            ,layout: 'form'
+            ,bodyCssClass: 'main-wrapper'
+            ,autoHeight: true
+            ,collapsible: true
+            ,collapsed: false
+            ,border: true
+            ,hideMode: 'offsets'
+            ,items: [{
+                xtype: 'displayfield'
+                ,fieldLabel: _('formz.submissions.senton')
+                ,name: 'senton'
+                ,grow: false
+                ,anchor: '100%'
+                ,value: config.record.senton
+            }]
+        }, {
+            title: _('formz.submissions.content')
+            ,layout: 'form'
+            ,bodyCssClass: 'main-wrapper'
+            ,autoHeight: true
+            ,collapsible: false
+            ,collapsed: false
+            ,hideMode: 'offsets'
+            ,items: [{
+                xtype: 'displayfield'
+                ,fieldLabel: _('formz.submissions.content')
+                ,hideLabel: true
+                ,name: 'fields'
+                ,grow: true
+                ,anchor: '100%'
+                ,value: config.record.fields
             }]
         }]
     });
