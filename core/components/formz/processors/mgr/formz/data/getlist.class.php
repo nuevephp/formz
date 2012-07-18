@@ -43,7 +43,11 @@ class FormzGetListProcessor extends modObjectGetListProcessor {
 
             $lists[$currentIndex]['fields'] = null;
             foreach ($fieldsData as $fd) {
-                $lists[$currentIndex]['fields'] .= '<strong>' . $fd->label . ':</strong> ' . unserialize($fd->value) . '<br>';
+                $values = unserialize($fd->value);
+                if (is_array($values)) {
+                    $values = implode(', ', $values);
+                }
+                $lists[$currentIndex]['fields'] .= '<strong>' . $fd->label . ':</strong> ' . $values . '<br>';
             }
 
             $currentIndex++;
