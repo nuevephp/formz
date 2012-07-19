@@ -16,7 +16,7 @@ switch ($modx->event->name) {
         //$modx->event->output($corePath.'processors/mgr/tv/inputoptions/');
         break;
     case 'OnTVOutputPropertiesList':
-        $modx->event->output($corePath.'templates/elements/tv/renders/properties/');
+        // $modx->event->output($corePath.'templates/elements/tv/renders/properties/');
         break;
     case 'OnDocFormPrerender':
         break;
