@@ -13,7 +13,6 @@ Formz.page.UpdateForm = function(config) {
             text: _('save')
 			,process: create_update
 			,method: 'remote'
-			/*,checkDirty: true*/
 			,keys: [{
 				key: MODx.config.keymap_save || 's'
 				,ctrl: true

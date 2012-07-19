@@ -15,15 +15,15 @@ $_lang['formz.form'] = 'Forms';
 $_lang['formz.form.field'] = 'Fields';
 $_lang['formz.form.default'] = 'Default';
 $_lang['formz.form.properties'] = 'Properties';
-$_lang['formz.form.field.desc'] = 'Add, Edit and Delete fields from the Form here';
-$_lang['formz.form.create'] = 'Create Form';
+$_lang['formz.form.field.desc'] = 'Add, Edit, Delete and Order fields in the Form. To order just click and drag each field grid. All Changes made in the Field tab are saved immediately.';
+$_lang['formz.form.create'] = 'Create a new Form';
 $_lang['formz.form.remove'] = 'Remove Form';
 $_lang['formz.form.remove_confirm'] = 'Are you sure you want to remove this Form?';
 $_lang['formz.form.update'] = 'Update Form';
 $_lang['formz.form.has_submission'] = 'View Submission';
 $_lang['formz.form.has_submissions'] = 'View Submissions';
 $_lang['formz.form.submissions'] = 'Submissions';
-$_lang['formz.form.submissions.desc'] = 'You can search, view and export data that was submitted to this form from here.';
+$_lang['formz.form.submissions.desc'] = 'You can view data that was submitted to this Form.';
 
 // Grid Headers
 $_lang['formz.form.email'] = 'Recipient';
@@ -36,13 +36,13 @@ $_lang['formz.form.search'] = 'Search...';
 $_lang['formz.form.general'] = 'General';
 $_lang['formz.form.extra'] = 'Extra';
 $_lang['formz.form.identifier'] = 'Identifier';
-$_lang['formz.form.identifier_desc'] = 'The Identifier can be used as a ID on your form or a class when you are creating your form template. <em>defaults</em> to form-[generated id].';
+$_lang['formz.form.identifier_desc'] = 'The Identifier can be used as a ID on your form or a class when you are creating your form template. <em>default: form-[generated id]</em>';
 $_lang['formz.form.success'] = 'Success Message';
 $_lang['formz.form.method.dbonly'] = 'Save in the database';
 $_lang['formz.form.method.dbandemail'] = 'Save in the database and send email';
 $_lang['formz.form.recipient'] = 'Recipients';
 $_lang['formz.form.action_button'] = 'Action Button';
-$_lang['formz.form.action_button_desc'] = 'The text that the form submit button should have written on it. <em>defaults</em> to submit.';
+$_lang['formz.form.action_button_desc'] = 'The text that the form submit button should have written on it. <em>default: Submit</em>';
 
 // Fields
 $_lang['formz.field.name'] = 'Label';

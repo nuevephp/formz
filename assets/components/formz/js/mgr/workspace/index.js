@@ -13,8 +13,16 @@ Ext.onReady(function() {
 Formz.page.Workspace = function(config) {
     config = config || {};
     Ext.applyIf(config, {
-        components: [{
+    	formpanel: 'formz-panel-home'
+    	,buttons: [{
+            text: _('formz.form.create')
+            ,handler: function (btn, e) {
+            	window.location.href = '?a=' + MODx.action['formz:index'] + '&action=create';
+            }
+        }]
+        ,components: [{
             xtype: 'formz-panel-home'
+            ,id: 'formz-panel-home'
             ,renderTo: 'formz-panel-workspace-div'
         }]
     });

@@ -32,11 +32,6 @@ Formz.grid.Forms = function(config) {
             ,dataIndex: 'method'
             ,width: 150
         }]
-        ,tbar: ['->', {
-            text: _('formz.form.create')
-            ,handler: this.createForm
-            ,scope: this
-        }]
     });
     Formz.grid.Forms.superclass.constructor.call(this, config);
 };
