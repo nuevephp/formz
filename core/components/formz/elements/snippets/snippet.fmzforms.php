@@ -14,6 +14,7 @@ $modRes = $modx->newObject('modResource');
  */
 $tpl = $modx->getOption('tpl', $scriptProperties, 'formTpl');
 $id = $modx->getOption('id', $scriptProperties, null);
+$hookPrefix = $modx->getOption('hookPrefix', $scriptProperties, 'fmzForm_');
 $fieldTpl = $modx->getOption('fieldTpl', $scriptProperties, 'fieldTpl');
 $sortBy = 'Fields.order,Fields.id';
 $sortDir = 'ASC';
@@ -42,6 +43,7 @@ $form = $modx->getObjectGraph('fmzForms', array(
 
 /* iterate through items */
 $formArray = $form->toArray();
+$formArray['action'] = $hookPrefix . $formArray['method'];
 
 /* store form inside Formz class into variable $form */
 $formIdentifier = 'form' . $formArray['id'];
@@ -96,7 +98,7 @@ foreach ($form->Fields as $field) {
 
     $formField .= $fmz->getChunk($fieldTpl, $fieldArray);
 }
-$formArray['success'] = isset($_GET['success']) && $_GET['success'];
+$formArray['success'] = isset($_POST);
 $formArray['validation'] = $formFieldValidate;
 $formArray['validationText'] = $formFieldValidateText;
 $formArray['fields'] = $formField;

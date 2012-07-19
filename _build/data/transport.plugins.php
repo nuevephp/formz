@@ -12,11 +12,11 @@ $plugs = array(
     'FormzTv' => array(
         'desc' => 'Formz helper snippet that generates the form.',
         'events' => array(
-            'OnDocFormPrerender',
-            'OnTVInputPropertiesList',
+            // 'OnDocFormPrerender',
+            // 'OnTVInputPropertiesList',
             'OnTVInputRenderList',
             'OnTVOutputRenderList',
-            'OnTVOutputRenderPropertiesList',
+            // 'OnTVOutputRenderPropertiesList',
         ),
     ),
 );

@@ -11,14 +11,12 @@
 class Formz {
     /** @var \modX $modx */
     public $modx;
+
     /** @var array $config */
     public $config = array();
+
     /** @var array $chunks */
     public $chunks = array();
-    /**
-     * The field handling class
-     */
-    public $form = array();
 
     public function __construct(modX &$modx, array $config = array()) {
         $this->modx =& $modx;

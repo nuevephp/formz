@@ -1,22 +1,21 @@
 [[!FormIt?
-	&hooks=`fmzForm_[[+method]],redirect`
-	&redirectTo=`[[*id]]` [[- "Page ID"]]
-	&redirectParams=`{"success":"1"}`
+	&hooks=`[[+action]]`
 	&excludeFields=`submit`
 	&formid=`[[+id]]` [[- "Form ID"]]
 	&store=`1`
 	&storeTime=`900`
+	&successMessage=`<p>[[+success_message]]</p>`
 	&emailTo=`[[+email:default=``]]`
 	[[+validation:notempty=`&validate=`[[+validation]]``]]
 	[[+validationText:notempty=`[[+validationText]]`]]
 ]]
 
-[[+success:notempty=`<p>[[+success_message]]</p>`]]
+[[- [[+success:notempty=`<p>[[+success_message]]</p>`]] ]]
 
+[[!+fi.successMessage]]
 [[!+fi.validation_error_message]]
 
 <form class="form [[+identifier]]" action="" method="post">
-	[[- [[!field? &type=`hidden` &outer_tpl=`` &name=`blank`]] ]]
 	<fieldset>
 		[[+fields]]
 	</fieldset>
