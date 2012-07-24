@@ -10,8 +10,6 @@
 	[[+validationText:notempty=`[[+validationText]]`]]
 ]]
 
-[[- [[+success:notempty=`<p>[[+success_message]]</p>`]] ]]
-
 [[!+fi.successMessage]]
 [[!+fi.validation_error_message]]
 

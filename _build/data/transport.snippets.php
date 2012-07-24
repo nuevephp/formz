@@ -20,12 +20,15 @@ $i = 0;
 foreach($snips as $sn => $sdesc) {
     $i++;
     $sfilename = strtolower($sn);
+    $file = $sources['snippets'] . 'snippet.' . $sfilename . '.php';
     $snippets[$i]= $modx->newObject('modSnippet');
     $snippets[$i]->fromArray(array(
         'id' => $i,
         'name' => $sn,
         'description' => $sdesc,
-        'snippet' => getSnippetContent($sources['snippets'] . 'snippet.' . $sfilename . '.php'),
+        'snippet' => getSnippetContent($file),
+        'static' => 1,
+        'static_file' => str_replace(MODX_ROOT, '', $file)
     ), '', true, true);
 
     $property = $sources['build'] . 'properties/properties.' . $sfilename . '.php';

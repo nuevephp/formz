@@ -27,12 +27,15 @@ $i = 0;
 foreach($plugs as $key => $pl) {
     $i++;
     $sfilename = strtolower($key);
+    $file = $sources['plugins'].'plugin.' . $sfilename . '.php';
     $plugins[$i]= $modx->newObject('modPlugin');
     $plugins[$i]->fromArray(array(
         'id' => $i,
         'name' => $key,
         'description' => $pl['desc'],
-        'plugincode' => getSnippetContent($sources['plugins'].'plugin.' . $sfilename . '.php'),
+        'plugincode' => getSnippetContent($file),
+        'static' => 1,
+        'static_file' => str_replace(MODX_ROOT, '', $file),
     ), '', true, true);
 
     $events = array();

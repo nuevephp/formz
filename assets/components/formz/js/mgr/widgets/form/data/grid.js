@@ -47,17 +47,15 @@ Ext.extend(Formz.grid.Data, MODx.grid.Grid, {
     ,viewData: function (btn, e) {
         if (!this.menu.record || !this.menu.record.id) return false;
         var r = this.menu.record;
+        var win = MODx.load({
+            xtype: 'formz-window-view-data'
+            ,record: r
+            ,listeners: {
+                'success': { fn: this.refresh, scope: this }
+            }
+        });
 
-        if (!this.updateDataWindow) {
-            this.updateDataWindow = MODx.load({
-                xtype: 'formz-window-view-data'
-                ,record: r
-                ,listeners: {
-                    'success': { fn: this.refresh, scope: this }
-                }
-            });
-        }
-        this.updateDataWindow.show(e.target);
+        win.show(e.target);
     }
 
     ,removeSpam: function(btn,e) {
@@ -86,6 +84,7 @@ Formz.window.ViewData = function (config) {
     Ext.applyIf(config, {
         title: _('formz.submissions.viewdata') + config.record.name
         ,autoHeight: true
+        ,closeAction: 'close'
         ,width: 540
         ,defaults: {
             border: false,

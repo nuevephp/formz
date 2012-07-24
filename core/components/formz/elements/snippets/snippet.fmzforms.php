@@ -7,8 +7,6 @@
 $fmz = $modx->getService('formz', 'formz', $modx->getOption('formz.core_path', null, $modx->getOption('core_path') . 'components/formz/') . 'model/formz/', $scriptProperties);
 if (!($fmz instanceof Formz)) return '';
 
-$modRes = $modx->newObject('modResource');
-
 /**
  * Snippet Config
  */
@@ -16,6 +14,7 @@ $tpl = $modx->getOption('tpl', $scriptProperties, 'formTpl');
 $id = $modx->getOption('id', $scriptProperties, null);
 $hookPrefix = $modx->getOption('hookPrefix', $scriptProperties, 'fmzForm_');
 $fieldTpl = $modx->getOption('fieldTpl', $scriptProperties, 'fieldTpl');
+$fieldNaming = $modx->getOption('fieldNaming', $scriptProperties, 'field');
 $sortBy = 'Fields.order,Fields.id';
 $sortDir = 'ASC';
 
@@ -72,7 +71,7 @@ foreach ($form->Fields as $field) {
 
     $fieldArray = $field->toArray();
     $settings = $modx->fromJSON($fieldArray['settings']);
-    $alias = $modRes->cleanAlias($settings['label']);
+    $alias = $fieldNaming . $fieldArray['id'];
     $settings['id'] = $alias;
     $fieldArray = array_merge($fieldArray, $settings);
     unset($fieldArray['settings']);

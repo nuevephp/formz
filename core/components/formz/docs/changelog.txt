@@ -1,5 +1,13 @@
 Changelog for Formz.
 
-Formz 1.0.0
-==============
+Formz 1.0.0 Beta1
+======================
+- Fixed single instance of view submission window
+- Fixed field name to be based on field naming rather than label
+- Snippets and Plugins are now referenced as static files
+- Removed modResource call in snippet to use clean function
+
+
+Formz 1.0.0 Alpha1/2/3
+======================
 - Initial release.

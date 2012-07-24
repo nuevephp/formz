@@ -17,10 +17,11 @@ set_time_limit(0);
 define('PKG_NAME', 'Formz');
 define('PKG_ABBR', strtolower(PKG_NAME));
 define('PKG_VERSION', '1.0.0');
-define('PKG_RELEASE', 'alpha3');
+define('PKG_RELEASE', 'beta1');
 
 /* define sources */
 $root = dirname(dirname(__FILE__)).'/';
+define('MODX_ROOT', $root);
 $sources = array(
     'root' => $root,
     'build' => $root . '_build/',
@@ -197,6 +198,7 @@ unset($vehicle,$menu);
 $builder->setPackageAttributes(array(
     'license' => file_get_contents($sources['docs'] . 'license.txt'),
     'readme' => file_get_contents($sources['docs'] . 'readme.txt'),
+    'changelog' => file_get_contents($sources['docs'] . 'changelog.txt'),
     //'setup-options' => array(
         //'source' => $sources['build'].'setup.options.php',
     //),
