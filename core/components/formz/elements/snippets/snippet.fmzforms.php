@@ -97,7 +97,7 @@ foreach ($form->Fields as $field) {
 
     $formField .= $fmz->getChunk($fieldTpl, $fieldArray);
 }
-$formArray['success'] = isset($_POST);
+
 $formArray['validation'] = $formFieldValidate;
 $formArray['validationText'] = $formFieldValidateText;
 $formArray['fields'] = $formField;
