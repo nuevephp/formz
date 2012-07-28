@@ -22,6 +22,7 @@ class Formz {
         $this->modx =& $modx;
 
         $corePath = $this->modx->getOption('formz.core_path', $config, $this->modx->getOption('core_path') . 'components/formz/');
+        $assetsPath = $this->modx->getOption('formz.assets_path', $config, $this->modx->getOption('assets_path') . 'components/formz/');
         $assetsUrl = $this->modx->getOption('formz.assets_url', $config, $this->modx->getOption('assets_url') . 'components/formz/');
         $connectorUrl = $assetsUrl . 'connector.php';
 
@@ -30,6 +31,7 @@ class Formz {
             'cssUrl' => $assetsUrl . 'css/',
             'jsUrl' => $assetsUrl . 'js/',
             'imagesUrl' => $assetsUrl . 'images/',
+            'filePath' => $assetsPath . 'export/',
 
             'connectorUrl' => $connectorUrl,
 

@@ -22,8 +22,9 @@ $_lang['formz.form.remove_confirm'] = 'Are you sure you want to remove this Form
 $_lang['formz.form.update'] = 'Update Form';
 $_lang['formz.form.has_submission'] = 'View Submission';
 $_lang['formz.form.has_submissions'] = 'View Submissions';
+$_lang['formz.form.export'] = 'Export Submissions';
 $_lang['formz.form.submissions'] = 'Submissions';
-$_lang['formz.form.submissions.desc'] = 'You can view data that was submitted to this Form.';
+$_lang['formz.form.submissions.desc'] = 'You can view and export data that was submitted to this Form.';
 
 // Grid Headers
 $_lang['formz.form.email'] = 'Recipient';

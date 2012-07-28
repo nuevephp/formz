@@ -6,6 +6,8 @@ Formz 1.0.0 Beta1
 - Fixed field name to be based on field naming rather than label
 - Snippets and Plugins are now referenced as static files
 - Removed modResource call in snippet to use clean function
+- Added in Translations for French and Swedish (thanks to Romain and Joakim)
+- Added in Export to CSV the results
 
 
 Formz 1.0.0 Alpha1/2/3
