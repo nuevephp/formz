@@ -76,16 +76,45 @@ foreach ($form->Fields as $field) {
     $fieldArray = array_merge($fieldArray, $settings);
     unset($fieldArray['settings']);
 
-    foreach ($field->Validation as $val) {
+    // Get Validation type based on field
+    $c = $modx->newQuery('fmzFormsValidation');
+    $c->where(array('field_id' => $field->id));
+    $c->sortby('field_id', 'ASC');
+    $validation = $modx->getCollection('fmzFormsValidation', $c);
+    foreach ($validation as $val) {
         $valArray = $val->toArray();
-        $validate[$valArray['type']] = !empty($valArray['type']) ? 1 : 0;
+        $valType = $valArray['type'];
+        $validate[$valType] = !empty($valType) && $valType === 'required' ? 1 : 0;
 
-        if (!empty($valArray['type'])) {
-            $formFieldValidate .= $alias . ':' . $valArray['type'] . ',';
+        /**
+         * Check and see if this field has a Validation type
+         * If yes then append the alias to the type and if multiple
+         * append them to the same field.
+         */
+        if (!empty($valType)) {
+            if (isset($prevAlias) && $prevAlias === $alias) {
+                $formFieldValidate = substr($formFieldValidate, 0, -1);
+                $formFieldValidate .= ':' . $valType . ',';
+            } else {
+                $formFieldValidate .= $alias . ':' . $valType . ',';
+            }
+            $prevAlias = $alias;
+
+            switch ($valType) {
+                case 'email':
+                    $vType = 'vTextEmailInvalid';
+                    break;
+                case 'isNumber':
+                    $vType = 'vTextIsNumber';
+                    break;
+                default:
+                    $vType = 'vTextRequired';
+                    break;
+            }
         }
 
         if (!empty($valArray['error_message'])) {
-            $formFieldValidateText .= '&' . $alias . '.vTextRequired=`' . $valArray['error_message'] . '` ';
+            $formFieldValidateText .= '&' . $alias . '.' . $vType . '=`' . $valArray['error_message'] . '` ';
         }
     }
 

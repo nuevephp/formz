@@ -218,12 +218,30 @@ Formz.window.UpdateField = function (config) {
                     }
             	}, {
             		xtype: 'textfield'
-                    ,id: 'formz-field-error_message-' + config.id
+                    ,id: 'formz-field-req_error_message-' + config.id
             		,fieldLabel: _('formz.field.error_message')
             		,name: 'error_message'
             		,anchor: '100%'
                     ,hidden: true
-            	}]
+            	}, {
+                    xtype: 'formz-combo-validation'
+                    ,id: 'formz-field-validation-' + config.id
+                    ,fieldLabel: _('formz.field.validation')
+                    ,name: 'validation'
+                    ,anchor: '100%'
+                    ,hidden: true
+                    ,listeners: {
+                        'select': { fn: this.validationFieldMsg, scope: this }
+                        ,'render': { fn: this.validationFieldMsg, scope: this }
+                    }
+                }, {
+                    xtype: 'textfield'
+                    ,id: 'formz-field-val_error_message-' + config.id
+                    ,fieldLabel: _('formz.field.error_message')
+                    ,name: 'val_error_message'
+                    ,anchor: '100%'
+                    ,hidden: true
+                }]
             }]
 		}]
 	});
@@ -239,20 +257,31 @@ Formz.window.UpdateField = function (config) {
 Ext.extend(Formz.window.UpdateField, MODx.Window, {
 	fieldSets: function (field, record, i) {
         var valueField = Ext.getCmp('formz-field-values-' + this.config.id);
+        var validationField = Ext.getCmp('formz-field-validation-' + this.config.id);
 
 		switch (field.value) {
 			case 'select':
 			case 'checkbox':
 			case 'radio':
                 valueField.show();
+                validationField.hide();
 			break;
 			default:
 				// textbox
                 valueField.hide();
+                validationField.show();
 		}
 	}
+    ,validationFieldMsg: function (field, record, i) {
+        var valueField = Ext.getCmp('formz-field-val_error_message-' + this.config.id);
+        if (field.value) {
+            valueField.show();
+        } else {
+            valueField.hide();
+        }
+    }
     ,requiredFieldMsg: function (field, checked) {
-        var valueField = Ext.getCmp('formz-field-error_message-' + this.config.id);
+        var valueField = Ext.getCmp('formz-field-req_error_message-' + this.config.id);
         if (checked) {
             valueField.show();
         } else {
@@ -291,3 +320,31 @@ Formz.combo.Types = function (config) {
 };
 Ext.extend(Formz.combo.Types, Ext.form.ComboBox);
 Ext.reg('formz-combo-types', Formz.combo.Types);
+
+Formz.combo.Validation = function (config) {
+    config = config || {};
+    Ext.applyIf(config, {
+        title: _('formz.field.validation')
+        ,typeAhead: true
+        ,triggerAction: 'all'
+        ,lazyRender: true
+        ,mode: 'local'
+        ,store: new Ext.data.ArrayStore({
+            id: 0,
+            fields: [
+                'id',
+                'name'
+            ],
+            data: [
+                ['', ' '],
+                ['email', 'Email'],
+                ['isNumber', 'Number']
+            ]
+        })
+        ,valueField: 'id'
+        ,displayField: 'name'
+    });
+    Formz.combo.Validation.superclass.constructor.call(this, config);
+};
+Ext.extend(Formz.combo.Validation, Ext.form.ComboBox);
+Ext.reg('formz-combo-validation', Formz.combo.Validation);

@@ -19,10 +19,12 @@ class FormzUpdateProcessor extends modObjectUpdateProcessor {
             case 'checkbox':
             case 'radio':
                 $values = $this->getProperty('values');
+                $this->validationType = false;
                 break;
             default:
                 // textbox
                 $values = '';
+                $this->validationType = true;
         }
 
         $settings = array(
@@ -42,7 +44,42 @@ class FormzUpdateProcessor extends modObjectUpdateProcessor {
 
     public function afterSave() {
         $this->saveRequired();
+        if ($this->validationType) {
+            $this->saveValidation();
+        }
         return parent::afterSave();
+    }
+
+    private function saveValidation() {
+        $validation = $this->getProperty('validation');
+        $field_id = $this->object->get('id');
+
+        if ($validation) {
+            $msg = $this->getProperty('val_error_message');
+            $fieldValidation = $this->modx->getObject('fmzFormsValidation', array(
+                'field_id' => $field_id,
+                'type' => $validation,
+            ));
+
+            if (empty($fieldValidation)) {
+                $fieldValidation = $this->modx->newObject('fmzFormsValidation');
+            }
+
+            $fieldValidation->fromArray(array(
+                'field_id' => $field_id,
+                'type' => $validation,
+                'error_message' => $msg
+            ));
+            $fieldValidation->save();
+        } else {
+            $fieldValidation = $this->modx->getObject('fmzFormsValidation', array(
+                'field_id' => $field_id,
+                'type' => $validation,
+            ));
+            if ($fieldValidation && $fieldValidation instanceof fmzFormsValidation) {
+                $fieldValidation->remove();
+            }
+        }
     }
 
     private function saveRequired() {
