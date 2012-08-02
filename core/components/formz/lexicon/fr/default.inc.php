@@ -50,6 +50,7 @@ $_lang['formz.field.name'] = 'Intitulé (label)';
 $_lang['formz.field.type'] = 'Type';
 $_lang['formz.field.values'] = 'Valeurs';
 $_lang['formz.field.default'] = 'Valeur par défaut';
+$_lang['formz.field.validation'] = 'Validation';
 $_lang['formz.field.required'] = 'Requis';
 $_lang['formz.field.error_message'] = 'Message d\'erreur';
 $_lang['formz.field.cancel'] = 'Retour aux formulaires';
