@@ -11,3 +11,4 @@ if (!($fmz instanceof Formz)) return '';
 
 $fmzHook = new formzHooks($fmz, $hook);
 $fmzHook->dbSave();
+return true;

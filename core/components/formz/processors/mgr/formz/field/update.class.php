@@ -52,12 +52,12 @@ class FormzUpdateProcessor extends modObjectUpdateProcessor {
 
     private function saveValidation() {
         $validation = $this->getProperty('validation');
-        $field_id = $this->object->get('id');
+        $fieldId = $this->object->get('id');
 
         if ($validation) {
             $msg = $this->getProperty('val_error_message');
             $fieldValidation = $this->modx->getObject('fmzFormsValidation', array(
-                'field_id' => $field_id,
+                'field_id' => $fieldId,
                 'type' => $validation,
             ));
 
@@ -66,14 +66,14 @@ class FormzUpdateProcessor extends modObjectUpdateProcessor {
             }
 
             $fieldValidation->fromArray(array(
-                'field_id' => $field_id,
+                'field_id' => $fieldId,
                 'type' => $validation,
                 'error_message' => $msg
             ));
             $fieldValidation->save();
         } else {
             $fieldValidation = $this->modx->getObject('fmzFormsValidation', array(
-                'field_id' => $field_id,
+                'field_id' => $fieldId,
                 'type' => $validation,
             ));
             if ($fieldValidation && $fieldValidation instanceof fmzFormsValidation) {
@@ -84,12 +84,12 @@ class FormzUpdateProcessor extends modObjectUpdateProcessor {
 
     private function saveRequired() {
         $required = $this->setCheckbox('required');
-        $field_id = $this->object->get('id');
+        $fieldId = $this->object->get('id');
 
         if ($required) {
             $msg = $this->getProperty('error_message');
             $fieldValidation = $this->modx->getObject('fmzFormsValidation', array(
-                'field_id' => $field_id,
+                'field_id' => $fieldId,
                 'type' => 'required',
             ));
 
@@ -98,14 +98,14 @@ class FormzUpdateProcessor extends modObjectUpdateProcessor {
             }
 
             $fieldValidation->fromArray(array(
-                'field_id' => $field_id,
+                'field_id' => $fieldId,
                 'type' => 'required',
                 'error_message' => $msg
             ));
             $fieldValidation->save();
         } else {
             $fieldValidation = $this->modx->getObject('fmzFormsValidation', array(
-                'field_id' => $field_id,
+                'field_id' => $fieldId,
                 'type' => 'required',
             ));
             if ($fieldValidation && $fieldValidation instanceof fmzFormsValidation) {
