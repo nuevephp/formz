@@ -22,8 +22,9 @@ $_lang['formz.form.remove_confirm'] = 'Är du säker att du vill ta bort detta f
 $_lang['formz.form.update'] = 'Uppdatera formulär';
 $_lang['formz.form.has_submission'] = 'Visa inskickat formulär';
 $_lang['formz.form.has_submissions'] = 'Visa inskickade formulär';
+$_lang['formz.form.export'] = 'Exportera inskickad data';
 $_lang['formz.form.submissions'] = 'Inskickade formulär';
-$_lang['formz.form.submissions.desc'] = 'Du kan visa datat som skickades genom detta formulär.';
+$_lang['formz.form.submissions.desc'] = 'Du kan visa och exportera datat som skickades genom detta formulär.';
 
 // Grid Headers
 $_lang['formz.form.email'] = 'Mottagare';
@@ -49,6 +50,7 @@ $_lang['formz.field.name'] = 'Etikett';
 $_lang['formz.field.type'] = 'Typ';
 $_lang['formz.field.values'] = 'Värden';
 $_lang['formz.field.default'] = 'Standardvärde';
+$_lang['formz.field.validation'] = 'Validering';
 $_lang['formz.field.required'] = 'Obligatoriskt';
 $_lang['formz.field.error_message'] = 'Felmeddelande';
 $_lang['formz.field.cancel'] = 'Tillbaka till formulären';
