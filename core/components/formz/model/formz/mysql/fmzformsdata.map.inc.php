@@ -6,6 +6,7 @@ $xpdo_meta_map['fmzFormsData']= array (
   'package' => 'formz',
   'version' => '1.1',
   'table' => 'formz_forms_data',
+  'extends' => 'xPDOSimpleObject',
   'fields' => 
   array (
     'form_id' => 0,
@@ -56,17 +57,6 @@ $xpdo_meta_map['fmzFormsData']= array (
       ),
     ),
   ),
-  'aggregates' => 
-  array (
-    'Form' => 
-    array (
-      'class' => 'fmzForms',
-      'local' => 'form_id',
-      'foreign' => 'id',
-      'cardinality' => 'one',
-      'owner' => 'foreign',
-    ),
-  ),
   'composites' => 
   array (
     'FieldData' => 
@@ -76,6 +66,17 @@ $xpdo_meta_map['fmzFormsData']= array (
       'foreign' => 'data_id',
       'cardinality' => 'many',
       'owner' => 'local',
+    ),
+  ),
+  'aggregates' => 
+  array (
+    'Form' => 
+    array (
+      'class' => 'fmzForms',
+      'local' => 'form_id',
+      'foreign' => 'id',
+      'cardinality' => 'one',
+      'owner' => 'foreign',
     ),
   ),
 );

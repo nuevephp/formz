@@ -7,30 +7,29 @@ Formz.grid.Forms = function(config) {
             action: 'mgr/formz/form/getlist'
         }
         ,fields: ['id','name','email','method','has_submission','submissions']
-        ,autoHeight: true
         ,paging: true
         ,remoteSort: true
         ,columns: [{
             header: _('id')
             ,dataIndex: 'id'
-            ,width: 30
+            ,width: 5
         }, {
             header: _('name')
             ,dataIndex: 'name'
-            ,width: 120
+            ,width: 30
         }, {
             header: _('formz.form.email')
             ,dataIndex: 'email'
-            ,width: 250
+            ,width: 35
         }, {
             header: _('formz.form.submissions')
             ,dataIndex: 'submissions'
             ,align: 'center'
-            ,width: 70
+            ,width: 10
         }, {
             header: _('formz.form.method')
             ,dataIndex: 'method'
-            ,width: 150
+            ,width: 20
         }]
     });
     Formz.grid.Forms.superclass.constructor.call(this, config);

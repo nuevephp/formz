@@ -6,16 +6,17 @@ $xpdo_meta_map['fmzFormsFields']= array (
   'package' => 'formz',
   'version' => '1.1',
   'table' => 'formz_forms_fields',
-  'fields' =>
+  'extends' => 'xPDOSimpleObject',
+  'fields' => 
   array (
     'form_id' => 0,
     'type' => 'text',
     'settings' => '',
     'order' => 0,
   ),
-  'fieldMeta' =>
+  'fieldMeta' => 
   array (
-    'form_id' =>
+    'form_id' => 
     array (
       'dbtype' => 'int',
       'precision' => '10',
@@ -24,7 +25,7 @@ $xpdo_meta_map['fmzFormsFields']= array (
       'null' => false,
       'default' => 0,
     ),
-    'type' =>
+    'type' => 
     array (
       'dbtype' => 'enum',
       'precision' => '\'text\',\'textarea\',\'select\',\'checkbox\',\'radio\',\'heading\',\'paragraph\'',
@@ -32,14 +33,14 @@ $xpdo_meta_map['fmzFormsFields']= array (
       'null' => false,
       'default' => 'text',
     ),
-    'settings' =>
+    'settings' => 
     array (
       'dbtype' => 'text',
       'phptype' => 'string',
       'null' => true,
       'default' => '',
     ),
-    'order' =>
+    'order' => 
     array (
       'dbtype' => 'int',
       'precision' => '10',
@@ -48,17 +49,17 @@ $xpdo_meta_map['fmzFormsFields']= array (
       'default' => 0,
     ),
   ),
-  'indexes' =>
+  'indexes' => 
   array (
-    'order' =>
+    'order' => 
     array (
       'alias' => 'order',
       'primary' => false,
       'unique' => false,
       'type' => 'BTREE',
-      'columns' =>
+      'columns' => 
       array (
-        'order' =>
+        'order' => 
         array (
           'length' => '',
           'collation' => 'A',
@@ -66,15 +67,15 @@ $xpdo_meta_map['fmzFormsFields']= array (
         ),
       ),
     ),
-    'form_id' =>
+    'form_id' => 
     array (
       'alias' => 'form_id',
       'primary' => false,
       'unique' => false,
       'type' => 'BTREE',
-      'columns' =>
+      'columns' => 
       array (
-        'form_id' =>
+        'form_id' => 
         array (
           'length' => '',
           'collation' => 'A',
@@ -83,26 +84,26 @@ $xpdo_meta_map['fmzFormsFields']= array (
       ),
     ),
   ),
-  'aggregates' =>
+  'composites' => 
   array (
-    'Form' =>
-    array (
-      'class' => 'fmzForms',
-      'local' => 'form_id',
-      'foreign' => 'id',
-      'cardinality' => 'one',
-      'owner' => 'foreign',
-    ),
-  ),
-  'composites' =>
-  array (
-    'Validation' =>
+    'Validation' => 
     array (
       'class' => 'fmzFormsValidation',
       'local' => 'id',
       'foreign' => 'field_id',
       'cardinality' => 'many',
       'owner' => 'local',
+    ),
+  ),
+  'aggregates' => 
+  array (
+    'Form' => 
+    array (
+      'class' => 'fmzForms',
+      'local' => 'form_id',
+      'foreign' => 'id',
+      'cardinality' => 'one',
+      'owner' => 'foreign',
     ),
   ),
 );

@@ -6,6 +6,7 @@ $xpdo_meta_map['fmzFormsValidation']= array (
   'package' => 'formz',
   'version' => '1.1',
   'table' => 'formz_forms_validation',
+  'extends' => 'xPDOObject',
   'fields' => 
   array (
     'field_id' => 0,
@@ -26,7 +27,7 @@ $xpdo_meta_map['fmzFormsValidation']= array (
     'type' => 
     array (
       'dbtype' => 'enum',
-      'precision' => '\'required\',\'email\',\'numeric\'',
+      'precision' => '\'required\',\'email\',\'isNumber\'',
       'phptype' => 'string',
       'null' => true,
       'default' => 'required',

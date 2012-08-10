@@ -137,6 +137,8 @@ Formz.panel.NewForm = function (config) {
 		// Add the fields tab before extra
 		tbs.splice(1, 0, {
 			title: _('formz.form.field')
+            ,layout: 'form'
+            ,defaults: { border: false ,msgTarget: 'side' }
 			,items: [{
 				html: '<p>' + _('formz.form.field.desc') + '</p>'
 				,border: false

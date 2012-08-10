@@ -1,1 +1,1 @@
-[[!field? &type=`[[+type]]` &name=`[[+id]]` &label=`[[+label]]` &req=`[[+required]]` &array=`1` &options=`[[+values]]` &default=`[[+default]]`]]
+[[!field? &type=`[[+type]]` &name=`[[+id]]` &label=`[[+label]]` &req=`[[+required]]` [[+type:eq=`checkbox`:then=`&array=`1``]] &options=`[[+values]]` &default_value=`[[+default]]`]]

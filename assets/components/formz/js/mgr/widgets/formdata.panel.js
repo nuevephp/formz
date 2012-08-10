@@ -13,6 +13,8 @@ Formz.panel.FormData = function (config) {
 			,border: false
 		}, MODx.getPageStructure({
 			title: _('formz.form.submissions')
+            ,layout: 'form'
+            ,defaults: { border: false ,msgTarget: 'side' }
 			,items: [{
 				html: '<p>' + _('formz.form.submissions.desc') + '</p>'
 				,border: false

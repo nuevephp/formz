@@ -9,6 +9,9 @@ class FormzUpdateProcessor extends modObjectUpdateProcessor {
     /* Used to load the correct language error message */
     public $objectType = 'formz.field';
 
+    /* Set the default validation type to false for no validation on field type */
+    private $validationType = false;
+
     public function beforeSave() {
         $label = $this->getProperty('label');
         $type = $this->getProperty('type');
@@ -19,7 +22,6 @@ class FormzUpdateProcessor extends modObjectUpdateProcessor {
             case 'checkbox':
             case 'radio':
                 $values = $this->getProperty('values');
-                $this->validationType = false;
                 break;
             default:
                 // textbox
@@ -54,7 +56,7 @@ class FormzUpdateProcessor extends modObjectUpdateProcessor {
         $validation = $this->getProperty('validation');
         $fieldId = $this->object->get('id');
 
-        if ($validation) {
+        if (!empty($validation)) {
             $msg = $this->getProperty('val_error_message');
             $fieldValidation = $this->modx->getObject('fmzFormsValidation', array(
                 'field_id' => $fieldId,
@@ -62,6 +64,14 @@ class FormzUpdateProcessor extends modObjectUpdateProcessor {
             ));
 
             if (empty($fieldValidation)) {
+                $fieldValidation = $this->modx->getObject('fmzFormsValidation', array(
+                    'field_id' => $fieldId,
+                    'type:!=' => 'required',
+                ));
+                if ($fieldValidation && $fieldValidation instanceof fmzFormsValidation) {
+                    $fieldValidation->remove();
+                }
+
                 $fieldValidation = $this->modx->newObject('fmzFormsValidation');
             }
 
@@ -72,9 +82,10 @@ class FormzUpdateProcessor extends modObjectUpdateProcessor {
             ));
             $fieldValidation->save();
         } else {
+            // Delete all Validation except required rule
             $fieldValidation = $this->modx->getObject('fmzFormsValidation', array(
                 'field_id' => $fieldId,
-                'type' => $validation,
+                'type:!=' => 'required',
             ));
             if ($fieldValidation && $fieldValidation instanceof fmzFormsValidation) {
                 $fieldValidation->remove();

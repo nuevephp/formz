@@ -31,7 +31,7 @@ class FormzGetListProcessor extends modObjectGetListProcessor {
             $fieldSettings = $this->modx->fromJSON($item['settings'], false);
 
             $lists[] = $item;
-            $val = $this->modx->getObject('fmzFormsValidation', array('field_id' => $item['id']));
+            $validation = $this->modx->getCollection('fmzFormsValidation', array('field_id' => $item['id']));
 
             $lists[$currentIndex]['label'] = $fieldSettings->label;
 
@@ -41,8 +41,24 @@ class FormzGetListProcessor extends modObjectGetListProcessor {
             if (!empty($fieldSettings->values))
                 $lists[$currentIndex]['values'] = $fieldSettings->values;
 
-            $lists[$currentIndex]['required'] = !empty($val) && $val->type === 'required' ? 1 : 0;
-            $lists[$currentIndex]['error_message'] = !empty($val) ? $val->error_message : '';
+            // Defaults
+            $lists[$currentIndex]['required'] = 0;
+            $lists[$currentIndex]['error_message'] = null;
+
+            $lists[$currentIndex]['validation'] = null;
+            $lists[$currentIndex]['val_error_message'] = null;
+
+            foreach ($validation as $val) {
+                if (!empty($val) && $val->type !== 'required') {
+                    $lists[$currentIndex]['validation'] = $val->type;
+                    $lists[$currentIndex]['val_error_message'] = $val->error_message;
+                }
+
+                if (!empty($val) && $val->type === 'required') {
+                    $lists[$currentIndex]['required'] = 1;
+                    $lists[$currentIndex]['error_message'] = $val->error_message;
+                }
+            }
             $currentIndex++;
         }
         return !empty($lists) ? $lists : $list;

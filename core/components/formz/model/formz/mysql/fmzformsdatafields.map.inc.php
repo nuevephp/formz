@@ -6,6 +6,7 @@ $xpdo_meta_map['fmzFormsDataFields']= array (
   'package' => 'formz',
   'version' => '1.1',
   'table' => 'formz_forms_data_fields',
+  'extends' => 'xPDOSimpleObject',
   'fields' => 
   array (
     'data_id' => 0,

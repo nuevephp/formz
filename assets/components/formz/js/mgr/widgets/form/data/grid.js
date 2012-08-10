@@ -14,15 +14,15 @@ Formz.grid.Data = function(config) {
         ,columns: [{
             header: _('id')
             ,dataIndex: 'id'
-            ,width: 30
+            ,width: 10
         }, {
             header: _('formz.submissions.senton')
             ,dataIndex: 'senton'
-            ,width: 120
+            ,width: 70
         }, {
             header: _('formz.submissions.ip_address')
             ,dataIndex: 'ip_address'
-            ,width: 250
+            ,width: 20
         }]
     });
     Formz.grid.Data.superclass.constructor.call(this, config);

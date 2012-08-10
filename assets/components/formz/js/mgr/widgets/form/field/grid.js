@@ -15,6 +15,8 @@ Formz.grid.Fields = function(config) {
             'required',
             'default',
             'values',
+            'validation',
+            'val_error_message',
             'error_message'
         ]
         ,paging: false
@@ -29,18 +31,18 @@ Formz.grid.Fields = function(config) {
 			header: _('formz.field.type')
 			,dataIndex: 'type'
 			,sortable: false
-			,width: 50
+			,width: 15
 		}, {
 			header: _('formz.field.name')
 			,dataIndex: 'label'
 			,sortable: false
-			,width: 100
+			,width: 75
 			,editor: { xtype: 'textfield' }
 		}, {
 			header: _('formz.field.required')
 			,dataIndex: 'required'
 			,sortable: false
-			,width: 100
+			,width: 10
 			,editor: { xtype: 'modx-combo-boolean', renderer: 'boolean' }
 		}]
         ,tbar: ['->', {
@@ -228,6 +230,7 @@ Formz.window.UpdateField = function (config) {
                     ,id: 'formz-field-validation-' + config.id
                     ,fieldLabel: _('formz.field.validation')
                     ,name: 'validation'
+                    ,hiddenName: 'validation'
                     ,anchor: '100%'
                     ,hidden: true
                     ,listeners: {
@@ -248,10 +251,15 @@ Formz.window.UpdateField = function (config) {
 	Formz.window.UpdateField.superclass.constructor.call(this, config);
 
 
-    // When form shows set the values field state
+    /**
+     * When form shows set the values field state (show/hide)
+     * and set the validation message field state (show/hide)
+     */
     this.on('show', function () {
         var typeField = Ext.getCmp('formz-field-types-' + config.id);
+        var validationField = Ext.getCmp('formz-field-validation-' + config.id);
         this.fieldSets(typeField);
+        this.validationFieldMsg(validationField);
     });
 };
 Ext.extend(Formz.window.UpdateField, MODx.Window, {
@@ -267,7 +275,7 @@ Ext.extend(Formz.window.UpdateField, MODx.Window, {
                 validationField.hide();
 			break;
 			default:
-				// textbox
+				// textbox, textarea
                 valueField.hide();
                 validationField.show();
 		}
@@ -336,7 +344,7 @@ Formz.combo.Validation = function (config) {
                 'name'
             ],
             data: [
-                ['', ' '],
+                ['', 'None'],
                 ['email', 'Email'],
                 ['isNumber', 'Number']
             ]

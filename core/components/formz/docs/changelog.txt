@@ -4,10 +4,12 @@ Formz 1.0.0 Beta1
 ======================
 - Fixed single instance of view submission window
 - Fixed field name to be based on field naming rather than label
+- Fix manager grid scaling with browser
 - Snippets and Plugins are now referenced as static files
 - Removed modResource call in snippet to use clean function
 - Added in Translations for French and Swedish (thanks to Romain and Joakim)
 - Added in Export to CSV the results
+- Added email and number validation type
 
 
 Formz 1.0.0 Alpha1/2/3
