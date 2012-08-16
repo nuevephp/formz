@@ -17,6 +17,13 @@
   margin: 1em 0 1em 0;
   padding: 5px;
 }
+#nav h2 {
+  border-bottom: 1px solid #C2C2C2;
+  border-top: 1px solid #C2C2C2;
+  font-size: 15px;
+  font-weight: normal;
+  padding: 8px 5px;
+}
 #nav a {
   color: #423F37;
 }
