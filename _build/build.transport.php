@@ -17,7 +17,7 @@ set_time_limit(0);
 define('PKG_NAME', 'Formz');
 define('PKG_ABBR', strtolower(PKG_NAME));
 define('PKG_VERSION', '1.0.0');
-define('PKG_RELEASE', 'beta1');
+define('PKG_RELEASE', 'beta2');
 
 /* define sources */
 $root = dirname(dirname(__FILE__)).'/';
@@ -73,8 +73,6 @@ if (!is_array($snippets)) {
 $plugins = include $sources['data'].'transport.plugins.php';
 if (!is_array($plugins)) {
     $modx->log(modX::LOG_LEVEL_FATAL,'Adding plugins failed.');
-} else {
-    $category->addMany($plugins);
 }
 $attr = array(
     xPDOTransport::UNIQUE_KEY => 'name',

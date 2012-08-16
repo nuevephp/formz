@@ -34,6 +34,7 @@ foreach($plugs as $key => $pl) {
         'name' => $key,
         'description' => $pl['desc'],
         'plugincode' => getSnippetContent($file),
+        'category' => 0,
         'static' => 1,
         'static_file' => str_replace(MODX_ROOT, '', $file),
     ), '', true, true);

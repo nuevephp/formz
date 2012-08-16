@@ -1,5 +1,9 @@
 Changelog for Formz.
 
+Formz 1.0.0 Beta2
+======================
+- FIxed issue with installer throwing error for plugin installation
+
 Formz 1.0.0 Beta1
 ======================
 - Fixed single instance of view submission window

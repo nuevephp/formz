@@ -52,11 +52,11 @@ $fmz->form[$formIdentifier] = array(
 
 /* Add in Empty field for bug that processes snippet calls in chunk */
 $blankField = array(
-        'id' => '',
-        'form_id' => '',
-        'settings' => '{"label":"blank"}',
-        'type' => 'blank',
-        'order' => '99999',
+    'id' => '',
+    'form_id' => '',
+    'settings' => '{"label":"blank"}',
+    'type' => 'blank',
+    'order' => '99999',
 );
 $fmz->getChunk($fieldTpl, $blankField);
 
