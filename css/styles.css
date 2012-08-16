@@ -1,0 +1,101 @@
+/* My Style */
+#nav {
+  /*background-color: #F8F8F8;*/
+  border-right: 1px solid #ececec;
+  bottom: 0;
+  font-size: 16px;
+  overflow: auto;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  width: 240px;
+}
+#nav h1 {
+  font-size: 17px;
+  font-weight: normal;
+  background-color: #F3F3F3;
+  margin: 1em 0 1em 0;
+  padding: 5px;
+}
+#nav a {
+  color: #423F37;
+}
+#nav .build-date {
+  font-size: 11px;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0 0 0 5px;
+}
+ul li {
+  margin-left: 0;
+}
+ul li.level-2 {
+  font-size: 14px;
+  margin: 0 0 0 20px;
+}
+ul li.level-1 a,
+ul li.level-2 a {
+  display: block;
+  padding: 2px 10px;
+}
+ul li.level-1 a {
+  background: transparent;
+  border: none;
+  margin-left: 0;
+}
+ul li.level-2 a {
+  text-decoration: none;
+}
+ul li.level-2 a:hover {
+  background-color: #ececec;
+}
+a {
+
+}
+a:hover {
+  color: #000;
+  text-decoration: none;
+}
+#main-content {
+  padding: 20px 40px 40px 300px;
+}
+#main-content .item\:cover {
+  padding: 0 2.5em 1.75em 0;
+}
+#main-content .item\:cover h1 {
+  margin: 0 2em 0 0;
+}
+#main-content .item\:chapter h1,
+#main-content .item\:chapter h2,
+#main-content .item\:chapter h3 {
+  font-family: Georgia,"Times New Roman",Times,serif;
+  font-weight: normal;
+  padding: 5px 0;
+}
+#main-content .item\:chapter h1 {
+  /*background-color: #BED4EB;*/
+  font-size: 28px;
+}
+#main-content .item\:chapter h2 {
+  font-size: 22px;
+}
+#main-content .item\:chapter h3 {
+  font-size: 18px;
+}
+#main-content img {
+  max-width: 100%;
+  height: auto;
+}
+#main-content pre {
+  padding: 10px;
+  background-color: white;
+  color: #222;
+  /*line-height: 1.2em;*/
+  border: 1px solid #C6C9CB;
+  /*font-size: 1.1em;*/
+  margin: 1.5em 0 1.5em 0;
+  -webkit-box-shadow: 1px 1px 1px #D8D8D8;
+  -moz-box-shadow: 1px 1px 1px #d8d8d8;
+}
