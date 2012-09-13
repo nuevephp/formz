@@ -60,6 +60,16 @@ $category= $modx->newObject('modCategory');
 $category->set('id',1);
 $category->set('category',PKG_NAME);
 
+/* add chunks */
+$chunks = include $sources['data'] . 'transport.chunks.php';
+if (!is_array($chunks)) {
+    $modx->log(modX::LOG_LEVEL_ERROR, 'Could not package in chunks.');
+} else {
+    $modx->log(modX::LOG_LEVEL_INFO, 'Packaging in chunks...');
+    $category->addMany($chunks);
+}
+unset($chunks);
+
 /* add snippets */
 $snippets = include $sources['data'].'transport.snippets.php';
 if (!is_array($snippets)) {
