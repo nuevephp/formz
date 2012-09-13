@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <meta name="author" content="Andrew Smith" />
-    <meta name="date" content="08/16/2012"/>
+    <meta name="date" content="09/13/2012"/>
     <meta name="generator" content="easybook 4.8-DEV"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -17,7 +17,7 @@
 <body>
 	<nav id="nav">
 
-		<div class="build-date">Last Updated: 16 Aug 2012 23:21</div>
+		<div class="build-date">Last Updated: 13 Sep 2012 09:31</div>
 
 		<h1>Formz</h1>
 
@@ -58,7 +58,10 @@
 		        		        		            		                		                    <li class="chapter level-1">
 		                        <a href="#formz-snippet">Formz Snippet</a>
 		                    </li>
-		                		            
+		                		            		                		                    <li class="chapter level-2">
+		                        <a href="#optional-parameters">Optional Parameters</a>
+		                    </li>
+		                		            		                		            
 		        		        		    				</ul>
 
 		<h2>Downloads</h2>
@@ -270,6 +273,75 @@ as possible so that even a beginner can start using the system from as early as 
 
 <h1 id="formz-snippet"><span></span> Formz Snippet</h1>
 
+<p>This is what make make creating frontend forms so easy, this snippet ties in all the code for the frontend form using <a href="http://modx.com/extras/package/formit">FormIt</a> and <a href="http://modx.com/extras/package/formitfastpack">FormItFastPack</a>.</p>
+
+<p>The Formz Snippet <code>fmzForms</code> work behind the scenes when you are using the formz output type in your Template Variable. You can use the Formz Snippet <code>fmzForms</code>
+directly by adding it in the template you have attached your Formz Template Variable to. If you decide to use the Formz Snippet <code>fmzForms</code> inside of your template
+make sure you change the Template Variable output type to <code>default</code>.</p>
+
+<p>The default Formz Snippet will look like this:</p>
+
+<div class="code code">
+<pre class="code">[[!fmzForms? &amp;id=`[[*formz]]`]]</pre>
+</div>
+
+<p>In this basic snippet <code>[[*formz]]</code> would be the name of your Formz TV, this is the only required parameter you need to pass to the Formz Snippet <code>fmzForms</code>.</p>
+
+<h2 id="optional-parameters">Optional Parameters</h2>
+
+<ul>
+<li>tpl</li>
+<li>hookPrefix</li>
+<li>fieldTpl</li>
+<li>fieldNaming</li>
+</ul>
+
+<h3 id="tpl">tpl</h3>
+
+<p>This provides the user with the option to create their own chunk to pass to Formz Snippet <code>fmzForms</code>, allowing the user to customize their web form to suit their needs.
+The default tpl chunk looks like this:</p>
+
+<pre><code>[[!FormIt?
+    &amp;hooks=`[[+action]]`
+    &amp;excludeFields=`submit`
+    &amp;formid=`[[+id]]` [[- "Form ID"]]
+    &amp;store=`1`
+    &amp;storeTime=`900`
+    &amp;successMessage=`&lt;p&gt;[[+success_message]]&lt;/p&gt;`
+    &amp;emailTo=`[[+email:default=``]]`
+    [[+validation:notempty=`&amp;validate=`[[+validation]]``]]
+    [[+validationText:notempty=`[[+validationText]]`]]
+]]
+[[!+fi.successMessage]]
+[[!+fi.validation_error_message]]&lt;div class="code html"&gt;
+</code></pre>
+
+<pre class="html5"><span class="sc2">&lt;<span class="kw2">form</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">&quot;form [[+identifier]]&quot;</span> <span class="kw3">action</span><span class="sy0">=</span><span class="st0">&quot;&quot;</span> <span class="kw3">method</span><span class="sy0">=</span><span class="st0">&quot;post&quot;</span>&gt;</span>
+    <span class="sc2">&lt;<span class="kw2">fieldset</span>&gt;</span>
+        [[+fields]]
+    <span class="sc2">&lt;<span class="sy0">/</span><span class="kw2">fieldset</span>&gt;</span>
+    <span class="sc2">&lt;<span class="kw2">div</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">&quot;actions&quot;</span>&gt;</span>
+        <span class="sc2">&lt;<span class="kw2">input</span> <span class="kw3">type</span><span class="sy0">=</span><span class="st0">&quot;submit&quot;</span> <span class="kw3">name</span><span class="sy0">=</span><span class="st0">&quot;submit&quot;</span> <span class="kw3">value</span><span class="sy0">=</span><span class="st0">&quot;[[+action_button:default=`Submit`]]&quot;</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">&quot;btn primary&quot;</span> <span class="sy0">/</span>&gt;</span>
+    <span class="sc2">&lt;<span class="sy0">/</span><span class="kw2">div</span>&gt;</span>
+<span class="sc2">&lt;<span class="sy0">/</span><span class="kw2">form</span>&gt;</span></pre>
+
+<p></div>
+In this chunk you can pass various parameter to a Formz hook. If you wanted to add an email tpl, you could add emailTpl parameter to the FormIt Snippet <code>FormIt</code> call.</p>
+
+<div class="code code">
+<pre class="code">[[!FormIt?
+    &amp;hooks=`[[+action]]`
+    &amp;excludeFields=`submit`
+    &amp;formid=`[[+id]]` [[- &quot;Form ID&quot;]]
+    &amp;store=`1`
+    &amp;storeTime=`900`
+    &amp;successMessage=`&lt;p&gt;[[+success_message]]&lt;/p&gt;`
+    &amp;emailTo=`[[+email:default=``]]`
+    &amp;emailTpl=`myNewEmailTpl`
+    [[+validation:notempty=`&amp;validate=`[[+validation]]``]]
+    [[+validationText:notempty=`[[+validationText]]`]]
+]]</pre>
+</div>
 
 
 </div>

@@ -1,6 +1,4 @@
-/* My Style */
 #nav {
-  /*background-color: #F8F8F8;*/
   border-right: 1px solid #ececec;
   bottom: 0;
   font-size: 16px;
@@ -30,9 +28,10 @@
 #nav .build-date {
   font-size: 11px;
 }
-ul {
-  list-style-type: none;
+#nav ul {
   margin: 0;
+}
+ul {
   padding: 0 0 0 5px;
 }
 ul li {
@@ -41,6 +40,12 @@ ul li {
 ul li.level-2 {
   font-size: 14px;
   margin: 0 0 0 20px;
+}
+ul li.level-2 a {
+  text-decoration: none;
+}
+ul li.level-2 a:hover {
+  background-color: #ececec;
 }
 ul li.level-1 a,
 ul li.level-2 a {
@@ -51,15 +56,6 @@ ul li.level-1 a {
   background: transparent;
   border: none;
   margin-left: 0;
-}
-ul li.level-2 a {
-  text-decoration: none;
-}
-ul li.level-2 a:hover {
-  background-color: #ececec;
-}
-a {
-
 }
 a:hover {
   color: #000;
@@ -77,12 +73,11 @@ a:hover {
 #main-content .item\:chapter h1,
 #main-content .item\:chapter h2,
 #main-content .item\:chapter h3 {
-  font-family: Georgia,"Times New Roman",Times,serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   font-weight: normal;
   padding: 5px 0;
 }
 #main-content .item\:chapter h1 {
-  /*background-color: #BED4EB;*/
   font-size: 28px;
 }
 #main-content .item\:chapter h2 {
@@ -92,17 +87,25 @@ a:hover {
   font-size: 18px;
 }
 #main-content img {
-  max-width: 100%;
   height: auto;
+  max-width: 100%;
 }
 #main-content pre {
-  padding: 10px;
   background-color: white;
-  color: #222;
-  /*line-height: 1.2em;*/
   border: 1px solid #C6C9CB;
-  /*font-size: 1.1em;*/
+  box-shadow: 1px 1px 1px #d8d8d8;
+  color: #222;
   margin: 1.5em 0 1.5em 0;
-  -webkit-box-shadow: 1px 1px 1px #D8D8D8;
-  -moz-box-shadow: 1px 1px 1px #d8d8d8;
+  padding: 10px;
+}
+@media screen and (max-width: 800px) {
+  #nav {
+    border: none;
+    font-size: 16px;
+    position: static;
+    width: auto;
+  }
+  #main-content {
+    padding: 20px 10px;
+  }
 }
