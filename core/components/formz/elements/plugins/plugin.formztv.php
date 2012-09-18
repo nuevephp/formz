@@ -13,10 +13,10 @@ switch ($modx->event->name) {
         $modx->event->output($corePath.'processors/mgr/tv/output/');
         break;
     case 'OnTVInputPropertiesList':
-        //$modx->event->output($corePath.'processors/mgr/tv/inputoptions/');
+        //$modx->event->output($corePath.'processors/mgr/tv/input/options/');
         break;
-    case 'OnTVOutputPropertiesList':
-        // $modx->event->output($corePath.'templates/elements/tv/renders/properties/');
+    case 'OnTVOutputRenderPropertiesList':
+         $modx->event->output($corePath.'processors/mgr/tv/output/options/');
         break;
     case 'OnDocFormPrerender':
         break;

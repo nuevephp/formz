@@ -52,6 +52,7 @@ $_lang['formz.field.values'] = 'Values';
 $_lang['formz.field.default'] = 'Default Value';
 $_lang['formz.field.validation'] = 'Validation';
 $_lang['formz.field.required'] = 'Required';
+$_lang['formz.field.email_tpl_tag'] = 'Email Template Tag';
 $_lang['formz.field.error_message'] = 'Error Message';
 $_lang['formz.field.cancel'] = 'Back to forms';
 

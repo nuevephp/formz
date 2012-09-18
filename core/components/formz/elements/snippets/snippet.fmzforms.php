@@ -14,7 +14,7 @@ $tpl = $modx->getOption('tpl', $scriptProperties, 'formTpl');
 $id = $modx->getOption('id', $scriptProperties, null);
 $hookPrefix = $modx->getOption('hookPrefix', $scriptProperties, 'fmzForm_');
 $fieldTpl = $modx->getOption('fieldTpl', $scriptProperties, 'fieldTpl');
-$fieldNaming = $modx->getOption('fieldNaming', $scriptProperties, 'field');
+$fieldNaming = 'field';
 $sortBy = 'Fields.order,Fields.id';
 $sortDir = 'ASC';
 
@@ -40,13 +40,18 @@ $form = $modx->getObjectGraph('fmzForms', array(
     ),
 ), $c);
 
+if (empty($form)) {
+    return false;
+}
 /* iterate through items */
 $formArray = $form->toArray();
 $formArray['action'] = $hookPrefix . $formArray['method'];
 
 /* store form inside Formz class into variable $form */
-$formIdentifier = 'form' . $formArray['id'];
-$fmz->form[$formIdentifier] = array(
+$formIdentifier = '/form' . $formArray['id'] . '-' . session_id() . '/';
+$fmz->form->subscribe($formIdentifier);
+
+$formArrayStore = array(
     'formName' => $formArray['name'],
 );
 
@@ -120,12 +125,13 @@ foreach ($form->Fields as $field) {
 
     /* Save copy of Form and field in form variable */
     $field = array($alias => $fieldArray);
-    $fmz->form[$formIdentifier] = array_merge($fmz->form[$formIdentifier], $field);
+    $formArrayStore = array_merge($formArrayStore, $field);
 
     $fieldArray = array_merge($fieldArray, $validate);
 
     $formField .= $fmz->getChunk($fieldTpl, $fieldArray);
 }
+$fmz->form->send($formIdentifier, $formArrayStore);
 
 $formArray['validation'] = $formFieldValidate;
 $formArray['validationText'] = $formFieldValidateText;

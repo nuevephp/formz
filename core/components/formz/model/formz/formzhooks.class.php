@@ -22,12 +22,19 @@ class formzHooks {
         $this->config->excludedFields = $this->modx->getOption('excludeFields', $this->hook->formit->config, '');
         $this->config->processorPath = $this->fmz->config['processorsPath'];
 
-        $this->formIdentifier = 'form' . $this->config->formid;
+        $this->formIdentifier = '/form' . $this->config->formid . '-' . session_id() . '/';
+        // Retrieve form
+        $this->fmz->form->subscribe($this->formIdentifier);
+        $this->formArray = $this->fmz->form->read(array(
+            'poll_limit' => 1,
+            'msg_limit' => 40,
+            'include_keys' => true,
+        ));
 
         $this->config->emailFrom = $this->modx->getOption('emailFrom', $this->hook->formit->config, $this->modx->getOption('emailsender'), true);
         $this->config->emailTo = $this->modx->getOption('emailTo', $this->hook->formit->config, '');
         $this->config->emailTpl = $this->modx->getOption('emailTpl', $this->hook->formit->config, 'emailTpl');
-        $this->config->senderName = $this->modx->getOption('senderName', $this->hook->formit->config, $this->fmz->form[$this->formIdentifier]['formName'], true);
+        $this->config->senderName = $this->modx->getOption('senderName', $this->hook->formit->config, $this->formArr['formName'], true);
         $this->config->subject = $this->modx->getOption('subject', $this->hook->formit->config, 'Website Contact Form on ' . date('Y-m-d'));
 
         $this->config->data = $this->hook->getValues();
@@ -53,7 +60,7 @@ class formzHooks {
             // Save Fields
             foreach ($this->config->data as $field => $value) {
                 if (is_array($value)) {
-                    switch ($this->fmz->form[$this->formIdentifier][$field]['type']) {
+                    switch ($this->formArray[$field]['type']) {
                         case 'select':
                         case 'radio':
                             $value = implode('', $value);
@@ -63,7 +70,7 @@ class formzHooks {
 
                 $formDataFieldResponse = $this->modx->runProcessor('mgr/formz/field/data/create', array(
                     'data_id' => $formData['id'],
-                    'label' => $this->fmz->form[$this->formIdentifier][$field]['label'],
+                    'label' => $this->formArray[$field]['label'],
                     'value' => serialize($value),
                 ), array(
                     'processors_path' => $this->config->processorPath
@@ -89,7 +96,7 @@ class formzHooks {
             // Save Fields
             foreach ($this->config->data as $field => $value) {
                 if (is_array($value)) {
-                    switch ($this->fmz->form[$this->formIdentifier][$field]['type']) {
+                    switch ($this->formArray[$field]['type']) {
                         case 'select':
                         case 'checkbox':
                         case 'radio':
@@ -98,7 +105,8 @@ class formzHooks {
                     }
                 }
 
-                $newData['message'] .= $this->fmz->form[$this->formIdentifier][$field]['label'] . ': ' . $value . '<br>';
+                $newData['message'] .= $this->formArray[$field]['label'] . ': ' . $value . '<br>';
+                $newData[$this->formArray[$field]['id']] = $value;
             }
 
             $message = $this->fmz->getChunk($this->config->emailTpl, $newData);

@@ -13,7 +13,12 @@ class FormzInputRender extends modTemplateVarInputRender {
         $c = $this->modx->newQuery('fmzForms');
         $formz = $this->modx->getCollection('fmzForms', $c);
 
-        $forms = array();
+        $forms = array(
+            array(
+                'value' => '',
+                'text' => '&nbsp;'
+            )
+        );
 		foreach ($formz as $form) {
 			$selected = $form->get('id') == $this->tv->get('value');
 		    $forms[] = array(

@@ -28,6 +28,12 @@ Formz.grid.Fields = function(config) {
         ,save_action: 'mgr/formz/field/updateFromGrid'
         ,autosave: true
         ,columns: [{
+			header: _('id')
+			,dataIndex: 'id'
+			,sortable: false
+            ,hidden: true
+			,width: 5
+		}, {
 			header: _('formz.field.type')
 			,dataIndex: 'type'
 			,sortable: false
@@ -44,6 +50,14 @@ Formz.grid.Fields = function(config) {
 			,sortable: false
 			,width: 10
 			,editor: { xtype: 'modx-combo-boolean', renderer: 'boolean' }
+		}, {
+			header: _('formz.field.email_tpl_tag')
+			,dataIndex: ''
+			,sortable: false
+			,width: 10
+            ,renderer: function(val, metaData, record) {
+                return '[[+field' + record.get('id') + ']]';
+            }
 		}]
         ,tbar: ['->', {
             text: _('formz.field.add')
