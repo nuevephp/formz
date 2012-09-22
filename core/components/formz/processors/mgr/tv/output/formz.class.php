@@ -5,7 +5,14 @@ class FormzOutputRender extends modTemplateVarOutputRender {
     }
 
     public function process($value,array $params = array()) {
-		return $this->modx->runSnippet('fmzForms', array_merge(array('id' => $value), $this->tv->_properties));
+        $options = array();
+        foreach($params as $key => $val) {
+            if (!empty($val)) {
+                $options[$key] = $val;
+            }
+        }
+        $mainOptions = array_merge(array('id' => $value), $options);
+		return $this->modx->runSnippet('fmzForms', array_merge($mainOptions, $this->tv->_properties));
     }
 }
 return 'FormzOutputRender';

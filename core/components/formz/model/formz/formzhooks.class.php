@@ -22,9 +22,7 @@ class formzHooks {
         $this->config->excludedFields = $this->modx->getOption('excludeFields', $this->hook->formit->config, '');
         $this->config->processorPath = $this->fmz->config['processorsPath'];
 
-        $this->formIdentifier = '/form' . $this->config->formid . '-' . session_id() . '/';
         // Retrieve form
-        $this->fmz->form->subscribe($this->formIdentifier);
         $this->formArray = $this->fmz->form->read(array(
             'poll_limit' => 1,
             'msg_limit' => 40,
@@ -34,7 +32,7 @@ class formzHooks {
         $this->config->emailFrom = $this->modx->getOption('emailFrom', $this->hook->formit->config, $this->modx->getOption('emailsender'), true);
         $this->config->emailTo = $this->modx->getOption('emailTo', $this->hook->formit->config, '');
         $this->config->emailTpl = $this->modx->getOption('emailTpl', $this->hook->formit->config, 'emailTpl');
-        $this->config->senderName = $this->modx->getOption('senderName', $this->hook->formit->config, $this->formArr['formName'], true);
+        $this->config->senderName = $this->modx->getOption('senderName', $this->hook->formit->config, $this->formArray['formName'], true);
         $this->config->subject = $this->modx->getOption('subject', $this->hook->formit->config, 'Website Contact Form on ' . date('Y-m-d'));
 
         $this->config->data = $this->hook->getValues();
@@ -105,7 +103,7 @@ class formzHooks {
                     }
                 }
 
-                $newData['message'] .= $this->formArray[$field]['label'] . ': ' . $value . '<br>';
+                $newData['message'] .= $this->formArray[$field]['label'] . ' ' . $value . '<br>';
                 $newData[$this->formArray[$field]['id']] = $value;
             }
 

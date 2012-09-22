@@ -3,8 +3,9 @@ Changelog for Formz.
 Formz 1.0.0 Beta3
 ======================
 - [#14] Default upon Form creation
-- [#9] Bug when a user has multiple form, data was not persistent
 - [#13] Passing over field tags to emailTpl
+- [#10] TV to have options to set emailTpl, emailFrom, emailTo, formTpl, fieldTpl etc
+- [#9] Bug when a user has multiple form, data was not persistent
 
 Formz 1.0.0 Beta2
 ======================

@@ -19,14 +19,14 @@ MODx.load({
     ,items: [{{/literal}
         xtype: 'textfield' 
         ,fieldLabel: '{$fmz.tpl}'
-        ,name: 'tpl{$tv}'
+        ,name: 'prop_tpl'
         ,value: params['tpl'] || ''
         ,listeners: oc
         ,anchor: '100%'
     },{
         xtype: 'textfield' 
         ,fieldLabel: '{$fmz.fieldTpl}'
-        ,name: 'fieldTpl{$tv}'
+        ,name: 'prop_fieldTpl'
         ,value: params['fieldTpl'] || ''
         ,listeners: oc
         ,anchor: '100%'{literal}

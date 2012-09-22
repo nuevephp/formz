@@ -27,8 +27,8 @@ foreach($snips as $sn => $sdesc) {
         'name' => $sn,
         'description' => $sdesc,
         'snippet' => getSnippetContent($file),
-        'static' => 1,
-        'static_file' => str_replace(MODX_ROOT, '', $file)
+        /*'static' => 1,
+        'static_file' => str_replace(MODX_ROOT, '', $file)*/
     ), '', true, true);
 
     $property = $sources['build'] . 'properties/properties.' . $sfilename . '.php';
