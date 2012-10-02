@@ -48,8 +48,13 @@ $formArray = $form->toArray();
 $formArray['action'] = $hookPrefix . $formArray['method'];
 
 /* store form inside Formz class into variable $form */
+/* Load up registry for formz use */
+$modx->getService('registry', 'registry.modRegistry');
+$modx->registry->addRegister('formz', 'registry.modFileRegister', array('directory' => 'formz'));
+$modx->registry->formz->connect();
+
 $formIdentifier = '/form' . $formArray['id'] . '-' . session_id() . '/';
-$fmz->form->subscribe($formIdentifier);
+$modx->registry->formz->subscribe($formIdentifier);
 
 $formArrayStore = array(
     'formName' => $formArray['name'],
@@ -131,7 +136,7 @@ foreach ($form->Fields as $field) {
 
     $formField .= $fmz->getChunk($fieldTpl, $fieldArray);
 }
-$fmz->form->send($formIdentifier, $formArrayStore);
+$modx->registry->formz->send($formIdentifier, $formArrayStore);
 
 $formArray['validation'] = $formFieldValidate;
 $formArray['validationText'] = $formFieldValidateText;

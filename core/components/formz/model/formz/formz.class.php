@@ -50,12 +50,6 @@ class Formz {
         $this->modx->addPackage('formz', $this->config['modelPath']);
         $this->modx->lexicon->load('formz:default');
         $this->modx->lexicon->load('formz:tv');
-
-        /* Load up registry for formz use */
-        $this->modx->getService('registry', 'registry.modRegistry');
-        $this->modx->registry->addRegister('formz', 'registry.modFileRegister', array('directory' => 'formz'));
-        $this->modx->registry->formz->connect();
-        $this->form = $this->modx->registry->formz;
     }
 
     /**

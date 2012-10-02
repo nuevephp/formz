@@ -23,7 +23,11 @@ class formzHooks {
         $this->config->processorPath = $this->fmz->config['processorsPath'];
 
         // Retrieve form
-        $this->formArray = $this->fmz->form->read(array(
+        $this->modx->getService('registry', 'registry.modRegistry');
+        $this->modx->registry->addRegister('formz', 'registry.modFileRegister');
+        $formIdentifier = '/form' . $this->config->formid . '-' . session_id() . '/';
+        $this->modx->registry->formz->subscribe($formIdentifier);
+        $this->formArray = $this->modx->registry->formz->read(array(
             'poll_limit' => 1,
             'msg_limit' => 40,
             'include_keys' => true,
