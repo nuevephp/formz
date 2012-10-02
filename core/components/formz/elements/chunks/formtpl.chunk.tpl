@@ -1,6 +1,7 @@
 [[!FormIt?
 	&hooks=`[[+action]]`
-	&excludeFields=`submit`
+	&excludeFields=`submit[[+id]]`
+    &submitVar=`submit[[+id]]`
 	&formid=`[[+id]]` [[- "Form ID"]]
 	&store=`1`
 	&storeTime=`900`
@@ -19,6 +20,6 @@
 	</fieldset>
 
 	<div class="actions">
-		<input type="submit" name="submit" value="[[+action_button:default=`Submit`]]" class="btn primary" />
+		<input type="submit" name="submit[[+id]]" value="[[+action_button:default=`Submit`]]" class="btn primary" />
 	</div>
 </form>
