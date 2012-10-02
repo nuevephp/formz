@@ -5,11 +5,8 @@ $xpdo_meta_map = array (
   array (
     0 => 'fmzForms',
     1 => 'fmzFormsFields',
-    2 => 'fmzFormsData',
-    3 => 'fmzFormsDataFields',
-  ),
-  'xPDOObject' => 
-  array (
-    0 => 'fmzFormsValidation',
+    2 => 'fmzFormsValidation',
+    3 => 'fmzFormsData',
+    4 => 'fmzFormsDataFields',
   ),
 );

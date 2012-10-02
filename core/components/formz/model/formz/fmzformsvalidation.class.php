@@ -2,4 +2,4 @@
 /**
  * @package formz
  */
-class fmzFormsValidation extends xPDOObject {}
+class fmzFormsValidation extends xPDOSimpleObject {}

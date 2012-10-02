@@ -37,7 +37,7 @@
 		<composite alias="Validation" class="fmzFormsValidation" local="id" foreign="field_id" cardinality="many" owner="local" />
     </object>
 
-    <object class="fmzFormsValidation" table="formz_forms_validation" extends="xPDOObject">
+    <object class="fmzFormsValidation" table="formz_forms_validation" extends="xPDOSimpleObject">
     	<field key="field_id" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="" />
     	<field key="type" dbtype="enum" precision="'required','email','isNumber'" phptype="string" null="true" default="required" />
     	<field key="error_message" dbtype="varchar" precision="255" phptype="string" null="false" default="" />

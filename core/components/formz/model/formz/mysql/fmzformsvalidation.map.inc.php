@@ -6,7 +6,7 @@ $xpdo_meta_map['fmzFormsValidation']= array (
   'package' => 'formz',
   'version' => '1.1',
   'table' => 'formz_forms_validation',
-  'extends' => 'xPDOObject',
+  'extends' => 'xPDOSimpleObject',
   'fields' => 
   array (
     'field_id' => 0,
