@@ -1,6 +1,6 @@
 Changelog for Formz.
 
-Formz 1.0.0 Beta4
+Formz 1.0.0 pl
 ======================
 - [#23] Multiple Forms on 1 page - How To (thanks to Grey Sky Media for fix)
 - [#25] Required Bug

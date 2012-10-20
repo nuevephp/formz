@@ -34,7 +34,7 @@ if ($object->xpdo) {
 
             /* setup urls */
             createSetting($modx,'assets_url',$modx->getOption('assets_url').'components/formz/');
-        break;
+            break;
     }
 }
 return true;

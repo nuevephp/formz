@@ -197,6 +197,9 @@ if (empty($menu)) {
     $vehicle->resolve('php',array(
         'source' => $sources['resolvers'] . 'resolve.paths.php',
     ));
+    $vehicle->resolve('php',array(
+        'source' => $sources['resolvers'] . 'resolve.dbchanges.php',
+    ));
     $builder->putVehicle($vehicle);
     $modx->log(modX::LOG_LEVEL_INFO,'Packaged in menu.');
 }
