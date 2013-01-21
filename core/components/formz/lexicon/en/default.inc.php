@@ -32,12 +32,12 @@ $_lang['formz.form.method'] = 'Method';
 
 // Create/Edit
 $_lang['formz.form.management'] = 'Form Builder';
-$_lang['formz.form.create_edit_desc'] = 'Create and edit forms. Once you have created your form, you can add to a page by adding the Template Variable to the page template, then select the form from the list.';
+$_lang['formz.form.create_edit_desc'] = 'Create and edit forms. Once you have created your form, you can add it to a page by adding the Template Variable to the page template, then select the form from the list.';
 $_lang['formz.form.search'] = 'Search...';
 $_lang['formz.form.general'] = 'General';
 $_lang['formz.form.extra'] = 'Extra';
 $_lang['formz.form.identifier'] = 'Identifier';
-$_lang['formz.form.identifier_desc'] = 'The Identifier can be used as a ID on your form or a class when you are creating your form template. <em>default: form-[generated id]</em>';
+$_lang['formz.form.identifier_desc'] = 'The Identifier can be used as an ID on your form or a class when you are creating your form template. <em>default: form-[generated id]</em>';
 $_lang['formz.form.success'] = 'Success Message';
 $_lang['formz.form.method.dbonly'] = 'Save in the database';
 $_lang['formz.form.method.dbandemail'] = 'Save in the database and send email';
@@ -76,13 +76,13 @@ $_lang['formz.submissions.remove_confirm'] = 'Are you sure you want to remove th
 // Validation
 $_lang['formz.field.validation.required'] = 'This field is required.';
 
-$_lang['formz.form_err_ae'] = 'An Form already exists with that name.';
+$_lang['formz.form_err_ae'] = 'A Form already exists with that name.';
 $_lang['formz.form_err_nf'] = 'Form not found.';
 $_lang['formz.form_err_ns'] = 'Form not specified.';
 $_lang['formz.form_err_remove'] = 'An error occurred while trying to remove the Form.';
 $_lang['formz.form_err_save'] = 'An error occurred while trying to save the Form.';
 
-$_lang['formz.field_err_ae'] = 'An Form Field already exists with that name.';
+$_lang['formz.field_err_ae'] = 'A Form Field already exists with that name.';
 $_lang['formz.field_err_nf'] = 'Form Field not found.';
 $_lang['formz.field_err_ns'] = 'Form Field not specified.';
 $_lang['formz.field_err_remove'] = 'An error occurred while trying to remove the Form Field.';
