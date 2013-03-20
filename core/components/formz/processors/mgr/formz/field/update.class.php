@@ -1,5 +1,5 @@
 <?php
-class FormzUpdateProcessor extends modObjectUpdateProcessor {
+class FormzFieldUpdateProcessor extends modObjectUpdateProcessor {
     /* Class in model directory */
     public $classKey = 'fmzFormsFields';
 
@@ -126,4 +126,4 @@ class FormzUpdateProcessor extends modObjectUpdateProcessor {
     }
 }
 
-return 'FormzUpdateProcessor';
+return 'FormzFieldUpdateProcessor';

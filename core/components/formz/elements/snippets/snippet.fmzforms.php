@@ -45,6 +45,7 @@ if (empty($form)) {
 }
 /* iterate through items */
 $formArray = $form->toArray();
+
 $formArray['action'] = $hookPrefix . $formArray['method'];
 
 /* store form inside Formz class into variable $form */
@@ -71,6 +72,7 @@ $blankField = array(
 $fmz->getChunk($fieldTpl, $blankField);
 
 $formField = '';
+$formFieldRaw = array();
 $formFieldValidate = '';
 $formFieldValidateText = '';
 foreach ($form->Fields as $field) {
@@ -133,7 +135,8 @@ foreach ($form->Fields as $field) {
     $formArrayStore = array_merge($formArrayStore, $field);
 
     $fieldArray = array_merge($fieldArray, $validate);
-
+    $fieldId = $fieldArray['id'];
+    $formFieldRaw[$fieldId] = $fieldId;
     $formField .= $fmz->getChunk($fieldTpl, $fieldArray);
 }
 $modx->registry->formz->send($formIdentifier, $formArrayStore);
@@ -141,6 +144,7 @@ $modx->registry->formz->send($formIdentifier, $formArrayStore);
 $formArray['validation'] = $formFieldValidate;
 $formArray['validationText'] = $formFieldValidateText;
 $formArray['fields'] = $formField;
+$formArray['field'] = $formFieldRaw;
 
 /* by default just return output */
 return $fmz->getChunk($tpl, $formArray);

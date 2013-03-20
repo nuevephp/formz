@@ -5,6 +5,8 @@
  * @package formz
  */
 $corePath = $modx->getOption('formz.core_path', null, $modx->getOption('core_path') . 'components/formz/');
+$modx->lexicon->load('formz:tv');
+
 switch ($modx->event->name) {
     case 'OnTVInputRenderList':
         $modx->event->output($corePath.'processors/mgr/tv/input/');
@@ -17,8 +19,6 @@ switch ($modx->event->name) {
         break;
     case 'OnTVOutputRenderPropertiesList':
          $modx->event->output($corePath.'processors/mgr/tv/output/options/');
-        break;
-    case 'OnDocFormPrerender':
         break;
 }
 return;

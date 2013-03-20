@@ -1,5 +1,5 @@
 <?php
-class FormzRemoveProcessor extends modObjectRemoveProcessor {
+class FormzDataRemoveProcessor extends modObjectRemoveProcessor {
     /* Class in model directory */
     public $classKey = 'fmzFormsData';
 
@@ -10,4 +10,4 @@ class FormzRemoveProcessor extends modObjectRemoveProcessor {
     public $objectType = 'formz.form';
 }
 
-return 'FormzRemoveProcessor';
+return 'FormzDataRemoveProcessor';

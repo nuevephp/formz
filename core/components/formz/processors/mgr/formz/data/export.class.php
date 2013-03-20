@@ -29,7 +29,7 @@ class FormzDataExportProcessor extends modObjectGetListProcessor {
      * @param array $list
      * @return array
      */
-    public function afterIteration($list) {
+    public function afterIteration(array $list) {
         $currentIndex = 0;
         $lists = array();
         foreach ($list as $item) {
@@ -55,17 +55,16 @@ class FormzDataExportProcessor extends modObjectGetListProcessor {
             $currentIndex++;
         }
 
-        $outputData = array_merge(array($header), $lists);
         $modRes = $this->modx->newObject('modResource');
         $alias = $modRes->cleanAlias($form->get('name'));
         $now = date('d_m_Y_H_i_s', time());
         $filename = $alias . '_' . $now . '.csv';
 
-        $csv = $this->toCSV($filename, $lists, $header, ',', '"', "\r\n");
+        $csv = $this->toCSV($lists, $header, ',', '"', "\r\n");
         $this->download($csv, $filename);
     }
 
-    private function toCSV($filename, array $content, array $header, $delimiter = ',', $enclosure, $lineEnding = null)
+    private function toCSV(array $content, array $header, $delimiter = ',', $enclosure, $lineEnding = null)
     {
         if ($lineEnding === null) {
             $lineEnding = PHP_EOL;

@@ -24,7 +24,7 @@ class FormzGetListProcessor extends modObjectGetListProcessor {
     	return $c;
     }
 
-    public function afterIteration($list) {
+    public function afterIteration(array $list) {
         $currentIndex = 0;
         $lists = array();
         foreach ($list as $item) {

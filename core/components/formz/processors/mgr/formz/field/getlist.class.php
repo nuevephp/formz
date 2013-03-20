@@ -1,5 +1,5 @@
 <?php
-class FormzGetListProcessor extends modObjectGetListProcessor {
+class FormzFieldGetListProcessor extends modObjectGetListProcessor {
     /* Class in model directory */
     public $classKey = 'fmzFormsFields';
 
@@ -24,7 +24,7 @@ class FormzGetListProcessor extends modObjectGetListProcessor {
     	return $c;
     }
 
-    public function afterIteration($list) {
+    public function afterIteration(array $list) {
         $currentIndex = 0;
         $lists = array();
         foreach ($list as $item) {
@@ -65,4 +65,4 @@ class FormzGetListProcessor extends modObjectGetListProcessor {
     }
 }
 
-return 'FormzGetListProcessor';
+return 'FormzFieldGetListProcessor';

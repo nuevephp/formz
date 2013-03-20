@@ -1,7 +1,7 @@
 <?php
 require_once (dirname(__FILE__) . '/update.class.php');
 
-class FormzUpdateFromGridOrderProcessor extends FormzUpdateProcessor {
+class FormzFieldUpdateFromGridOrderProcessor extends FormzFieldUpdateProcessor {
 	public function initialize() {
 		$data = $this->getProperty('data');
 
@@ -25,4 +25,4 @@ class FormzUpdateFromGridOrderProcessor extends FormzUpdateProcessor {
 	}
 }
 
-return 'FormzUpdateFromGridOrderProcessor';
+return 'FormzFieldUpdateFromGridOrderProcessor';

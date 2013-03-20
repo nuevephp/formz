@@ -1,5 +1,5 @@
 <?php
-class FormzCreateProcessor extends modObjectCreateProcessor {
+class FormzFieldCreateProcessor extends modObjectCreateProcessor {
     /* Class in model directory */
     public $classKey = 'fmzFormsFields';
 
@@ -91,4 +91,4 @@ class FormzCreateProcessor extends modObjectCreateProcessor {
     }
 }
 
-return 'FormzCreateProcessor';
+return 'FormzFieldCreateProcessor';
