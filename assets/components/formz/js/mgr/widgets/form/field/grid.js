@@ -19,7 +19,7 @@ Formz.grid.Fields = function(config) {
             'val_error_message',
             'error_message'
         ]
-        ,paging: false
+        ,paging: true
         ,remoteSort: false
         ,autoExpandColumn: 'label'
         ,autosave: true

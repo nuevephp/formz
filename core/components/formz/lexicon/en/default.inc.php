@@ -42,6 +42,8 @@ $_lang['formz.form.success'] = 'Success Message';
 $_lang['formz.form.method.dbonly'] = 'Save in the database';
 $_lang['formz.form.method.dbandemail'] = 'Save in the database and send email';
 $_lang['formz.form.recipient'] = 'Recipients';
+$_lang['formz.form.redirect_to'] = 'Redirect To';
+$_lang['formz.form.redirect_to_desc'] = 'The id of the resource to redirect to <em>default: [[*id]]</em>';
 $_lang['formz.form.action_button'] = 'Action Button';
 $_lang['formz.form.action_button_desc'] = 'The text that the form submit button should have written on it. <em>default: Submit</em>';
 

@@ -114,6 +114,23 @@ Formz.panel.NewForm = function (config) {
 				,allowBlank: true
 			}]
 		}, {
+			html: '<p>' + _('formz.form.redirect_to_desc') + '</p>'
+			,bodyCssClass: 'panel-desc'
+		}, {
+			layout: 'form'
+			,cls: 'main-wrapper'
+			,border: false
+			,anchor: '98%'
+			,defaults: {
+				layout: 'form'
+			}
+			,items: [{
+				xtype: 'textfield'
+				,fieldLabel: _('formz.form.redirect_to')
+				,name: 'redirect_to'
+				,anchor: '40%'
+			}]
+		}, {
 			html: '<p>' + _('formz.form.action_button_desc') + '</p>'
 			,bodyCssClass: 'panel-desc'
 		}, {
