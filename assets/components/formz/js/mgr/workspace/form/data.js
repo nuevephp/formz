@@ -27,6 +27,7 @@ Formz.page.FormData = function(config) {
                     ,params: {
                         action: 'mgr/formz/data/export'
                         ,formId: config.formId
+                        ,limit: 100000
                     }
                     ,form: Ext.fly('frmDummy')
                     ,isUpload: true
