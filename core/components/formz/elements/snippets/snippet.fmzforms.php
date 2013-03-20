@@ -4,7 +4,7 @@
  *
  * @package formz
  */
-$fmz = $modx->getService('formz', 'formz', $modx->getOption('formz.core_path', null, $modx->getOption('core_path') . 'components/formz/') . 'model/formz/', $scriptProperties);
+$fmz = $modx->getService('formz', 'Formz', $modx->getOption('formz.core_path', null, $modx->getOption('core_path') . 'components/formz/') . 'model/formz/', $scriptProperties);
 if (!($fmz instanceof Formz)) return '';
 
 /**
@@ -134,6 +134,10 @@ foreach ($form->Fields as $field) {
     $formField .= $fmz->getChunk($fieldTpl, $fieldArray);
 }
 $_SESSION[$formIdentifier] = $formArrayStore;
+
+/* Convert Properties to String */
+$formProperties = ! empty($formArray['properties']) ? implode(' ', explode('||', $formArray['properties'])) : '';
+$formArray['properties'] = $formProperties;
 
 $formArray['validation'] = $formFieldValidate;
 $formArray['validationText'] = $formFieldValidateText;

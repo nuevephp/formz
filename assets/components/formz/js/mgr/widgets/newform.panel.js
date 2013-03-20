@@ -131,6 +131,23 @@ Formz.panel.NewForm = function (config) {
 				,anchor: '40%'
 			}]
 		}, {
+			html: '<p>' + _('formz.form.properties_desc') + '</p>'
+			,bodyCssClass: 'panel-desc'
+		}, {
+			layout: 'form'
+			,cls: 'main-wrapper'
+			,border: false
+			,anchor: '98%'
+			,defaults: {
+				layout: 'form'
+			}
+			,items: [{
+				xtype: 'textfield'
+				,fieldLabel: _('formz.form.properties')
+				,name: 'properties'
+				,anchor: '40%'
+			}]
+		}, {
 			html: '<p>' + _('formz.form.action_button_desc') + '</p>'
 			,bodyCssClass: 'panel-desc'
 		}, {

@@ -8,6 +8,7 @@
 	&storeTime=`900`
 	&successMessage=`<p>[[+success_message]]</p>`
 	&emailTo=`[[+email:default=``]]`
+    [[+properties]]
 	[[+validation:notempty=`&validate=`[[+validation]]``]]
 	[[+validationText:notempty=`[[+validationText]]`]]
 ]]

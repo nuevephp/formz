@@ -30,6 +30,10 @@ if ($object->xpdo) {
                 "ALTER TABLE %s ADD `redirect_to` INT(10) UNSIGNED NULL AFTER `identifier`",
                 $formzForms
             );
+            $sqlFormsPropertiesField = sprintf(
+                "ALTER TABLE %s ADD `properties` TEXT NULL AFTER `action_button`",
+                $formzForms
+            );
             $sqlValidationIdField = sprintf(
                 "ALTER TABLE %s ADD `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`id`)",
                 $formzValidation
