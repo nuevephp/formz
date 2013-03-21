@@ -1,5 +1,14 @@
 Changelog for Formz.
 
+Formz 1.0.0 rc2
+======================
+- UI Enhancements added in
+- [#18] fiar
+- [#27] Adjusting the email
+- [#28] Specify redirect page
+- [#30] Export Submissions
+- [#35] Submission export limited to 20 rows
+
 Formz 1.0.0 rc1
 ======================
 - [#23] Multiple Forms on 1 page - How To (thanks to Grey Sky Media for fix)
