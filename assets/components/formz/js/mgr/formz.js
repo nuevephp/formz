@@ -8,3 +8,18 @@ Ext.extend(Formz, Ext.Component,{
 Ext.reg('formz', Formz);
 
 Formz = new Formz();
+
+/* Helper */
+Formz.grid.btnRenderer = function (list) {
+    var btnTemplate = new Ext.XTemplate('<tpl for=".">' +
+        '<tpl if="items">'+
+        '<tpl for="items">' +
+        '<div id="{id}" class="x-btn-text button controlBtn {className}" style="{buttonStyle}">{fieldLabel}</div>' +
+        '</tpl>' +
+        '</tpl>' +
+        '</tpl>', {
+        compiled: true
+    });
+
+    return btnTemplate.apply(list);
+}

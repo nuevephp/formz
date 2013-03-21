@@ -62,9 +62,9 @@ $_lang['formz.field.cancel'] = 'Back to forms';
 
 $_lang['formz.field.add'] = 'Add Field';
 $_lang['formz.field.create'] = 'Create Field';
-$_lang['formz.field.update'] = 'Update Field';
+$_lang['formz.field.update'] = 'Update';
 $_lang['formz.field.delete'] = 'Delete Field';
-$_lang['formz.field.remove'] = 'Remove Form Field';
+$_lang['formz.field.remove'] = 'Remove';
 $_lang['formz.field.remove_confirm'] = 'Are you sure you want to remove this Form Field?';
 
 $_lang['formz.submissions.removedata'] = 'Remove Submission';
@@ -76,6 +76,11 @@ $_lang['formz.submissions.ip_address'] = 'IP Address';
 $_lang['formz.submissions.sender_info'] = 'Sender Information';
 $_lang['formz.submissions.content'] = 'Content';
 $_lang['formz.submissions.remove_confirm'] = 'Are you sure you want to remove this Form Submission?';
+
+$_lang['formz.export'] = 'Export';
+$_lang['formz.export.daterange'] = 'Date Range';
+$_lang['formz.export.start_date'] = 'Start Date';
+$_lang['formz.export.end_date'] = 'End Date';
 
 // Validation
 $_lang['formz.field.validation.required'] = 'This field is required.';

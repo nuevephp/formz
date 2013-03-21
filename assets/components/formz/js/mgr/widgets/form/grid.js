@@ -12,27 +12,63 @@ Formz.grid.Forms = function(config) {
         ,columns: [{
             header: _('id')
             ,dataIndex: 'id'
-            ,width: 5
+            ,width: 4
         }, {
             header: _('name')
             ,dataIndex: 'name'
-            ,width: 30
+            ,width: 110
         }, {
             header: _('formz.form.email')
             ,dataIndex: 'email'
-            ,width: 35
+            ,width: 60
         }, {
             header: _('formz.form.submissions')
             ,dataIndex: 'submissions'
             ,align: 'center'
-            ,width: 10
+            ,width: 30
         }, {
             header: _('formz.form.method')
             ,dataIndex: 'method'
-            ,width: 20
+            ,width: 30
+        }, {
+            header: '&#160;'
+            ,renderer: function (v, md, rec) {
+                var btns;
+                var model = rec.data;
+                var submStr = model.submissions > 1 ? 'formz.form.has_submissions' : 'formz.form.has_submission';
+
+                if (model.has_submission) {
+                    btns = Formz.grid.btnRenderer({
+                        items: [{
+                            id: 'update-' + rec.id
+                            ,fieldLabel: _(submStr)
+                            ,className: 'submission'
+                        }]
+                    });
+                }
+                btns += Formz.grid.btnRenderer({
+                    items: [{
+                        id: 'update-' + rec.id
+                        ,fieldLabel: _('formz.field.update')
+                        ,className: 'update'
+                    }]
+                }) +
+                Formz.grid.btnRenderer({
+                    items: [{
+                        id: 'remove-' + rec.id
+                        ,fieldLabel: _('formz.field.remove')
+                        ,className: 'remove'
+                    }]
+                });
+
+                return btns;
+            }
         }]
     });
     Formz.grid.Forms.superclass.constructor.call(this, config);
+
+    // Attach click event on buttons
+    this.on('click', this.onClick, this);
 };
 Ext.extend(Formz.grid.Forms, MODx.grid.Grid, {
     windows: {}
@@ -91,6 +127,27 @@ Ext.extend(Formz.grid.Forms, MODx.grid.Grid, {
         if (!this.menu.record || !this.menu.record.id) return false;
         var r = this.menu.record;
         window.location.href = '?a=' + MODx.action['formz:index'] + '&action=data&id=' + r.id;
+    }
+
+    ,onClick: function(e){
+        var t = e.getTarget();
+        var elm = t.className.split(' ')[2];
+        if(elm == 'controlBtn') {
+            var action = t.className.split(' ')[3];
+            var record = this.getSelectionModel().getSelected();
+            this.menu.record = record.data;
+            switch (action) {
+                case 'update':
+                    this.updateForm('', e);
+                    break;
+                case 'submission':
+                    this.viewData();
+                    break;
+                case 'remove':
+                    this.removeForm();
+                    break;
+            }
+        }
     }
 });
 Ext.reg('formz-grid-forms', Formz.grid.Forms);

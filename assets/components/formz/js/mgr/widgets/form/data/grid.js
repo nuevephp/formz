@@ -18,14 +18,35 @@ Formz.grid.Data = function(config) {
         }, {
             header: _('formz.submissions.senton')
             ,dataIndex: 'senton'
-            ,width: 70
+            ,width: 160
         }, {
             header: _('formz.submissions.ip_address')
             ,dataIndex: 'ip_address'
-            ,width: 20
+            ,width: 50
+        }, {
+            header: '&#160;'
+            ,renderer: function (v, md, rec) {
+                return Formz.grid.btnRenderer({
+                    items: [{
+                        id: 'update-' + rec.id
+                        ,fieldLabel: _('formz.submissions.view')
+                        ,className: 'view'
+                    }]
+                }) +
+                Formz.grid.btnRenderer({
+                    items: [{
+                        id: 'remove-' + rec.id
+                        ,fieldLabel: _('formz.field.remove')
+                        ,className: 'remove'
+                    }]
+                });
+            }
         }]
     });
     Formz.grid.Data.superclass.constructor.call(this, config);
+
+    // Attach click event on buttons
+    this.on('click', this.onClick, this);
 };
 Ext.extend(Formz.grid.Data, MODx.grid.Grid, {
     windows: {}
@@ -73,6 +94,24 @@ Ext.extend(Formz.grid.Data, MODx.grid.Grid, {
                 'success': { fn: function(r) { this.refresh(); }, scope: this }
             }
         });
+    }
+
+    ,onClick: function(e){
+        var t = e.getTarget();
+        var elm = t.className.split(' ')[2];
+        if(elm == 'controlBtn') {
+            var action = t.className.split(' ')[3];
+            var record = this.getSelectionModel().getSelected();
+            this.menu.record = record.data;
+            switch (action) {
+                case 'view':
+                    this.viewData('', e);
+                    break;
+                case 'remove':
+                    this.removeSpam();
+                    break;
+            }
+        }
     }
 });
 Ext.reg('formz-grid-data', Formz.grid.Data);
@@ -139,3 +178,96 @@ Formz.window.ViewData = function (config) {
 };
 Ext.extend(Formz.window.ViewData, MODx.Window);
 Ext.reg('formz-window-view-data', Formz.window.ViewData);
+
+
+Formz.window.ExportData = function (config) {
+    config = config || {};
+    config.id = Ext.id();
+
+    Ext.applyIf(config, {
+        title: _('formz.form.export')
+        ,autoHeight: true
+        ,closeAction: 'hide'
+        ,width: 540
+        ,defaults: {
+            border: false,
+            autoHeight: true,
+            bodyStyle: 'padding: 5px 8px 5px 5px;',
+            layout: 'form',
+            deferredRender: false,
+            forceLayout: true
+        }
+        ,buttons: [{
+            text: config.cancelBtnText || _('cancel')
+            ,scope: this
+            ,handler: function() { config.closeAction !== 'close' ? this.hide() : this.close(); }
+        }, '-', {
+            text: _('formz.export')
+            ,cls: 'trigger-action'
+            ,handler: function (btn, e) {
+                /**
+                 * Create dummy form to trick
+                 * Ext Ajax request for force file download
+                 */
+                if (!Ext.fly('frmDummy')) {
+                    var frm = document.createElement('form');
+                    frm.id = 'frmDummy';
+                    frm.formId = config.formId;
+                    frm.className = 'x-hidden';
+                    document.body.appendChild(frm);
+                }
+
+                MODx.Ajax.request({
+                    url: Formz.config.connector_url
+                    ,params: {
+                        action: 'mgr/formz/data/export'
+                        ,formId: config.formId
+                    }
+                    ,form: Ext.fly('frmDummy')
+                    ,isUpload: true
+                    ,listeners: {
+                        'success': { fn: function(r) {
+                            //
+                        }, scope: this }
+                    }
+                });
+            }
+        }]
+        ,fields: [{
+            title: _('formz.export.daterange')
+            ,layout: 'column'
+            ,bodyCssClass: 'main-wrapper'
+            ,autoHeight: true
+            ,collapsible: true
+            ,collapsed: true
+            ,border: true
+            ,hideMode: 'offsets'
+            ,defaults: {
+                layout: 'form'
+                ,border: false
+            }
+            ,items: [{
+                columnWidth: .5
+                ,items: [{
+                    xtype: 'datefield'
+                    ,fieldLabel: _('formz.export.start_date')
+                    ,name: 'start_date'
+                    ,grow: false
+                    ,anchor: '100%'
+                }]
+            }, {
+                columnWidth: .5
+                ,items: [{
+                    xtype: 'datefield'
+                    ,fieldLabel: _('formz.export.end_date')
+                    ,name: 'end_date'
+                    ,grow: false
+                    ,anchor: '100%'
+                }]
+            }]
+        }]
+    });
+    Formz.window.ExportData.superclass.constructor.call(this, config);
+};
+Ext.extend(Formz.window.ExportData, MODx.Window);
+Ext.reg('formz-window-export-data', Formz.window.ExportData);

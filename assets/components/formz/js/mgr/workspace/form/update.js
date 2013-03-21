@@ -10,17 +10,18 @@ Formz.page.UpdateForm = function(config) {
     Ext.applyIf(config, {
 		formpanel: 'formz-panel-new-form'
     	,buttons: [{
-            text: _('save')
-			,process: create_update
-			,method: 'remote'
-			,keys: [{
-				key: MODx.config.keymap_save || 's'
-				,ctrl: true
-			}]
-        },'-',{
             process: 'cancel'
             ,text: _('cancel')
 			,params: {a: MODx.action['formz:index']}
+        }, '-', {
+            text: _('save')
+            ,cls: 'trigger-action'
+            ,process: create_update
+            ,method: 'remote'
+            ,keys: [{
+                key: MODx.config.keymap_save || 's'
+                ,ctrl: true
+            }]
         }]
         ,components: [{
             xtype: 'formz-panel-new-form'

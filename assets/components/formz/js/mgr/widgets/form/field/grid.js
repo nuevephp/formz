@@ -21,8 +21,6 @@ Formz.grid.Fields = function(config) {
         ]
         ,paging: true
         ,remoteSort: false
-        ,autoExpandColumn: 'label'
-        ,autosave: true
         ,ddGroup: 'ddGrid' + config.form_id
         ,enableDragDrop: true
         ,save_action: 'mgr/formz/field/updateFromGrid'
@@ -37,28 +35,46 @@ Formz.grid.Fields = function(config) {
 			header: _('formz.field.type')
 			,dataIndex: 'type'
 			,sortable: false
-			,width: 15
+            ,width: 15
 		}, {
 			header: _('formz.field.name')
 			,dataIndex: 'label'
 			,sortable: false
-			,width: 75
 			,editor: { xtype: 'textfield' }
 		}, {
 			header: _('formz.field.required')
 			,dataIndex: 'required'
 			,sortable: false
-			,width: 10
+            ,width: 20
 			,editor: { xtype: 'modx-combo-boolean', renderer: 'boolean' }
 		}, {
 			header: _('formz.field.email_tpl_tag')
 			,dataIndex: ''
 			,sortable: false
-			,width: 10
+            ,width: 25
             ,renderer: function(val, metaData, record) {
                 return '[[+field' + record.get('id') + ']]';
             }
-		}]
+		}, {
+            header: '&#160;'
+            ,width: 20
+            ,renderer: function (v, md, rec) {
+                return Formz.grid.btnRenderer({
+                    items: [{
+                        id: 'update-' + rec.id
+                        ,fieldLabel: _('formz.field.update')
+                        ,className: 'update'
+                    }]
+                }) +
+                Formz.grid.btnRenderer({
+                    items: [{
+                        id: 'remove-' + rec.id
+                        ,fieldLabel: _('formz.field.remove')
+                        ,className: 'remove'
+                    }]
+                });
+            }
+        }]
         ,tbar: ['->', {
             text: _('formz.field.add')
             ,handler: {
@@ -72,8 +88,10 @@ Formz.grid.Fields = function(config) {
 
     // Reorder by Drag and Drop
     this.on('render', this.dragAndDrop, this);
-};
 
+    // Attach click event on buttons
+    this.on('click', this.onClick, this);
+};
 Ext.extend(Formz.grid.Fields, MODx.grid.Grid, {
     getMenu: function (grid, rowIndex, e) {
         return [{
@@ -111,6 +129,23 @@ Ext.extend(Formz.grid.Fields, MODx.grid.Grid, {
                 'success': { fn: this.refresh, scope: this }
             }
         });
+    }
+    ,onClick: function(e){
+        var t = e.getTarget();
+        var elm = t.className.split(' ')[2];
+        if(elm == 'controlBtn') {
+            var action = t.className.split(' ')[3];
+            var record = this.getSelectionModel().getSelected();
+            this.menu.record = record.data;
+            switch (action) {
+                case 'update':
+                    this.updateField('', e);
+                break;
+                case 'remove':
+                    this.removeField();
+                break;
+            }
+        }
     }
     ,dragAndDrop: function (grid) {
     	var that = this,
@@ -169,6 +204,16 @@ Formz.window.UpdateField = function (config) {
 			action: 'mgr/formz/field/' + create_update
 			,form_id: config.form_id
 		}
+        ,buttons: [{
+            text: config.cancelBtnText || _('cancel')
+            ,scope: this
+            ,handler: function() { config.closeAction !== 'close' ? this.hide() : this.close(); }
+        },{
+            text: config.saveBtnText || _('save')
+            ,cls: 'trigger-action'
+            ,scope: this
+            ,handler: this.submit
+        }]
 		,fields: [{
             xtype: 'modx-tabs',
             autoHeight: true,
