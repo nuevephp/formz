@@ -189,6 +189,11 @@ Formz.window.ExportData = function (config) {
         ,autoHeight: true
         ,closeAction: 'hide'
         ,width: 540
+        ,url: Formz.config.connector_url
+        ,baseParams: {
+            action: 'mgr/formz/data/export'
+            ,form_id: config.formId
+        }
         ,defaults: {
             border: false,
             autoHeight: true,
@@ -222,6 +227,8 @@ Formz.window.ExportData = function (config) {
                     ,params: {
                         action: 'mgr/formz/data/export'
                         ,formId: config.formId
+                        ,startDate: Ext.getCmp('startDate').getValue()
+                        ,endDate: Ext.getCmp('endDate').getValue()
                     }
                     ,form: Ext.fly('frmDummy')
                     ,isUpload: true
@@ -252,6 +259,7 @@ Formz.window.ExportData = function (config) {
                     xtype: 'datefield'
                     ,fieldLabel: _('formz.export.start_date')
                     ,name: 'start_date'
+                    ,id: 'startDate'
                     ,grow: false
                     ,anchor: '100%'
                 }]
@@ -261,6 +269,7 @@ Formz.window.ExportData = function (config) {
                     xtype: 'datefield'
                     ,fieldLabel: _('formz.export.end_date')
                     ,name: 'end_date'
+                    ,id: 'endDate'
                     ,grow: false
                     ,anchor: '100%'
                 }]

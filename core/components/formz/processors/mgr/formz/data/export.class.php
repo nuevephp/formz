@@ -13,14 +13,35 @@ class FormzDataExportProcessor extends modObjectGetListProcessor {
     /* Used to load the correct language error message */
     public $objectType = 'formz.form';
 
+    public function beforeQuery() {
+        $this->unsetProperty('limit');
+        return true;
+    }
+
     /* Search database from backend module */
     public function prepareQueryBeforeCount(xPDOQuery $c) {
     	$form = $this->getProperty('formId');
+    	$startDate = $this->getProperty('startDate');
+    	$endDate = $this->getProperty('endDate');
+
     	if (!empty($form)) {
     		$c->where(array(
 	    		'form_id' => $form,
 	    	));
     	}
+
+        if (! empty($startDate)) {
+            $c->andCondition(array(
+                'senton:>' => date('Y-m-d', strtotime($startDate)) . ' 00:00:00'
+            ));
+        }
+
+        if (! empty($endDate)) {
+            $c->andCondition(array(
+                'senton:<' => date('Y-m-d', strtotime($endDate)) . ' 23:59:59'
+            ));
+        }
+//        var_dump($form, date('Y-m-d H:i:s', strtotime($startDate)), date('Y-m-d H:i:s', strtotime($endDate))); die;
     	return $c;
     }
 

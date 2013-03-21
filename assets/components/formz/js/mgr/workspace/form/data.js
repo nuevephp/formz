@@ -17,6 +17,7 @@ Formz.page.FormData = function(config) {
                 if (! this.exportDataWindow) {
                     this.exportDataWindow = MODx.load({
                         xtype: 'formz-window-export-data'
+                        ,formId: config.formId
                     });
                 }
                 this.exportDataWindow.show(e.target);
