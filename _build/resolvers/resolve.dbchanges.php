@@ -40,6 +40,7 @@ if ($object->xpdo) {
             );
 
             $modx->exec($sqlFormsRedirectToField);
+            $modx->exec($sqlFormsPropertiesField);
             $modx->exec($sqlValidationIdField);
 
             $success = true;
