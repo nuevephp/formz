@@ -42,6 +42,10 @@ $_lang['formz.form.success'] = 'Framgångsmeddelande';
 $_lang['formz.form.method.dbonly'] = 'Spara i databasen';
 $_lang['formz.form.method.dbandemail'] = 'Spara i database och skicka e-post';
 $_lang['formz.form.recipient'] = 'Mottagare';
+$_lang['formz.form.properties'] = 'Egenskaper';
+$_lang['formz.form.properties_desc'] = 'Ytterligare egenskaper som ett FormIt formulär kan ha, du kan lägga till multipla egenskaper genom att separera dem med || <em>ex.: &fiarTpl</em>';
+$_lang['formz.form.redirect_to'] = 'Omdirigera till';
+$_lang['formz.form.redirect_to_desc'] = 'ID för resursen man skall omdirigeras till <em>standard: [[*id]]</em>';
 $_lang['formz.form.action_button'] = 'Åtgärdsknapp';
 $_lang['formz.form.action_button_desc'] = 'Text som formulärets submit knapp skall ha. <em>standard: Submit</em>';
 
@@ -52,6 +56,7 @@ $_lang['formz.field.values'] = 'Värden';
 $_lang['formz.field.default'] = 'Standardvärde';
 $_lang['formz.field.validation'] = 'Validering';
 $_lang['formz.field.required'] = 'Obligatoriskt';
+$_lang['formz.field.email_tpl_tag'] = 'E-post malltagg';
 $_lang['formz.field.error_message'] = 'Felmeddelande';
 $_lang['formz.field.cancel'] = 'Tillbaka till formulären';
 
@@ -71,6 +76,11 @@ $_lang['formz.submissions.ip_address'] = 'IP-adress';
 $_lang['formz.submissions.sender_info'] = 'Avsändarinformation';
 $_lang['formz.submissions.content'] = 'Innehåll';
 $_lang['formz.submissions.remove_confirm'] = 'Är du säker att du vill ta bort detta formulär data?';
+
+$_lang['formz.export'] = 'Exportera';
+$_lang['formz.export.daterange'] = 'Datumintervall';
+$_lang['formz.export.start_date'] = 'Startdatum';
+$_lang['formz.export.end_date'] = 'Slutdatum';
 
 // Validation
 $_lang['formz.field.validation.required'] = 'Detta fält är obligatoriskt.';
