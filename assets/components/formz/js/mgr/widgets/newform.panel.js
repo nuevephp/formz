@@ -114,7 +114,7 @@ Formz.panel.NewForm = function (config) {
 				,allowBlank: true
 			}]
 		}, {
-			html: '<p>' + _('formz.form.redirect_to_desc') + '</p>'
+			html: '<p>' + _('formz.form.hooks_desc') + '</p>'
 			,bodyCssClass: 'panel-desc'
 		}, {
 			layout: 'form'
@@ -126,8 +126,8 @@ Formz.panel.NewForm = function (config) {
 			}
 			,items: [{
 				xtype: 'textfield'
-				,fieldLabel: _('formz.form.redirect_to')
-				,name: 'redirect_to'
+				,fieldLabel: _('formz.form.hooks')
+				,name: 'hooks'
 				,anchor: '40%'
 			}]
 		}, {

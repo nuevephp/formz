@@ -14,7 +14,7 @@ $xpdo_meta_map['fmzForms']= array (
     'email' => '',
     'success_message' => '',
     'identifier' => '',
-    'redirect_to' => '',
+    'hooks' => '',
     'action_button' => '',
     'properties' => '',
     'createdon' => NULL,
@@ -62,12 +62,10 @@ $xpdo_meta_map['fmzForms']= array (
       'null' => true,
       'default' => '',
     ),
-    'redirect_to' =>
+    'hooks' =>
     array (
-      'dbtype' => 'int',
-      'precision' => '10',
-      'attributes' => 'unsigned',
-      'phptype' => 'integer',
+      'dbtype' => 'text',
+      'phptype' => 'string',
       'null' => true
     ),
     'action_button' => 

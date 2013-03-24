@@ -44,8 +44,8 @@ $_lang['formz.form.method.dbandemail'] = 'Save in the database and send email';
 $_lang['formz.form.recipient'] = 'Recipients';
 $_lang['formz.form.properties'] = 'Properties';
 $_lang['formz.form.properties_desc'] = 'Additional properties that a FormIt form can take, you can add multiple properties using the double pipe || <em>e.g.: &fiarTpl</em>';
-$_lang['formz.form.redirect_to'] = 'Redirect To';
-$_lang['formz.form.redirect_to_desc'] = 'The id of the resource to redirect to <em>default: [[*id]]</em>';
+$_lang['formz.form.hooks'] = 'Hooks';
+$_lang['formz.form.hooks_desc'] = 'You can add additional hooks using comma-separator to call on your FormIt form. <em>e.g. redirect,spam</em>';
 $_lang['formz.form.action_button'] = 'Action Button';
 $_lang['formz.form.action_button_desc'] = 'The text that the form submit button should have written on it. <em>default: Submit</em>';
 

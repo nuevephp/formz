@@ -21,13 +21,13 @@ if ($object->xpdo) {
                     $modx->getOption('core_path') . 'components/formz/'
                 ) . 'model/';
                 $modx->addPackage('formz', $modelPath);
-                $modx->formz = $modx->getService('formz', 'Formz', $modelPath);
+                $modx->formz = $modx->getService('formz', 'formz', $modelPath);
             }
 
             $formzForms = $modx->getTableName('fmzForms');
             $formzValidation = $modx->getTableName('fmzFormsValidation');
-            $sqlFormsRedirectToField = sprintf(
-                "ALTER TABLE %s ADD `redirect_to` INT(10) UNSIGNED NULL AFTER `identifier`",
+            $sqlFormsHooksField = sprintf(
+                "ALTER TABLE %s ADD `hooks` TEXT NULL AFTER `identifier`",
                 $formzForms
             );
             $sqlFormsPropertiesField = sprintf(
@@ -39,7 +39,7 @@ if ($object->xpdo) {
                 $formzValidation
             );
 
-            $modx->exec($sqlFormsRedirectToField);
+            $modx->exec($sqlFormsHooksField);
             $modx->exec($sqlFormsPropertiesField);
             $modx->exec($sqlValidationIdField);
 

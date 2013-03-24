@@ -1,6 +1,5 @@
 [[!FormIt?
-	&hooks=`[[+action]],redirect`
-    &redirectTo=`[[+redirect_to:default=`[[*id]]`]]`
+	&hooks=`[[+action]][[+hooks:notempty=`,[[+hooks]]`]]`
 	&excludeFields=`submit[[+id]]`
     &submitVar=`submit[[+id]]`
 	&formid=`[[+id]]` [[- "Form ID"]]
