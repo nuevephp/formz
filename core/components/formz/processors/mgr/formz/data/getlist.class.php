@@ -8,7 +8,7 @@ class FormzDataGetListProcessor extends modObjectGetListProcessor {
 
     /* Field t sort by and direction */
     public $defaultSortField = 'senton';
-    public $defaultSortDirection = 'ASC';
+    public $defaultSortDirection = 'DESC';
 
     /* Used to load the correct language error message */
     public $objectType = 'formz.form';
