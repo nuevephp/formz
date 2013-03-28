@@ -42,6 +42,10 @@ $_lang['formz.form.success'] = 'Message de succès';
 $_lang['formz.form.method.dbonly'] = 'Enregistrer dans la base de données';
 $_lang['formz.form.method.dbandemail'] = 'Enregistrer dans la base de données et envoyer un email';
 $_lang['formz.form.recipient'] = 'Destinataires';
+$_lang['formz.form.properties'] = 'Propriétés';
+$_lang['formz.form.properties_desc'] = 'Propriétés additionnelles que FormIt peut utiliser. Vous pouvez ajouter plusieurs propriétés en utilisant un double pipe || <em>exemple : &fiarTpl</em>';
+$_lang['formz.form.hooks'] = 'Hooks';
+$_lang['formz.form.hooks_desc'] = 'Vous pouvez ajouter des hooks en les séprant par des virgules. <em>exemple : redirect,spam</em>';
 $_lang['formz.form.action_button'] = 'Action de bouton';
 $_lang['formz.form.action_button_desc'] = 'Le texte affiché sur le bouton d\'envoi du formulaire. <em>default: Submit</em>';
 
@@ -52,13 +56,14 @@ $_lang['formz.field.values'] = 'Valeurs';
 $_lang['formz.field.default'] = 'Valeur par défaut';
 $_lang['formz.field.validation'] = 'Validation';
 $_lang['formz.field.required'] = 'Requis';
+$_lang['formz.field.email_tpl_tag'] = 'Email Template Tag';
 $_lang['formz.field.error_message'] = 'Message d\'erreur';
 $_lang['formz.field.cancel'] = 'Retour aux formulaires';
 
 $_lang['formz.field.add'] = 'Ajouter un champ';
 $_lang['formz.field.create'] = 'Créer un champ';
-$_lang['formz.field.update'] = 'Mettre à jour le champ';
-$_lang['formz.field.delete'] = 'Supprimer le champ';
+$_lang['formz.field.update'] = 'Mettre à jour';
+$_lang['formz.field.delete'] = 'Supprimer';
 $_lang['formz.field.remove'] = 'Retirer du formulaire';
 $_lang['formz.field.remove_confirm'] = 'Êtes-vous sûr de vouloir retirer ce champ du formulaire ?';
 
@@ -71,6 +76,11 @@ $_lang['formz.submissions.ip_address'] = 'Adresse IP';
 $_lang['formz.submissions.sender_info'] = 'Informations de l\'expediteur';
 $_lang['formz.submissions.content'] = 'Contenu';
 $_lang['formz.submissions.remove_confirm'] = 'Êtes-vous sûr de vouloir supprimer ces données ?';
+
+$_lang['formz.export'] = 'Exporter';
+$_lang['formz.export.daterange'] = 'Créneau de date';
+$_lang['formz.export.start_date'] = 'Date de départ';
+$_lang['formz.export.end_date'] = 'Date de fin';
 
 // Validation
 $_lang['formz.field.validation.required'] = 'Ce champ est requis.';
