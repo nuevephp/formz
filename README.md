@@ -1,4 +1,4 @@
-# This repository is no longer maintained, please use https://github.com/Adido/formz repo for up to date fixes and PRs. This is now the new home of Formz, thanks to the guys over at Adido for taking over.
+## This repository is no longer maintained, please use https://github.com/Adido/formz repo for up to date fixes and PRs. This is now the new home of Formz, thanks to the guys over at Adido for taking over.
 
 ## Formz
 
