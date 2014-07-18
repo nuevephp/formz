@@ -1,5 +1,12 @@
 Changelog for Formz.
 
+Formz 1.1.0
+======================
+- [#3] Now supporting MODx 2.3
+- [#2] Added dependencies as sub packages
+- Added index on senton column allow for quicker exports
+- Removed sender name
+
 Formz 1.0.0 rc2
 ======================
 - UI Enhancements added in
