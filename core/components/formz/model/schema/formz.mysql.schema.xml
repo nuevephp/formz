@@ -6,7 +6,9 @@
         <field key="email" dbtype="text" phptype="string" null="true" default="" />
         <field key="success_message" dbtype="text" phptype="string" null="true" default="" />
         <field key="identifier" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
+        <field key="hooks" dbtype="text" precision="255" phptype="string" null="true" default="" />
         <field key="action_button" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
+        <field key="properties" dbtype="text" precision="255" phptype="string" null="true" default="" />
 
         <field key="createdon" dbtype="datetime" phptype="datetime" null="true" />
 		<field key="createdby" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0" />
@@ -57,6 +59,9 @@
     	<index alias="form_id" name="form_id" primary="false" unique="false" type="BTREE">
 			<column key="form_id" length="" collation="A" null="false" />
 		</index>
+        <index alias="idx_senton" name="idx_senton" primary="false" unique="false" type="BTREE">
+            <column key="senton" length="" collation="A" null="false" />
+        </index>
 
 		<aggregate alias="Form" class="fmzForms" local="form_id" foreign="id" cardinality="one" owner="foreign" />
 		<composite alias="FieldData" class="fmzFormsDataFields" local="id" foreign="data_id" cardinality="many" owner="local" />

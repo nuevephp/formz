@@ -24,6 +24,14 @@ if ($object->xpdo) {
                 $modx->formz = $modx->getService('formz', 'formz', $modelPath);
             }
 
+		    /** @var xPDOManager $manager */
+		    $manager = $modx->getManager();
+			$manager->addField('fmzForms','hooks', array('after' => 'identifier'));
+			$manager->addField('fmzForms','properties', array('after' => 'action_button'));
+			$manager->addField('fmzForms','properties', array('after' => 'action_button'));
+			$manager->addIndex('fmzFormsData','idx_senton');
+
+/*
             $formzForms = $modx->getTableName('fmzForms');
             $formzValidation = $modx->getTableName('fmzFormsValidation');
             $sqlFormsHooksField = sprintf(
@@ -42,6 +50,8 @@ if ($object->xpdo) {
             $modx->exec($sqlFormsHooksField);
             $modx->exec($sqlFormsPropertiesField);
             $modx->exec($sqlValidationIdField);
+*/
+			// add index to senton date in submissions
 
             $success = true;
             break;

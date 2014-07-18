@@ -56,6 +56,22 @@ $xpdo_meta_map['fmzFormsData']= array (
         ),
       ),
     ),
+    'idx_senton' => 
+    array (
+      'alias' => 'idx_senton',
+      'primary' => false,
+      'unique' => false,
+      'type' => 'BTREE',
+      'columns' => 
+      array (
+        'senton' => 
+        array (
+          'length' => '',
+          'collation' => 'A',
+          'null' => false,
+        ),
+      ),
+    ),
   ),
   'composites' => 
   array (
