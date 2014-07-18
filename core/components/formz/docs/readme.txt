@@ -1,8 +1,9 @@
 --------------------
 Formz
 --------------------
-Version: 1.0.0
-Author: Andrew Smith <a.smith@silentworks.co.uk>
+Version: 1.1.0
+Maintainer: Mark Willis <mark.willis@adi.do>
+Original Author: Andrew Smith
 --------------------
 
 A Form Builder for MODx Revolution.
@@ -13,12 +14,12 @@ forms in database and also send forms via email also.
 Formz has two dependencies which need to be installed first. The dependencies are both
 available through the MODX Package Management tool.
 
-Dependencies:
-	FormIt
-	FormitFastPack
+Dependencies as now installed:
+	FormIt (v2.2.0-pl)
+	FormitFastPack (1.1.0-pl)
 
 Feel free to suggest ideas/improvements/bugs on GitHub:
-http://github.com/silentworks/formz/issues
+http://github.com/Adido/formz/issues
 
 ---------------------
 Contributors
