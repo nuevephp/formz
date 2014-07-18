@@ -3,7 +3,7 @@
  * formz
  */
 /**
- * Default English Lexicon Entries for formz
+ * Default German Lexicon Entries for formz
  *
  * @package formz
  * @subpackage lexicon
@@ -42,6 +42,10 @@ $_lang['formz.form.success'] = 'Erfolgsmitteilung';
 $_lang['formz.form.method.dbonly'] = 'In der Datenbank speichern';
 $_lang['formz.form.method.dbandemail'] = 'In der Datenbank speichern und E-Mail schicken';
 $_lang['formz.form.recipient'] = 'Empfänger';
+$_lang['formz.form.properties'] = 'Eigenschaften';
+$_lang['formz.form.properties_desc'] = 'Zusätzliche Eigenschaften, die ein FormIt-Formular haben kann; Sie können mehrere Eigenschaften hinzufügen, indem Sie das doppelte Pipe-Symbol || als Trennzeichen verwenden. <em>Beispiel: &fiarTpl</em>';
+$_lang['formz.form.hooks'] = 'Hooks';
+$_lang['formz.form.hooks_desc'] = 'Sie können zusätzliche Hooks hinzufügen, die von Ihrem FormIt-Formular aufgerufen werden sollen, indem Sie das Komma als Separator verwenden. <em>Beispiel: redirect,spam</em>';
 $_lang['formz.form.action_button'] = 'Absende-Button';
 $_lang['formz.form.action_button_desc'] = 'Der Text, mit dem der Absende-Button beschriftet werden soll. <em>Standard: Submit</em>';
 
@@ -58,9 +62,9 @@ $_lang['formz.field.cancel'] = 'Zurück zu den Formularen';
 
 $_lang['formz.field.add'] = 'Formularfeld hinzufügen';
 $_lang['formz.field.create'] = 'Formularfeld erstellen';
-$_lang['formz.field.update'] = 'Formularfeld bearbeiten';
+$_lang['formz.field.update'] = 'Bearbeiten';
 $_lang['formz.field.delete'] = 'Formularfeld löschen';  // delete
-$_lang['formz.field.remove'] = 'Formularfeld löschen';  // remove
+$_lang['formz.field.remove'] = 'Löschen';  // remove
 $_lang['formz.field.remove_confirm'] = 'Sind Sie sicher, dass Sie dieses Formularfeld löschen möchten?';
 
 $_lang['formz.submissions.removedata'] = 'Einsendung löschen';
@@ -72,6 +76,11 @@ $_lang['formz.submissions.ip_address'] = 'IP-Adresse';
 $_lang['formz.submissions.sender_info'] = 'Absender-Informationen';
 $_lang['formz.submissions.content'] = 'Inhalt';
 $_lang['formz.submissions.remove_confirm'] = 'Sind Sie sicher, dass Sie diese Einsendung löschen möchten?';
+
+$_lang['formz.export'] = 'Exportieren';
+$_lang['formz.export.daterange'] = 'Datumsbereich';
+$_lang['formz.export.start_date'] = 'Start-Datum';
+$_lang['formz.export.end_date'] = 'End-Datum';
 
 // Validation
 $_lang['formz.field.validation.required'] = 'Dieses Feld muss ausgefüllt werden.';
