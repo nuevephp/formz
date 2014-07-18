@@ -27,6 +27,8 @@ $sources = array(
     'build' => $root . '_build/',
     'data' => $root . '_build/data/',
     'resolvers' => $root . '_build/resolvers/',
+    'validators' => $root . '_build/validators/',
+    'subpackages' => $root . '_build/subpackages/',
     'chunks' => $root.'core/components/'.PKG_ABBR.'/elements/chunks/',
     'snippets' => $root.'core/components/'.PKG_ABBR.'/elements/snippets/',
     'plugins' => $root.'core/components/'.PKG_ABBR.'/elements/plugins/',
@@ -59,6 +61,12 @@ $modx->log(modX::LOG_LEVEL_INFO,'Created Transport Package and Namespace.');
 $category= $modx->newObject('modCategory');
 $category->set('id',1);
 $category->set('category',PKG_NAME);
+
+/* add subpackages */
+$success = include $sources['data'].'transport.subpackages.php';
+if (!$success) { $modx->log(modX::LOG_LEVEL_FATAL,'Adding subpackages failed.'); }
+$modx->log(modX::LOG_LEVEL_INFO,'Added in subpackages.'); flush();
+unset($success);
 
 /* add chunks */
 $chunks = include $sources['data'] . 'transport.chunks.php';
@@ -227,6 +235,6 @@ $tend= $mtime;
 $totalTime= ($tend - $tstart);
 $totalTime= sprintf("%2.4f s", $totalTime);
 
-$modx->log(modX::LOG_LEVEL_INFO,"\n<br />Package Built.<br />\nExecution time: {$totalTime}\n");
+$modx->log(modX::LOG_LEVEL_INFO,"\n<br />Package Built (".MODX_BASE_PATH.").<br />\nExecution time: {$totalTime}\n");
 
 exit ();
