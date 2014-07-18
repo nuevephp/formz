@@ -208,7 +208,7 @@ Formz.window.ExportData = function (config) {
             ,handler: function() { config.closeAction !== 'close' ? this.hide() : this.close(); }
         }, '-', {
             text: _('formz.export')
-            ,cls: 'trigger-action'
+            ,cls: 'trigger-action primary-button'
             ,handler: function (btn, e) {
                 /**
                  * Create dummy form to trick

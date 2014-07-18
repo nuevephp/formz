@@ -210,7 +210,7 @@ Formz.window.UpdateField = function (config) {
             ,handler: function() { config.closeAction !== 'close' ? this.hide() : this.close(); }
         },{
             text: config.saveBtnText || _('save')
-            ,cls: 'trigger-action'
+            ,cls: 'trigger-action primary-button'
             ,scope: this
             ,handler: this.submit
         }]
