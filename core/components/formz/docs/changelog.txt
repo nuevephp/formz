@@ -1,5 +1,9 @@
 Changelog for Formz.
 
+Formz 1.1.1
+======================
+- Updated email hook for multiple TO addresses
+
 Formz 1.1.0
 ======================
 - [Issue: #3] Now supporting MODx 2.3

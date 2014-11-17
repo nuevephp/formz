@@ -113,7 +113,10 @@ class formzHooks {
             $this->modx->mail->set(modMail::MAIL_FROM, $this->config->emailFrom);
             $this->modx->mail->set(modMail::MAIL_FROM_NAME, $this->config->senderName);
             $this->modx->mail->set(modMail::MAIL_SUBJECT, $this->config->subject);
-            $this->modx->mail->address('to', $this->config->emailTo);
+	        $tos = explode(',',$this->config->emailTo);
+	        foreach($tos as $to) {
+                $this->modx->mail->address('to', $to);
+	        }
             $this->modx->mail->address('reply-to', $this->config->emailFrom);
             $this->modx->mail->setHTML(true);
             if (!$this->modx->mail->send()) {
