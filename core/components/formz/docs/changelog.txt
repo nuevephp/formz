@@ -1,5 +1,17 @@
 Changelog for Formz.
 
+Formz 1.1.1
+======================
+- Updated email hook for multiple TO addresses
+
+Formz 1.1.0
+======================
+- [Issue: #3] Now supporting MODx 2.3
+- [Issue: #2] Added dependencies as sub packages
+- [PR: #1] Added German translation
+- Added index on senton column allow for quicker exports
+- Removed sender name
+
 Formz 1.0.0 rc2
 ======================
 - UI Enhancements added in

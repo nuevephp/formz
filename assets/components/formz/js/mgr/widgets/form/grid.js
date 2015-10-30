@@ -33,7 +33,7 @@ Formz.grid.Forms = function(config) {
         }, {
             header: '&#160;'
             ,renderer: function (v, md, rec) {
-                var btns;
+                var btns = '';
                 var model = rec.data;
                 var submStr = model.submissions > 1 ? 'formz.form.has_submissions' : 'formz.form.has_submission';
 
@@ -60,7 +60,6 @@ Formz.grid.Forms = function(config) {
                         ,className: 'remove'
                     }]
                 });
-
                 return btns;
             }
         }]

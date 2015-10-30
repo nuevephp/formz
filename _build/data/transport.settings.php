@@ -9,15 +9,23 @@
  */
 $settings = array();
 
-/*
-$settings['gallery.']= $modx->newObject('modSystemSetting');
-$settings['gallery.']->fromArray(array(
-    'key' => 'gallery.',
+$settings['formz.mandrill_api_username']= $modx->newObject('modSystemSetting');
+$settings['formz.mandrill_api_username']->fromArray(array(
+    'key' => 'formz.mandrill_api_username',
     'value' => '',
     'xtype' => 'textfield',
-    'namespace' => 'gallery',
-    'area' => '',
+    'namespace' => 'formz',
+    'area' => 'Formz',
 ),'',true,true);
-*/
+
+$settings['formz.mandrill_api_key']= $modx->newObject('modSystemSetting');
+$settings['formz.mandrill_api_key']->fromArray(array(
+    'key' => 'formz.mandrill_api_key',
+    'value' => '',
+    'xtype' => 'textfield',
+    'namespace' => 'formz',
+    'area' => 'Formz',
+),'',true,true);
+
 
 return $settings;

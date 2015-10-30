@@ -7,7 +7,7 @@ $xpdo_meta_map['fmzForms']= array (
   'version' => '1.1',
   'table' => 'formz_forms',
   'extends' => 'xPDOSimpleObject',
-  'fields' =>
+  'fields' => 
   array (
     'name' => '',
     'method' => 'database_email',
@@ -22,9 +22,9 @@ $xpdo_meta_map['fmzForms']= array (
     'editedon' => NULL,
     'editedby' => 0,
   ),
-  'fieldMeta' =>
+  'fieldMeta' => 
   array (
-    'name' =>
+    'name' => 
     array (
       'dbtype' => 'varchar',
       'precision' => '100',
@@ -32,7 +32,7 @@ $xpdo_meta_map['fmzForms']= array (
       'null' => false,
       'default' => '',
     ),
-    'method' =>
+    'method' => 
     array (
       'dbtype' => 'enum',
       'phptype' => 'string',
@@ -40,21 +40,21 @@ $xpdo_meta_map['fmzForms']= array (
       'precision' => '\'database\',\'database_email\'',
       'default' => 'database_email',
     ),
-    'email' =>
+    'email' => 
     array (
       'dbtype' => 'text',
       'phptype' => 'string',
       'null' => true,
       'default' => '',
     ),
-    'success_message' =>
+    'success_message' => 
     array (
       'dbtype' => 'text',
       'phptype' => 'string',
       'null' => true,
       'default' => '',
     ),
-    'identifier' =>
+    'identifier' => 
     array (
       'dbtype' => 'varchar',
       'precision' => '255',
@@ -62,13 +62,15 @@ $xpdo_meta_map['fmzForms']= array (
       'null' => true,
       'default' => '',
     ),
-    'hooks' =>
+    'hooks' => 
     array (
       'dbtype' => 'text',
+      'precision' => '255',
       'phptype' => 'string',
-      'null' => true
+      'null' => true,
+      'default' => '',
     ),
-    'action_button' =>
+    'action_button' => 
     array (
       'dbtype' => 'varchar',
       'precision' => '255',
@@ -76,19 +78,21 @@ $xpdo_meta_map['fmzForms']= array (
       'null' => true,
       'default' => '',
     ),
-    'properties' =>
+    'properties' => 
     array (
       'dbtype' => 'text',
+      'precision' => '255',
       'phptype' => 'string',
       'null' => true,
+      'default' => '',
     ),
-    'createdon' =>
+    'createdon' => 
     array (
       'dbtype' => 'datetime',
       'phptype' => 'datetime',
       'null' => true,
     ),
-    'createdby' =>
+    'createdby' => 
     array (
       'dbtype' => 'int',
       'precision' => '10',
@@ -97,13 +101,13 @@ $xpdo_meta_map['fmzForms']= array (
       'null' => false,
       'default' => 0,
     ),
-    'editedon' =>
+    'editedon' => 
     array (
       'dbtype' => 'datetime',
       'phptype' => 'datetime',
       'null' => true,
     ),
-    'editedby' =>
+    'editedby' => 
     array (
       'dbtype' => 'int',
       'precision' => '10',
@@ -113,9 +117,9 @@ $xpdo_meta_map['fmzForms']= array (
       'default' => 0,
     ),
   ),
-  'composites' =>
+  'composites' => 
   array (
-    'Fields' =>
+    'Fields' => 
     array (
       'class' => 'fmzFormsFields',
       'local' => 'id',
@@ -123,7 +127,7 @@ $xpdo_meta_map['fmzForms']= array (
       'cardinality' => 'many',
       'owner' => 'local',
     ),
-    'Data' =>
+    'Data' => 
     array (
       'class' => 'fmzFormsData',
       'local' => 'id',
@@ -132,9 +136,9 @@ $xpdo_meta_map['fmzForms']= array (
       'owner' => 'local',
     ),
   ),
-  'aggregates' =>
+  'aggregates' => 
   array (
-    'CreatedBy' =>
+    'CreatedBy' => 
     array (
       'class' => 'modUser',
       'local' => 'createdby',
@@ -142,7 +146,7 @@ $xpdo_meta_map['fmzForms']= array (
       'cardinality' => 'one',
       'owner' => 'foreign',
     ),
-    'EditedBy' =>
+    'EditedBy' => 
     array (
       'class' => 'modUser',
       'local' => 'createdby',

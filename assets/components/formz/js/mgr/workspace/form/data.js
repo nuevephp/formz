@@ -13,6 +13,7 @@ Formz.page.FormData = function(config) {
 			,params: {a: MODx.action['formz:index']}
         }, '-', {
             text: _('formz.form.export')
+		    ,cls: 'primary-button'
             ,handler: function (btn, e) {
                 if (! this.exportDataWindow) {
                     this.exportDataWindow = MODx.load({

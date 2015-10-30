@@ -15,7 +15,7 @@ Formz.page.UpdateForm = function(config) {
 			,params: {a: MODx.action['formz:index']}
         }, '-', {
             text: _('save')
-            ,cls: 'trigger-action'
+            ,cls: 'trigger-action primary-button'
             ,process: create_update
             ,method: 'remote'
             ,keys: [{
